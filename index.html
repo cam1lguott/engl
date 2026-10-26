@@ -68,10 +68,15 @@
             <p class="text-xs text-slate-400">15 Rondas de dictado en tablero • Audio en inglés estadounidense (US)</p>
         </div>
 
-        <!-- Controls: Instrucciones & Reset -->
-        <div class="flex items-center gap-3">
+        <!-- Controls: Prueba, Instrucciones & Reset -->
+        <div class="flex items-center gap-2 sm:gap-3">
+            <button onclick="startPracticeRound()" id="practiceBtn" class="px-3 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold rounded-lg border border-amber-500/40 transition flex items-center gap-1.5" title="Hacer una ronda de demostración de prueba">
+                <i class="fa-solid fa-flask"></i>
+                <span>Ronda de Prueba</span>
+            </button>
+
             <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2">
-                <i class="fa-solid fa-circle-question text-amber-400"></i>
+                <i class="fa-solid fa-circle-question text-cyan-400"></i>
                 Instrucciones
             </button>
 
@@ -81,6 +86,15 @@
             </button>
         </div>
     </header>
+
+    <!-- Banner visible solo en la Ronda de Prueba -->
+    <div id="practiceBanner" class="hidden bg-amber-500/10 border-b border-amber-500/30 px-6 py-2.5 text-center text-xs font-bold text-amber-300 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-circle-info text-amber-400"></i>
+        <span>MODO PRUEBA: Esta ronda es de demostración para explicar cómo se juega. No suma puntos al marcador oficial.</span>
+        <button onclick="exitPracticeRound()" class="ml-3 px-2 py-0.5 bg-amber-500/30 hover:bg-amber-500/50 text-white rounded text-xs underline">
+            Salir de la prueba y comenzar juego
+        </button>
+    </div>
 
     <!-- Main Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-6">
@@ -160,12 +174,12 @@
             <!-- Encabezado de la Ronda -->
             <div class="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-slate-800">
                 <div class="flex items-center gap-4">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30">
+                    <div id="roundNumberBadge" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30">
                         <span id="roundNumber">1</span>
                     </div>
                     <div>
-                        <div class="text-xs uppercase tracking-widest text-amber-400 font-bold">En Juego</div>
-                        <h3 class="text-2xl font-black font-display text-white">Ronda <span id="roundIndicator">1</span> de 15</h3>
+                        <div id="roundTagText" class="text-xs uppercase tracking-widest text-amber-400 font-bold">En Juego</div>
+                        <h3 id="roundTitleText" class="text-2xl font-black font-display text-white">Ronda <span id="roundIndicator">1</span> de 15</h3>
                     </div>
                 </div>
 
@@ -302,7 +316,7 @@
                 <span><strong>Regla de rotación:</strong> Cada ronda pasa un estudiante diferente al tablero para que todos participen.</span>
             </div>
             <div class="text-slate-500">
-                Límite de audio: 2 reproducciones por ronda • 1 punto por oración correcta
+                Límite de audio: 2 reproducciones por ronda • 1 punto por oración correcta • +0.5 por traducir
             </div>
         </footer>
 
@@ -323,9 +337,10 @@
             <div class="py-4 space-y-3 text-sm text-slate-300">
                 <p><strong>1. Dinámica:</strong> La clase se divide en 2 equipos (Equipo 1 y Equipo 2).</p>
                 <p><strong>2. Rotación:</strong> En cada ronda pasa un representante distinto de cada equipo al tablero con su marcador.</p>
-                <p><strong>3. Audio:</strong> Se puede reproducir la oración hasta <strong>2 veces</strong> como máximo en inglés estadounidense (en-US).</p>
-                <p><strong>4. Puntos:</strong> Se otorga 1 punto si la oración está completamente bien escrita.</p>
-                <p><strong>5. Calificaciones:</strong> Al completar las 15 rondas, el equipo con más puntos recibe <strong>5.0</strong> y el otro <strong>4.0</strong> (en caso de empate, ambos 5.0).</p>
+                <p><strong>3. Audio:</strong> Se puede reproducir la oración hasta <strong>2 veces</strong> como máximo en inglés estadounidense (en-US). La 2da vez es más lenta.</p>
+                <p><strong>4. Puntos:</strong> Se otorga <strong>1 punto</strong> si la oración está completamente bien escrita en el tablero.</p>
+                <p><strong>5. Traducción (+0.5):</strong> El estudiante que termine y diga correctamente el significado en español se gana <strong>medio punto extra</strong>.</p>
+                <p><strong>6. Calificaciones:</strong> Al completar las 15 rondas, el equipo con más puntos recibe <strong>5.0</strong> y el otro <strong>4.0</strong> (en caso de empate, ambos 5.0).</p>
             </div>
             <button onclick="toggleModal('rulesModal')" class="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition">
                 Cerrar
@@ -335,6 +350,9 @@
 
     <!-- SCRIPT DE LÓGICA DEL JUEGO -->
     <script>
+        const practiceSentence = "I like English class.";
+        const practiceTranslation = "Me gusta la clase de inglés.";
+
         const sentences = [
             "You should drink more water.",
             "We should eat lunch now.",
@@ -378,6 +396,7 @@
         let playCount = 0;
         let isRevealed = false;
         let isTransRevealed = false;
+        let isPracticeMode = false;
         let usVoice = null;
 
         // Carga estricta de voz en inglés americano (US)
@@ -392,6 +411,14 @@
                 window.speechSynthesis.onvoiceschanged = pickVoice;
                 pickVoice();
             }
+        }
+
+        function getCurrentSentenceText() {
+            return isPracticeMode ? practiceSentence : sentences[currentRound - 1];
+        }
+
+        function getCurrentTranslationText() {
+            return isPracticeMode ? practiceTranslation : translations[currentRound - 1];
         }
 
         // Reproducir la oración actual
@@ -413,7 +440,7 @@
             window.speechSynthesis.cancel();
 
             const isSecondChance = (playCount === 1);
-            const sentence = sentences[currentRound - 1];
+            const sentence = getCurrentSentenceText();
             const utterance = new SpeechSynthesisUtterance(sentence);
             utterance.lang = 'en-US';
             utterance.rate = isSecondChance ? 0.75 : 0.95;
@@ -436,7 +463,6 @@
             utterance.onend = () => {
                 playBtn.classList.remove('pulse-subtle');
                 playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
-                // Solo incrementamos el contador y actualizamos el texto cuando termina de sonar
                 playCount++;
                 updatePlayBadges();
             };
@@ -454,7 +480,7 @@
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
 
-            const sentence = sentences[currentRound - 1];
+            const sentence = getCurrentSentenceText();
             const utterance = new SpeechSynthesisUtterance(sentence);
             utterance.lang = 'en-US';
             utterance.rate = 0.88;
@@ -464,13 +490,13 @@
 
             const icon = document.getElementById('reviewAudioIcon');
             utterance.onstart = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-base text-cyan-200 animate-pulse";
+                if (icon) icon.className = "fa-solid fa-volume-high text-lg text-cyan-200 animate-pulse";
             };
             utterance.onend = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-base";
+                if (icon) icon.className = "fa-solid fa-volume-high text-lg";
             };
             utterance.onerror = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-base";
+                if (icon) icon.className = "fa-solid fa-volume-high text-lg";
             };
 
             window.speechSynthesis.speak(utterance);
@@ -516,7 +542,7 @@
             const card = document.getElementById('sentenceCard');
 
             if (isRevealed) {
-                sentenceText.textContent = sentences[currentRound - 1];
+                sentenceText.textContent = getCurrentSentenceText();
                 hiddenPlaceholder.classList.add('hidden');
                 revealedContent.classList.remove('hidden');
                 revealBtnText.textContent = "Ocultar Respuesta";
@@ -538,7 +564,7 @@
             const textElem = document.getElementById('translationText');
             const btnText = document.getElementById('transBtnText');
             if (isTransRevealed) {
-                textElem.textContent = translations[currentRound - 1];
+                textElem.textContent = getCurrentTranslationText();
                 textElem.classList.remove('hidden');
                 btnText.textContent = "Ocultar traducción";
             } else {
@@ -559,8 +585,27 @@
         }
 
         function updateRoundUI() {
-            document.getElementById('roundNumber').textContent = currentRound;
-            document.getElementById('roundIndicator').textContent = currentRound;
+            const roundNumberElem = document.getElementById('roundNumber');
+            const roundIndicatorElem = document.getElementById('roundIndicator');
+            const roundTag = document.getElementById('roundTagText');
+            const roundTitle = document.getElementById('roundTitleText');
+            const badgeBox = document.getElementById('roundNumberBadge');
+            const banner = document.getElementById('practiceBanner');
+
+            if (isPracticeMode) {
+                roundNumberElem.innerHTML = '<i class="fa-solid fa-flask text-xl"></i>';
+                roundTag.textContent = "DEMOSTRACIÓN";
+                roundTitle.textContent = "Ronda de Prueba (Sin Puntos)";
+                badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 text-2xl font-black font-display shadow-lg shadow-amber-500/30";
+                banner.classList.remove('hidden');
+            } else {
+                roundNumberElem.textContent = currentRound;
+                roundIndicatorElem.textContent = currentRound;
+                roundTag.textContent = "En Juego";
+                roundTitle.innerHTML = `Ronda <span id="roundIndicator">${currentRound}</span> de 15`;
+                badgeBox.className = "w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30";
+                banner.classList.add('hidden');
+            }
 
             playCount = 0;
             isRevealed = false;
@@ -584,25 +629,49 @@
             document.getElementById('translationText').classList.add('hidden');
             document.getElementById('transBtnText').textContent = "Ver traducción al español (+0.5 pts)";
 
-            document.getElementById('prevBtn').disabled = (currentRound === 1);
-
+            // Botones nav
+            const prevBtn = document.getElementById('prevBtn');
             const nextBtnText = document.getElementById('nextBtnText');
-            if (currentRound === totalRounds) {
-                nextBtnText.textContent = "Ver Calificaciones";
+
+            if (isPracticeMode) {
+                prevBtn.disabled = true;
+                nextBtnText.textContent = "Comenzar Ronda 1 Oficial →";
             } else {
-                nextBtnText.textContent = "Siguiente Ronda";
+                prevBtn.disabled = (currentRound === 1);
+                if (currentRound === totalRounds) {
+                    nextBtnText.textContent = "Ver Calificaciones";
+                } else {
+                    nextBtnText.textContent = "Siguiente Ronda";
+                }
             }
 
-            const percent = Math.round((currentRound / totalRounds) * 100);
+            // Barra de progreso
+            const percent = isPracticeMode ? 0 : Math.round((currentRound / totalRounds) * 100);
             document.getElementById('progressPercent').textContent = `${percent}%`;
             document.getElementById('progressBar').style.width = `${percent}%`;
 
-            if (currentRound === totalRounds) {
+            if (currentRound === totalRounds && !isPracticeMode) {
                 updateFinalResults();
             }
         }
 
+        function startPracticeRound() {
+            isPracticeMode = true;
+            updateRoundUI();
+        }
+
+        function exitPracticeRound() {
+            isPracticeMode = false;
+            currentRound = 1;
+            updateRoundUI();
+        }
+
         function nextRound() {
+            if (isPracticeMode) {
+                exitPracticeRound();
+                return;
+            }
+
             if (currentRound < totalRounds) {
                 currentRound++;
                 updateRoundUI();
@@ -615,6 +684,7 @@
         }
 
         function prevRound() {
+            if (isPracticeMode) return;
             if (currentRound > 1) {
                 currentRound--;
                 updateRoundUI();
@@ -659,6 +729,7 @@
         function confirmReset() {
             if (confirm("¿Deseas reiniciar la actividad a la ronda 1 y poner los puntajes en cero?")) {
                 currentRound = 1;
+                isPracticeMode = false;
                 scoreA = 0;
                 scoreB = 0;
                 document.getElementById('scoreA').textContent = 0;
