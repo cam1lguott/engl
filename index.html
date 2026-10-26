@@ -70,17 +70,17 @@
 
         <!-- Controls: Prueba, Instrucciones & Reset -->
         <div class="flex items-center gap-2 sm:gap-3">
-            <button onclick="startPracticeRound()" id="practiceBtn" class="px-3 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold rounded-lg border border-amber-500/40 transition flex items-center gap-1.5" title="Hacer una ronda de demostración de prueba">
+            <button onclick="startPracticeRound()" id="practiceBtn" class="px-3 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold rounded-lg border border-amber-500/40 transition flex items-center gap-1.5 cursor-pointer" title="Hacer una ronda de demostración de prueba">
                 <i class="fa-solid fa-flask"></i>
                 <span>Ronda de Prueba</span>
             </button>
 
-            <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2">
+            <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2 cursor-pointer">
                 <i class="fa-solid fa-circle-question text-cyan-400"></i>
                 Instrucciones
             </button>
 
-            <button onclick="confirmReset()" class="px-3 py-2 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/50 transition flex items-center gap-2">
+            <button onclick="confirmReset()" class="px-3 py-2 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/50 transition flex items-center gap-2 cursor-pointer">
                 <i class="fa-solid fa-rotate-left"></i>
                 Reiniciar
             </button>
@@ -88,11 +88,11 @@
     </header>
 
     <!-- Banner visible solo en la Ronda de Prueba -->
-    <div id="practiceBanner" class="hidden bg-amber-500/10 border-b border-amber-500/30 px-6 py-2.5 text-center text-xs font-bold text-amber-300 flex items-center justify-center gap-2">
+    <div id="practiceBanner" class="hidden bg-amber-500/10 border-b border-amber-500/30 px-6 py-2.5 text-center text-xs font-bold text-amber-300 flex flex-wrap items-center justify-center gap-2">
         <i class="fa-solid fa-circle-info text-amber-400"></i>
         <span>MODO PRUEBA: Esta ronda es de demostración para explicar cómo se juega. No suma puntos al marcador oficial.</span>
-        <button onclick="exitPracticeRound()" class="ml-3 px-2 py-0.5 bg-amber-500/30 hover:bg-amber-500/50 text-white rounded text-xs underline">
-            Salir de la prueba y comenzar juego
+        <button onclick="exitPracticeRound()" class="ml-2 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs transition cursor-pointer">
+            Salir de la prueba y comenzar juego →
         </button>
     </div>
 
@@ -119,15 +119,15 @@
 
                 <!-- Botones de sumar/restar punto equipo 1 -->
                 <div class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-900/40">
-                    <button onclick="addPoint('A', 1)" class="btn-bounce bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-1.5 text-sm sm:text-base transition">
+                    <button onclick="addPoint('A', 1)" class="btn-bounce bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-1.5 text-sm sm:text-base transition cursor-pointer">
                         <i class="fa-solid fa-plus-circle"></i>
                         +1 Pto
                     </button>
-                    <button onclick="addPoint('A', 0.5)" class="btn-bounce bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-1 text-xs sm:text-sm transition" title="Medio punto por traducción correcta">
+                    <button onclick="addPoint('A', 0.5)" class="btn-bounce bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-1 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
                         <i class="fa-solid fa-language"></i>
                         +0.5 Trad
                     </button>
-                    <button onclick="addPoint('A', -0.5)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-blue-300 font-semibold py-3 px-2 rounded-xl border border-blue-500/30 flex items-center justify-center gap-1 text-xs transition">
+                    <button onclick="addPoint('A', -0.5)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-blue-300 font-semibold py-3 px-2 rounded-xl border border-blue-500/30 flex items-center justify-center gap-1 text-xs transition cursor-pointer">
                         <i class="fa-solid fa-minus"></i>
                         -0.5
                     </button>
@@ -152,15 +152,15 @@
 
                 <!-- Botones de sumar/restar punto equipo 2 -->
                 <div class="grid grid-cols-3 gap-2 pt-4 border-t border-pink-900/40">
-                    <button onclick="addPoint('B', 1)" class="btn-bounce bg-pink-600 hover:bg-pink-500 active:bg-pink-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 text-sm sm:text-base transition">
+                    <button onclick="addPoint('B', 1)" class="btn-bounce bg-pink-600 hover:bg-pink-500 active:bg-pink-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 text-sm sm:text-base transition cursor-pointer">
                         <i class="fa-solid fa-plus-circle"></i>
                         +1 Pto
                     </button>
-                    <button onclick="addPoint('B', 0.5)" class="btn-bounce bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-purple-600/30 flex items-center justify-center gap-1 text-xs sm:text-sm transition" title="Medio punto por traducción correcta">
+                    <button onclick="addPoint('B', 0.5)" class="btn-bounce bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-purple-600/30 flex items-center justify-center gap-1 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
                         <i class="fa-solid fa-language"></i>
                         +0.5 Trad
                     </button>
-                    <button onclick="addPoint('B', -0.5)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-pink-300 font-semibold py-3 px-2 rounded-xl border border-pink-500/30 flex items-center justify-center gap-1 text-xs transition">
+                    <button onclick="addPoint('B', -0.5)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-pink-300 font-semibold py-3 px-2 rounded-xl border border-pink-500/30 flex items-center justify-center gap-1 text-xs transition cursor-pointer">
                         <i class="fa-solid fa-minus"></i>
                         -0.5
                     </button>
@@ -179,7 +179,7 @@
                     </div>
                     <div>
                         <div id="roundTagText" class="text-xs uppercase tracking-widest text-amber-400 font-bold">En Juego</div>
-                        <h3 id="roundTitleText" class="text-2xl font-black font-display text-white">Ronda <span id="roundIndicator">1</span> de 15</h3>
+                        <h3 id="roundTitleText" class="text-2xl font-black font-display text-white">Ronda 1 de 15</h3>
                     </div>
                 </div>
 
@@ -212,7 +212,7 @@
             <div class="w-full">
                 <div class="flex justify-between items-center mb-3">
                     <span class="text-xs uppercase font-bold tracking-wider text-slate-400">Comprobación en el tablero</span>
-                    <button id="revealBtn" onclick="toggleReveal()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+                    <button id="revealBtn" onclick="toggleReveal()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2 cursor-pointer">
                         <i id="revealIcon" class="fa-solid fa-eye"></i>
                         <span id="revealBtnText">Revelar Respuesta Correcta</span>
                     </button>
@@ -241,7 +241,7 @@
 
                         <!-- Zona de Traducción al Español (Opcional por +0.5 puntos) -->
                         <div class="mt-5 pt-4 border-t border-slate-800/80 w-full flex flex-col items-center">
-                            <button id="toggleTransBtn" onclick="toggleTranslation()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700 transition flex items-center gap-2">
+                            <button id="toggleTransBtn" onclick="toggleTranslation()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700 transition flex items-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-language text-indigo-400"></i>
                                 <span id="transBtnText">Ver traducción al español (+0.5 pts)</span>
                             </button>
@@ -255,7 +255,7 @@
 
             <!-- CONTROLES DE NAVEGACIÓN DE RONDA (Anterior / Siguiente) -->
             <div class="flex flex-wrap justify-between items-center gap-4 pt-4 border-t border-slate-800">
-                <button onclick="prevRound()" id="prevBtn" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-300 font-bold rounded-xl text-sm transition flex items-center gap-2">
+                <button onclick="prevRound()" id="prevBtn" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-300 font-bold rounded-xl text-sm transition flex items-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-chevron-left"></i>
                     Ronda Anterior
                 </button>
@@ -271,7 +271,7 @@
                     </div>
                 </div>
 
-                <button onclick="nextRound()" id="nextBtn" class="btn-bounce px-7 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl text-base shadow-lg shadow-emerald-600/30 transition flex items-center gap-2">
+                <button onclick="nextRound()" id="nextBtn" class="btn-bounce px-7 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl text-base shadow-lg shadow-emerald-600/30 transition flex items-center gap-2 cursor-pointer">
                     <span id="nextBtnText">Siguiente Ronda</span>
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
@@ -330,7 +330,7 @@
                     <i class="fa-solid fa-list-check text-amber-400"></i>
                     Instrucciones de la Actividad
                 </h3>
-                <button onclick="toggleModal('rulesModal')" class="text-slate-400 hover:text-white text-lg">
+                <button onclick="toggleModal('rulesModal')" class="text-slate-400 hover:text-white text-lg cursor-pointer">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -342,7 +342,7 @@
                 <p><strong>5. Traducción (+0.5):</strong> El estudiante que termine y diga correctamente el significado en español se gana <strong>medio punto extra</strong>.</p>
                 <p><strong>6. Calificaciones:</strong> Al completar las 15 rondas, el equipo con más puntos recibe <strong>5.0</strong> y el otro <strong>4.0</strong> (en caso de empate, ambos 5.0).</p>
             </div>
-            <button onclick="toggleModal('rulesModal')" class="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition">
+            <button onclick="toggleModal('rulesModal')" class="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition cursor-pointer">
                 Cerrar
             </button>
         </div>
@@ -586,7 +586,6 @@
 
         function updateRoundUI() {
             const roundNumberElem = document.getElementById('roundNumber');
-            const roundIndicatorElem = document.getElementById('roundIndicator');
             const roundTag = document.getElementById('roundTagText');
             const roundTitle = document.getElementById('roundTitleText');
             const badgeBox = document.getElementById('roundNumberBadge');
@@ -600,9 +599,8 @@
                 banner.classList.remove('hidden');
             } else {
                 roundNumberElem.textContent = currentRound;
-                roundIndicatorElem.textContent = currentRound;
                 roundTag.textContent = "En Juego";
-                roundTitle.innerHTML = `Ronda <span id="roundIndicator">${currentRound}</span> de 15`;
+                roundTitle.textContent = `Ronda ${currentRound} de 15`;
                 badgeBox.className = "w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30";
                 banner.classList.add('hidden');
             }
