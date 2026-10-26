@@ -212,9 +212,8 @@
                             <h4 id="sentenceText" class="text-2xl sm:text-4xl font-extrabold text-white tracking-wide font-display text-center leading-snug">
                                 <!-- Inyectado dinámicamente -->
                             </h4>
-                            <button onclick="playReviewAudio()" id="reviewAudioBtn" class="btn-bounce px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/30 transition flex items-center gap-2 cursor-pointer" title="Escuchar de nuevo para contrastar con el tablero">
-                                <i id="reviewAudioIcon" class="fa-solid fa-volume-high text-base"></i>
-                                <span>Escuchar de nuevo</span>
+                            <button onclick="playReviewAudio()" id="reviewAudioBtn" class="btn-bounce w-11 h-11 rounded-xl bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/30 transition flex items-center justify-center cursor-pointer" title="Escuchar de nuevo para contrastar con el tablero">
+                                <i id="reviewAudioIcon" class="fa-solid fa-volume-high text-lg"></i>
                             </button>
                         </div>
                     </div>
@@ -281,7 +280,7 @@
         <footer class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5 text-xs text-slate-400 flex flex-col md:flex-row justify-between items-center gap-3">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-users text-cyan-400 text-base"></i>
-                <span><strong>Regla de rotación:</strong> Cada ronda pasa un estudiante diferente al tablero para que los ~30 participen.</span>
+                <span><strong>Regla de rotación:</strong> Cada ronda pasa un estudiante diferente al tablero para que todos participen.</span>
             </div>
             <div class="text-slate-500">
                 Límite de audio: 2 reproducciones por ronda • 1 punto por oración correcta
@@ -479,7 +478,7 @@
             const card = document.getElementById('sentenceCard');
 
             if (isRevealed) {
-                sentenceText.textContent = `"${sentences[currentRound - 1]}"`;
+                sentenceText.textContent = sentences[currentRound - 1];
                 hiddenPlaceholder.classList.add('hidden');
                 revealedContent.classList.remove('hidden');
                 revealBtnText.textContent = "Ocultar Respuesta";
