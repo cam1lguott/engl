@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad de Dictado | Clase de Inglés</title>
+    <title>LISTENING TASK - ENGLISH | Dictation Challenge</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter & Outfit -->
@@ -62,8 +62,8 @@
     <!-- Top Navigation / Header -->
     <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center gap-4 sticky top-0 z-40">
         <div>
-            <h1 class="text-xl font-black font-display tracking-tight text-white uppercase">
-                Actividad de Dictado • Inglés
+            <h1 class="text-xl sm:text-2xl font-black font-display tracking-tight text-white uppercase">
+                LISTENING TASK - ENGLISH
             </h1>
             <p class="text-xs text-slate-400">15 Rondas de dictado en tablero • Audio en inglés estadounidense (US)</p>
         </div>
@@ -98,11 +98,12 @@
     <!-- Main Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-6">
 
-        <!-- Marcadores de Equipos (Grande y Visible para el Salón) -->
+        <!-- Marcadores de Equipos (Diseño Pulido y Moderno) -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            
             <!-- EQUIPO 1 -->
             <div class="bg-gradient-to-br from-slate-900/90 to-blue-950/50 border-2 border-blue-500/40 rounded-3xl p-6 glow-blue relative overflow-hidden flex flex-col justify-between">
-                <div class="flex justify-between items-start mb-3">
+                <div class="flex justify-between items-start mb-4">
                     <div>
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-bold tracking-wider uppercase mb-1">
                             <i class="fa-solid fa-users"></i> Lado Izquierdo
@@ -116,26 +117,28 @@
                     </div>
                 </div>
 
-                <!-- Botones de sumar/restar punto equipo 1 -->
-                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-blue-900/40">
-                    <button onclick="addPoint('A', 1)" class="btn-bounce bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-1.5 text-sm sm:text-base transition cursor-pointer">
-                        <i class="fa-solid fa-plus-circle"></i>
-                        +1 Pto
-                    </button>
-                    <button onclick="addPoint('A', 0.5)" class="btn-bounce bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-1 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
-                        <i class="fa-solid fa-language"></i>
-                        +0.5 Trad
-                    </button>
-                    <button onclick="addPoint('A', -0.5)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-blue-300 font-semibold py-3 px-2 rounded-xl border border-blue-500/30 flex items-center justify-center gap-1 text-xs transition cursor-pointer">
-                        <i class="fa-solid fa-minus"></i>
-                        -0.5
+                <!-- Botones Estilizados de Puntuación Equipo 1 -->
+                <div class="pt-4 border-t border-blue-900/40 flex flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addPoint('A', 1)" class="btn-bounce bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 text-sm sm:text-base transition cursor-pointer">
+                            <i class="fa-solid fa-circle-check text-blue-200"></i>
+                            <span>+1 Punto</span>
+                        </button>
+                        <button onclick="addPoint('A', 0.5)" class="btn-bounce bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
+                            <i class="fa-solid fa-language text-indigo-200"></i>
+                            <span>+0.5 Traducir</span>
+                        </button>
+                    </div>
+                    <button onclick="addPoint('A', -0.5)" class="btn-bounce w-full py-2 bg-slate-800/60 hover:bg-slate-700/80 text-blue-300/80 hover:text-blue-200 font-semibold rounded-xl border border-blue-500/20 flex items-center justify-center gap-1.5 text-xs transition cursor-pointer">
+                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
+                        <span>Corregir (-0.5 pts)</span>
                     </button>
                 </div>
             </div>
 
             <!-- EQUIPO 2 -->
             <div class="bg-gradient-to-br from-slate-900/90 to-pink-950/50 border-2 border-pink-500/40 rounded-3xl p-6 glow-pink relative overflow-hidden flex flex-col justify-between">
-                <div class="flex justify-between items-start mb-3">
+                <div class="flex justify-between items-start mb-4">
                     <div>
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30 text-xs font-bold tracking-wider uppercase mb-1">
                             <i class="fa-solid fa-users"></i> Lado Derecho
@@ -149,22 +152,25 @@
                     </div>
                 </div>
 
-                <!-- Botones de sumar/restar punto equipo 2 -->
-                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-pink-900/40">
-                    <button onclick="addPoint('B', 1)" class="btn-bounce bg-pink-600 hover:bg-pink-500 active:bg-pink-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-pink-600/30 flex items-center justify-center gap-1.5 text-sm sm:text-base transition cursor-pointer">
-                        <i class="fa-solid fa-plus-circle"></i>
-                        +1 Pto
-                    </button>
-                    <button onclick="addPoint('B', 0.5)" class="btn-bounce bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white font-bold py-3 px-2 rounded-xl shadow-lg shadow-purple-600/30 flex items-center justify-center gap-1 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
-                        <i class="fa-solid fa-language"></i>
-                        +0.5 Trad
-                    </button>
-                    <button onclick="addPoint('B', -0.5)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-pink-300 font-semibold py-3 px-2 rounded-xl border border-pink-500/30 flex items-center justify-center gap-1 text-xs transition cursor-pointer">
-                        <i class="fa-solid fa-minus"></i>
-                        -0.5
+                <!-- Botones Estilizados de Puntuación Equipo 2 -->
+                <div class="pt-4 border-t border-pink-900/40 flex flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="addPoint('B', 1)" class="btn-bounce bg-pink-600 hover:bg-pink-500 active:bg-pink-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-pink-600/30 flex items-center justify-center gap-2 text-sm sm:text-base transition cursor-pointer">
+                            <i class="fa-solid fa-circle-check text-pink-200"></i>
+                            <span>+1 Punto</span>
+                        </button>
+                        <button onclick="addPoint('B', 0.5)" class="btn-bounce bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
+                            <i class="fa-solid fa-language text-purple-200"></i>
+                            <span>+0.5 Traducir</span>
+                        </button>
+                    </div>
+                    <button onclick="addPoint('B', -0.5)" class="btn-bounce w-full py-2 bg-slate-800/60 hover:bg-slate-700/80 text-pink-300/80 hover:text-pink-200 font-semibold rounded-xl border border-pink-500/20 flex items-center justify-center gap-1.5 text-xs transition cursor-pointer">
+                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
+                        <span>Corregir (-0.5 pts)</span>
                     </button>
                 </div>
             </div>
+
         </section>
 
         <!-- ZONA PRINCIPAL DE LA RONDA & REPRODUCCIÓN -->
@@ -600,7 +606,6 @@
                 badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-500/60 flex items-center justify-center text-amber-300 text-2xl font-black font-display shadow-lg shadow-amber-500/30";
                 banner.classList.remove('hidden');
                 
-                // Botón superior encendido con resplandor amarillo
                 pBtn.className = "w-10 h-10 rounded-xl transition flex items-center justify-center cursor-pointer text-base bg-amber-500 text-slate-950 border-2 border-amber-300 shadow-lg shadow-amber-500/50 scale-105 font-bold";
                 pBtn.title = "Ronda de prueba ENCENDIDA (Clic para apagar)";
             } else {
@@ -610,7 +615,6 @@
                 badgeBox.className = "w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30";
                 banner.classList.add('hidden');
 
-                // Botón superior apagado (estado normal)
                 pBtn.className = "w-10 h-10 rounded-xl border transition flex items-center justify-center cursor-pointer text-base bg-slate-800 border-slate-700 text-slate-400 hover:text-amber-300";
                 pBtn.title = "Activar Ronda de Prueba";
             }
@@ -672,7 +676,6 @@
                 isPracticeMode = !isPracticeMode;
             }
 
-            // Si se apaga la prueba, aseguramos que quede en la Ronda 1 oficial
             if (!isPracticeMode) {
                 currentRound = 1;
             }
