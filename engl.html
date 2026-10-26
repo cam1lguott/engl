@@ -204,13 +204,19 @@
                         <p class="text-xs text-slate-500">Haz clic en "Revelar Respuesta Correcta" cuando ambos equipos terminen de escribir</p>
                     </div>
 
-                    <div id="revealedContent" class="hidden w-full">
+                    <div id="revealedContent" class="hidden w-full flex flex-col items-center">
                         <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider mb-3">
                             <i class="fa-solid fa-circle-check"></i> Oración Oficial
                         </div>
-                        <h4 id="sentenceText" class="text-2xl sm:text-4xl font-extrabold text-white tracking-wide font-display text-center leading-snug">
-                            <!-- Inyectado dinámicamente -->
-                        </h4>
+                        <div class="flex flex-wrap items-center justify-center gap-4 w-full">
+                            <h4 id="sentenceText" class="text-2xl sm:text-4xl font-extrabold text-white tracking-wide font-display text-center leading-snug">
+                                <!-- Inyectado dinámicamente -->
+                            </h4>
+                            <button onclick="playReviewAudio()" id="reviewAudioBtn" class="btn-bounce px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/30 transition flex items-center gap-2 cursor-pointer" title="Escuchar de nuevo para contrastar con el tablero">
+                                <i id="reviewAudioIcon" class="fa-solid fa-volume-high text-base"></i>
+                                <span>Escuchar de nuevo</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -401,6 +407,33 @@
             utterance.onerror = () => {
                 playBtn.classList.remove('pulse-subtle');
                 playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Reproducir audio sin gastar intentos cuando la frase ya está revelada
+        function playReviewAudio() {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+
+            const sentence = sentences[currentRound - 1];
+            const utterance = new SpeechSynthesisUtterance(sentence);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.88;
+            utterance.volume = 1.0;
+
+            if (usVoice) utterance.voice = usVoice;
+
+            const icon = document.getElementById('reviewAudioIcon');
+            utterance.onstart = () => {
+                if (icon) icon.className = "fa-solid fa-volume-high text-base text-cyan-200 animate-pulse";
+            };
+            utterance.onend = () => {
+                if (icon) icon.className = "fa-solid fa-volume-high text-base";
+            };
+            utterance.onerror = () => {
+                if (icon) icon.className = "fa-solid fa-volume-high text-base";
             };
 
             window.speechSynthesis.speak(utterance);
