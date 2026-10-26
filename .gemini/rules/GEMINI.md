@@ -10,7 +10,7 @@
   ```
 
 ## Edición de Archivos en CLI (Windows / CRLF)
-- En este entorno CLI de Windows, para evitar errores de incompatibilidad de saltos de línea (CRLF/LF) con `edit_file`, utiliza prioritariamente `write_file` para actualizar archivos completos de forma limpia y directa, o scripts PowerShell para reemplazos puntuales.
+- En el entorno de la terminal de windows, si se quiere evitar errores de incompatibilidad de saltos de linea con edit_file, utiliza prioritario write_file para actualizar archivos completos de manera directa.
 
 ## Repositorios y Automatización de Git
 - **Git Push Automático**: Al terminar modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main`.
