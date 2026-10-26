@@ -359,8 +359,6 @@
             }
 
             speakCurrentSentence();
-            playCount++;
-            updatePlayBadges();
         }
 
         function speakCurrentSentence() {
@@ -371,13 +369,10 @@
 
             window.speechSynthesis.cancel();
 
+            const isSecondChance = (playCount === 1);
             const sentence = sentences[currentRound - 1];
             const utterance = new SpeechSynthesisUtterance(sentence);
             utterance.lang = 'en-US';
-
-            // Si es la 2da oportunidad (playCount === 1 antes del incremento):
-            // Habla más lento (0.75 vs 0.95) y con volumen máximo (1.0)
-            const isSecondChance = (playCount === 1);
             utterance.rate = isSecondChance ? 0.75 : 0.95;
             utterance.volume = 1.0;
 
@@ -398,11 +393,14 @@
             utterance.onend = () => {
                 playBtn.classList.remove('pulse-subtle');
                 playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
-                if (playCount >= 2) {
-                    playText.textContent = "AUDIO AGOTADO (2/2)";
-                } else {
-                    playText.textContent = "REPRODUCIR AUDIO (2da vez más lenta)";
-                }
+                // Solo incrementamos el contador y actualizamos el texto cuando termina de sonar
+                playCount++;
+                updatePlayBadges();
+            };
+
+            utterance.onerror = () => {
+                playBtn.classList.remove('pulse-subtle');
+                playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
             };
 
             window.speechSynthesis.speak(utterance);
