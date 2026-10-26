@@ -68,11 +68,10 @@
             <p class="text-xs text-slate-400">15 Rondas de dictado en tablero • Audio en inglés estadounidense (US)</p>
         </div>
 
-        <!-- Controls: Prueba, Instrucciones & Reset -->
+        <!-- Controls: Prueba (solo icono), Instrucciones & Reset -->
         <div class="flex items-center gap-2 sm:gap-3">
-            <button onclick="startPracticeRound()" id="practiceBtn" class="px-3 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold rounded-lg border border-amber-500/40 transition flex items-center gap-1.5 cursor-pointer" title="Hacer una ronda de demostración de prueba">
-                <i class="fa-solid fa-flask"></i>
-                <span>Ronda de Prueba</span>
+            <button onclick="startPracticeRound()" id="practiceBtn" class="w-10 h-10 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-xl border border-amber-500/40 transition flex items-center justify-center cursor-pointer text-base" title="Ronda de Prueba (Demostración sin puntos)">
+                <i class="fa-solid fa-flask text-amber-400"></i>
             </button>
 
             <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2 cursor-pointer">
@@ -264,10 +263,10 @@
                 <div class="flex-1 max-w-md hidden md:flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs font-bold text-slate-400">
                         <span>Progreso del Juego</span>
-                        <span id="progressPercent">7%</span>
+                        <span id="progressPercent">0%</span>
                     </div>
                     <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                        <div id="progressBar" class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full transition-all duration-300" style="width: 6.66%;"></div>
+                        <div id="progressBar" class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full transition-all duration-300" style="width: 0%;"></div>
                     </div>
                 </div>
 
@@ -592,10 +591,10 @@
             const banner = document.getElementById('practiceBanner');
 
             if (isPracticeMode) {
-                roundNumberElem.innerHTML = '<i class="fa-solid fa-flask text-xl"></i>';
+                roundNumberElem.innerHTML = '<i class="fa-solid fa-flask text-xl text-amber-400"></i>';
                 roundTag.textContent = "DEMOSTRACIÓN";
                 roundTitle.textContent = "Ronda de Prueba (Sin Puntos)";
-                badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500 flex items-center justify-center text-slate-950 text-2xl font-black font-display shadow-lg shadow-amber-500/30";
+                badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl font-black font-display shadow-lg shadow-amber-500/20";
                 banner.classList.remove('hidden');
             } else {
                 roundNumberElem.textContent = currentRound;
@@ -643,7 +642,7 @@
                 }
             }
 
-            // Barra de progreso
+            // Barra de progreso: En modo prueba se mantiene fija en 0%
             const percent = isPracticeMode ? 0 : Math.round((currentRound / totalRounds) * 100);
             document.getElementById('progressPercent').textContent = `${percent}%`;
             document.getElementById('progressBar').style.width = `${percent}%`;
