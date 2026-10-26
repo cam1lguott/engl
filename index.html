@@ -421,6 +421,72 @@
             return isPracticeMode ? practiceTranslation : translations[currentRound - 1];
         }
 
+        // Sistema de Audio Dual: Archivos WAV con Web Audio API (Ganancia x2.5 para salón) + Fallback
+        let audioCtx = null;
+        let gainNode = null;
+        let currentAudio = null;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+                gainNode = audioCtx.createGain();
+                gainNode.gain.value = 2.5; // Multiplica la potencia acústica x2.5 (más del doble)
+                gainNode.connect(audioCtx.destination);
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return { audioCtx, gainNode };
+        }
+
+        function playWavWithAmplifier(src, onStart, onEnd) {
+            try {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+
+                const { audioCtx, gainNode } = getAudioContext();
+                const audio = new Audio(src);
+                currentAudio = audio;
+
+                // Conectar el elemento de audio a través del amplificador de ganancia
+                const sourceNode = audioCtx.createMediaElementSource(audio);
+                sourceNode.connect(gainNode);
+
+                audio.onplay = () => { if (onStart) onStart(); };
+                audio.onended = () => { if (onEnd) onEnd(); };
+                audio.onerror = () => {
+                    // Si falla el archivo, usar síntesis como respaldo
+                    speakCurrentSentenceFallback(onStart, onEnd);
+                };
+
+                audio.play().catch(() => {
+                    speakCurrentSentenceFallback(onStart, onEnd);
+                });
+            } catch (e) {
+                speakCurrentSentenceFallback(onStart, onEnd);
+            }
+        }
+
+        function speakCurrentSentenceFallback(onStart, onEnd) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const isSecondChance = (playCount === 1);
+            const sentence = getCurrentSentenceText();
+            const utterance = new SpeechSynthesisUtterance(sentence);
+            utterance.lang = 'en-US';
+            utterance.rate = isSecondChance ? 0.75 : 0.95;
+            utterance.volume = 1.0;
+            if (usVoice) utterance.voice = usVoice;
+
+            utterance.onstart = () => { if (onStart) onStart(); };
+            utterance.onend = () => { if (onEnd) onEnd(); };
+            utterance.onerror = () => { if (onEnd) onEnd(); };
+            window.speechSynthesis.speak(utterance);
+        }
+
         // Reproducir la oración actual
         function playSentenceAudio() {
             if (playCount >= 2) {
@@ -428,78 +494,46 @@
                 return;
             }
 
-            speakCurrentSentence();
-        }
-
-        function speakCurrentSentence() {
-            if (!('speechSynthesis' in window)) {
-                alert("Tu navegador no soporta síntesis de audio.");
-                return;
-            }
-
-            window.speechSynthesis.cancel();
-
             const isSecondChance = (playCount === 1);
-            const sentence = getCurrentSentenceText();
-            const utterance = new SpeechSynthesisUtterance(sentence);
-            utterance.lang = 'en-US';
-            utterance.rate = isSecondChance ? 0.75 : 0.95;
-            utterance.volume = 1.0;
-
-            if (usVoice) {
-                utterance.voice = usVoice;
-            }
+            const wavFile = isPracticeMode 
+                ? (isSecondChance ? 'audio/practice_slow.wav' : 'audio/practice_normal.wav')
+                : (isSecondChance ? `audio/round_${currentRound}_slow.wav` : `audio/round_${currentRound}_normal.wav`);
 
             const playBtn = document.getElementById('playAudioBtn');
             const playIcon = document.getElementById('playIcon');
             const playText = document.getElementById('playButtonText');
 
-            utterance.onstart = () => {
+            const onStart = () => {
                 playBtn.classList.add('pulse-subtle');
                 playIcon.className = "fa-solid fa-volume-high text-2xl text-cyan-200 animate-pulse";
                 playText.textContent = isSecondChance ? "REPRODUCIENDO (MÁS LENTO Y CLARO)..." : "REPRODUCIENDO...";
             };
 
-            utterance.onend = () => {
+            const onEnd = () => {
                 playBtn.classList.remove('pulse-subtle');
                 playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
                 playCount++;
                 updatePlayBadges();
             };
 
-            utterance.onerror = () => {
-                playBtn.classList.remove('pulse-subtle');
-                playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
-            };
-
-            window.speechSynthesis.speak(utterance);
+            playWavWithAmplifier(wavFile, onStart, onEnd);
         }
 
         // Reproducir audio sin gastar intentos cuando la frase ya está revelada
         function playReviewAudio() {
-            if (!('speechSynthesis' in window)) return;
-            window.speechSynthesis.cancel();
-
-            const sentence = getCurrentSentenceText();
-            const utterance = new SpeechSynthesisUtterance(sentence);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.88;
-            utterance.volume = 1.0;
-
-            if (usVoice) utterance.voice = usVoice;
+            const wavFile = isPracticeMode 
+                ? 'audio/practice_normal.wav' 
+                : `audio/round_${currentRound}_normal.wav`;
 
             const icon = document.getElementById('reviewAudioIcon');
-            utterance.onstart = () => {
+            const onStart = () => {
                 if (icon) icon.className = "fa-solid fa-volume-high text-lg text-cyan-200 animate-pulse";
             };
-            utterance.onend = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-lg";
-            };
-            utterance.onerror = () => {
+            const onEnd = () => {
                 if (icon) icon.className = "fa-solid fa-volume-high text-lg";
             };
 
-            window.speechSynthesis.speak(utterance);
+            playWavWithAmplifier(wavFile, onStart, onEnd);
         }
 
         function updatePlayBadges() {
