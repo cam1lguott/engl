@@ -259,7 +259,7 @@
                     Ronda Anterior
                 </button>
 
-                <!-- Barra de Progreso de 15 Rondas -->
+                <!-- Barra de Progreso de 15 Rondas (Comienza en 0 Rondas Completadas = 0%) -->
                 <div class="flex-1 max-w-md hidden md:flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs font-bold text-slate-400">
                         <span>Progreso del Juego</span>
@@ -642,8 +642,11 @@
                 }
             }
 
-            // Barra de progreso: En modo prueba se mantiene fija en 0%
-            const percent = isPracticeMode ? 0 : Math.round((currentRound / totalRounds) * 100);
+            // Progreso: Representa las rondas COMPLETADAS
+            // Ronda 1 = 0 rondas completadas = 0%
+            // Ronda 15 = 14 completadas (93%), al terminar = 100%
+            const completedRounds = isPracticeMode ? 0 : (currentRound - 1);
+            const percent = Math.round((completedRounds / totalRounds) * 100);
             document.getElementById('progressPercent').textContent = `${percent}%`;
             document.getElementById('progressBar').style.width = `${percent}%`;
 
@@ -673,6 +676,10 @@
                 currentRound++;
                 updateRoundUI();
             } else {
+                // Al llegar al final se marca el 100%
+                document.getElementById('progressPercent').textContent = "100%";
+                document.getElementById('progressBar').style.width = "100%";
+
                 const finalCard = document.getElementById('finalResultsCard');
                 finalCard.classList.remove('hidden');
                 finalCard.scrollIntoView({ behavior: 'smooth' });
