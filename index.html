@@ -285,18 +285,23 @@
         <!-- SECCIÓN DE RESULTADO FINAL (Al terminar la ronda 15) -->
         <section id="finalResultsCard" class="hidden bg-slate-900 border-2 border-amber-500/60 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
             <div class="max-w-2xl mx-auto flex flex-col items-center gap-4">
-                <h3 class="text-3xl sm:text-4xl font-black font-display text-white uppercase">Calificación Final</h3>
-                <p class="text-slate-300 text-sm sm:text-base">
-                    Calificación de la actividad: El equipo con más puntos obtiene <strong>5.0</strong> y el otro equipo <strong>4.0</strong>.
+                <div id="finalTrophyIcon" class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-3xl border border-amber-500/40">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h3 id="finalWinnerTitle" class="text-3xl sm:text-4xl font-black font-display text-white uppercase">
+                    ¡RESULTADOS FINALES!
+                </h3>
+                <p id="finalWinnerSubtitle" class="text-slate-300 text-sm sm:text-base">
+                    Fin de la actividad. El equipo con mayor puntaje acumulado es el ganador.
                 </p>
 
-                <!-- Cuadro de Calificaciones -->
+                <!-- Cuadro de Resultados Finales por Equipos -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full my-3">
                     <div id="gradeCardA" class="p-6 rounded-2xl border bg-slate-900/90 text-left">
                         <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Equipo 1</span>
                         <div class="flex justify-between items-baseline mt-2">
                             <span id="finalScoreA" class="text-3xl font-black font-display text-white">0 pts</span>
-                            <span id="finalGradeA" class="text-4xl font-black font-display text-blue-400">5.0</span>
+                            <span id="finalBadgeA" class="text-sm font-black font-display px-3 py-1 rounded-lg"></span>
                         </div>
                         <p id="finalStatusA" class="text-xs font-semibold mt-2 text-slate-400"></p>
                     </div>
@@ -305,7 +310,7 @@
                         <span class="text-xs font-bold uppercase tracking-wider text-pink-400">Equipo 2</span>
                         <div class="flex justify-between items-baseline mt-2">
                             <span id="finalScoreB" class="text-3xl font-black font-display text-white">0 pts</span>
-                            <span id="finalGradeB" class="text-4xl font-black font-display text-pink-400">4.0</span>
+                            <span id="finalBadgeB" class="text-sm font-black font-display px-3 py-1 rounded-lg"></span>
                         </div>
                         <p id="finalStatusB" class="text-xs font-semibold mt-2 text-slate-400"></p>
                     </div>
@@ -344,7 +349,7 @@
                 <p><strong>3. Audio:</strong> Se puede reproducir la oración hasta <strong>2 veces</strong> como máximo en inglés estadounidense (en-US). La 2da vez es más lenta.</p>
                 <p><strong>4. Puntos:</strong> Se otorga <strong>1 punto</strong> si la oración está completamente bien escrita en el tablero.</p>
                 <p><strong>5. Traducción (+0.5):</strong> El estudiante que termine y diga correctamente el significado en español se gana <strong>medio punto extra</strong>.</p>
-                <p><strong>6. Calificaciones:</strong> Al completar las 15 rondas, el equipo con más puntos recibe <strong>5.0</strong> y el otro <strong>4.0</strong> (en caso de empate, ambos 5.0).</p>
+                <p><strong>6. Ganador:</strong> Al completar las 15 rondas, el equipo con mayor puntaje acumulado será el <strong>Equipo Ganador</strong>.</p>
             </div>
             <button onclick="toggleModal('rulesModal')" class="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition cursor-pointer">
                 Cerrar
@@ -650,7 +655,7 @@
             } else {
                 prevBtn.disabled = (currentRound === 1);
                 if (currentRound === totalRounds) {
-                    nextBtnText.textContent = "Ver Calificaciones";
+                    nextBtnText.textContent = "Ver Ganador";
                 } else {
                     nextBtnText.textContent = "Siguiente Ronda";
                 }
@@ -713,34 +718,48 @@
             document.getElementById('finalScoreA').textContent = `${scoreA} pts`;
             document.getElementById('finalScoreB').textContent = `${scoreB} pts`;
 
-            const gradeA = document.getElementById('finalGradeA');
-            const gradeB = document.getElementById('finalGradeB');
+            const badgeA = document.getElementById('finalBadgeA');
+            const badgeB = document.getElementById('finalBadgeB');
             const statusA = document.getElementById('finalStatusA');
             const statusB = document.getElementById('finalStatusB');
             const cardA = document.getElementById('gradeCardA');
             const cardB = document.getElementById('gradeCardB');
+            const winnerTitle = document.getElementById('finalWinnerTitle');
+            const winnerSubtitle = document.getElementById('finalWinnerSubtitle');
 
             if (scoreA > scoreB) {
-                gradeA.textContent = "5.0";
-                gradeB.textContent = "4.0";
-                statusA.textContent = "Mayor puntaje";
+                winnerTitle.textContent = "¡EQUIPO 1 ES EL GANADOR!";
+                winnerSubtitle.textContent = `Gran victoria del Equipo 1 con un total de ${scoreA} puntos acumulados.`;
+                badgeA.textContent = "🏆 GANADOR";
+                badgeA.className = "text-sm font-black px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
+                badgeB.textContent = "2º LUGAR";
+                badgeB.className = "text-sm font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700";
+                statusA.textContent = "Mayor puntaje de la clase";
                 statusB.textContent = "Segundo lugar";
-                cardA.className = "p-6 rounded-2xl border-2 border-blue-500 bg-blue-950/40 text-left shadow-lg shadow-blue-500/20";
+                cardA.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/20 text-left shadow-lg shadow-emerald-500/20";
                 cardB.className = "p-6 rounded-2xl border border-slate-700 bg-slate-900/80 text-left";
             } else if (scoreB > scoreA) {
-                gradeA.textContent = "4.0";
-                gradeB.textContent = "5.0";
+                winnerTitle.textContent = "¡EQUIPO 2 ES EL GANADOR!";
+                winnerSubtitle.textContent = `Gran victoria del Equipo 2 con un total de ${scoreB} puntos acumulados.`;
+                badgeA.textContent = "2º LUGAR";
+                badgeA.className = "text-sm font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700";
+                badgeB.textContent = "🏆 GANADOR";
+                badgeB.className = "text-sm font-black px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
                 statusA.textContent = "Segundo lugar";
-                statusB.textContent = "Mayor puntaje";
+                statusB.textContent = "Mayor puntaje de la clase";
                 cardA.className = "p-6 rounded-2xl border border-slate-700 bg-slate-900/80 text-left";
-                cardB.className = "p-6 rounded-2xl border-2 border-pink-500 bg-pink-950/40 text-left shadow-lg shadow-pink-500/20";
+                cardB.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/20 text-left shadow-lg shadow-emerald-500/20";
             } else {
-                gradeA.textContent = "5.0";
-                gradeB.textContent = "5.0";
-                statusA.textContent = "Empate";
-                statusB.textContent = "Empate";
-                cardA.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/30 text-left";
-                cardB.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/30 text-left";
+                winnerTitle.textContent = "¡EMPATE ENTRE AMBOS EQUIPOS!";
+                winnerSubtitle.textContent = `Ambos equipos obtuvieron el mismo puntaje (${scoreA} pts). ¡Excelente competencia!`;
+                badgeA.textContent = "🤝 EMPATE";
+                badgeA.className = "text-sm font-black px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40";
+                badgeB.textContent = "🤝 EMPATE";
+                badgeB.className = "text-sm font-black px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40";
+                statusA.textContent = "Mismo puntaje obtenido";
+                statusB.textContent = "Mismo puntaje obtenido";
+                cardA.className = "p-6 rounded-2xl border-2 border-amber-500/40 bg-amber-950/20 text-left";
+                cardB.className = "p-6 rounded-2xl border-2 border-amber-500/40 bg-amber-950/20 text-left";
             }
         }
 
