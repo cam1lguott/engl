@@ -68,10 +68,10 @@
             <p class="text-xs text-slate-400">15 Rondas de dictado en tablero • Audio en inglés estadounidense (US)</p>
         </div>
 
-        <!-- Controls: Prueba (solo icono), Instrucciones & Reset -->
+        <!-- Controls: Prueba (Toggle), Instrucciones & Reset -->
         <div class="flex items-center gap-2 sm:gap-3">
-            <button onclick="startPracticeRound()" id="practiceBtn" class="w-10 h-10 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-xl border border-amber-500/40 transition flex items-center justify-center cursor-pointer text-base" title="Ronda de Prueba (Demostración sin puntos)">
-                <i class="fa-solid fa-flask text-amber-400"></i>
+            <button onclick="togglePracticeMode()" id="practiceBtn" class="w-10 h-10 rounded-xl border transition flex items-center justify-center cursor-pointer text-base bg-slate-800 border-slate-700 text-slate-400 hover:text-amber-300" title="Activar/Desactivar Ronda de Prueba">
+                <i class="fa-solid fa-flask text-lg"></i>
             </button>
 
             <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2 cursor-pointer">
@@ -89,9 +89,9 @@
     <!-- Banner visible solo en la Ronda de Prueba -->
     <div id="practiceBanner" class="hidden bg-amber-500/10 border-b border-amber-500/30 px-6 py-2.5 text-center text-xs font-bold text-amber-300 flex flex-wrap items-center justify-center gap-2">
         <i class="fa-solid fa-circle-info text-amber-400"></i>
-        <span>MODO PRUEBA: Esta ronda es de demostración para explicar cómo se juega. No suma puntos al marcador oficial.</span>
-        <button onclick="exitPracticeRound()" class="ml-2 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs transition cursor-pointer">
-            Salir de la prueba y comenzar juego →
+        <span>MODO PRUEBA ACTIVO: Oración de ensayo ("I like English class."). No suma puntos oficiales.</span>
+        <button onclick="togglePracticeMode(false)" class="ml-2 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs transition cursor-pointer">
+            Desactivar prueba y volver a Ronda 1 →
         </button>
     </div>
 
@@ -259,7 +259,7 @@
                     Ronda Anterior
                 </button>
 
-                <!-- Barra de Progreso de 15 Rondas (Comienza en 0 Rondas Completadas = 0%) -->
+                <!-- Barra de Progreso de 15 Rondas -->
                 <div class="flex-1 max-w-md hidden md:flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs font-bold text-slate-400">
                         <span>Progreso del Juego</span>
@@ -584,24 +584,35 @@
         }
 
         function updateRoundUI() {
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
             const roundNumberElem = document.getElementById('roundNumber');
             const roundTag = document.getElementById('roundTagText');
             const roundTitle = document.getElementById('roundTitleText');
             const badgeBox = document.getElementById('roundNumberBadge');
             const banner = document.getElementById('practiceBanner');
+            const pBtn = document.getElementById('practiceBtn');
 
             if (isPracticeMode) {
                 roundNumberElem.innerHTML = '<i class="fa-solid fa-flask text-xl text-amber-400"></i>';
                 roundTag.textContent = "DEMOSTRACIÓN";
                 roundTitle.textContent = "Ronda de Prueba (Sin Puntos)";
-                badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-2xl font-black font-display shadow-lg shadow-amber-500/20";
+                badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-500/60 flex items-center justify-center text-amber-300 text-2xl font-black font-display shadow-lg shadow-amber-500/30";
                 banner.classList.remove('hidden');
+                
+                // Botón superior encendido con resplandor amarillo
+                pBtn.className = "w-10 h-10 rounded-xl transition flex items-center justify-center cursor-pointer text-base bg-amber-500 text-slate-950 border-2 border-amber-300 shadow-lg shadow-amber-500/50 scale-105 font-bold";
+                pBtn.title = "Ronda de prueba ENCENDIDA (Clic para apagar)";
             } else {
                 roundNumberElem.textContent = currentRound;
                 roundTag.textContent = "En Juego";
                 roundTitle.textContent = `Ronda ${currentRound} de 15`;
                 badgeBox.className = "w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30";
                 banner.classList.add('hidden');
+
+                // Botón superior apagado (estado normal)
+                pBtn.className = "w-10 h-10 rounded-xl border transition flex items-center justify-center cursor-pointer text-base bg-slate-800 border-slate-700 text-slate-400 hover:text-amber-300";
+                pBtn.title = "Activar Ronda de Prueba";
             }
 
             playCount = 0;
@@ -642,9 +653,7 @@
                 }
             }
 
-            // Progreso: Representa las rondas COMPLETADAS
-            // Ronda 1 = 0 rondas completadas = 0%
-            // Ronda 15 = 14 completadas (93%), al terminar = 100%
+            // Progreso del juego oficial
             const completedRounds = isPracticeMode ? 0 : (currentRound - 1);
             const percent = Math.round((completedRounds / totalRounds) * 100);
             document.getElementById('progressPercent').textContent = `${percent}%`;
@@ -655,20 +664,24 @@
             }
         }
 
-        function startPracticeRound() {
-            isPracticeMode = true;
-            updateRoundUI();
-        }
+        // Alternar modo de prueba (On / Off)
+        function togglePracticeMode(forcedState = null) {
+            if (forcedState !== null) {
+                isPracticeMode = forcedState;
+            } else {
+                isPracticeMode = !isPracticeMode;
+            }
 
-        function exitPracticeRound() {
-            isPracticeMode = false;
-            currentRound = 1;
+            // Si se apaga la prueba, aseguramos que quede en la Ronda 1 oficial
+            if (!isPracticeMode) {
+                currentRound = 1;
+            }
             updateRoundUI();
         }
 
         function nextRound() {
             if (isPracticeMode) {
-                exitPracticeRound();
+                togglePracticeMode(false);
                 return;
             }
 
@@ -676,7 +689,6 @@
                 currentRound++;
                 updateRoundUI();
             } else {
-                // Al llegar al final se marca el 100%
                 document.getElementById('progressPercent').textContent = "100%";
                 document.getElementById('progressBar').style.width = "100%";
 
