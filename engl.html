@@ -3,227 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dictado en Tablero | Clase de Inglés</title>
+    <title>Actividad de Dictado | Clase de Inglés</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0F172A',
+                            teamA: '#3B82F6',
+                            teamB: '#EC4899',
+                            emerald: '#10B981',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: #0b0f19;
-            color: #f1f5f9;
+            background: radial-gradient(circle at 10% 10%, #1e1b4b 0%, #0f172a 50%, #030712 100%);
+            min-height: 100vh;
         }
-        .btn-press:active {
-            transform: scale(0.98);
+        .glow-blue {
+            box-shadow: 0 0 35px -5px rgba(59, 130, 246, 0.4);
+        }
+        .glow-pink {
+            box-shadow: 0 0 35px -5px rgba(236, 72, 153, 0.4);
+        }
+        .btn-bounce:active {
+            transform: scale(0.97);
+        }
+        .pulse-subtle {
+            animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.02); }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+<body class="text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
 
-    <!-- Barra Superior Limpia y Funcional -->
-    <header class="border-b border-slate-800 bg-slate-900/90 px-6 py-4 flex justify-between items-center">
+    <!-- Top Navigation / Header -->
+    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center gap-4 sticky top-0 z-40">
         <div>
-            <h1 class="text-xl font-extrabold tracking-tight text-white uppercase">
+            <h1 class="text-xl font-black font-display tracking-tight text-white uppercase">
                 Actividad de Dictado • Inglés
             </h1>
-            <p class="text-xs text-slate-400 mt-0.5 font-medium">
-                Voz: Inglés Americano (US) • 15 Rondas • 1 punto por oración completa
-            </p>
+            <p class="text-xs text-slate-400">15 Rondas de dictado en tablero • Audio en inglés estadounidense (US)</p>
         </div>
 
+        <!-- Controls: Instrucciones & Reset -->
         <div class="flex items-center gap-3">
-            <button onclick="toggleModal('rulesModal')" class="text-xs font-semibold px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition">
+            <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-amber-400"></i>
                 Instrucciones
             </button>
-            <button onclick="resetGame()" class="text-xs font-semibold px-3 py-2 bg-red-950/40 hover:bg-red-900/60 text-red-300 rounded-lg border border-red-900/60 transition">
-                Reiniciar actividad
+
+            <button onclick="confirmReset()" class="px-3 py-2 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/50 transition flex items-center gap-2">
+                <i class="fa-solid fa-rotate-left"></i>
+                Reiniciar
             </button>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
-    <main class="max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-6 flex-1">
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-6">
 
-        <!-- Marcadores Grandes de los 2 Equipos -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            <!-- Equipo 1 -->
-            <div class="bg-slate-900 border-2 border-blue-600/50 rounded-2xl p-6 flex flex-col justify-between">
-                <div class="flex justify-between items-start mb-4">
+        <!-- Marcadores de Equipos (Grande y Visible para el Salón) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            <!-- EQUIPO 1 -->
+            <div class="bg-gradient-to-br from-slate-900/90 to-blue-950/50 border-2 border-blue-500/40 rounded-3xl p-6 glow-blue relative overflow-hidden flex flex-col justify-between">
+                <div class="flex justify-between items-start mb-3">
                     <div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-950/80 px-2.5 py-1 rounded border border-blue-800/60">Lado Izquierdo</span>
-                        <h2 class="text-2xl font-bold text-white mt-2">Equipo 1</h2>
-                        <p class="text-xs text-slate-400 mt-1">Turno del siguiente estudiante</p>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-bold tracking-wider uppercase mb-1">
+                            <i class="fa-solid fa-users"></i> Lado Izquierdo
+                        </div>
+                        <h2 class="text-2xl font-black font-display text-white">EQUIPO 1</h2>
+                        <p class="text-xs text-blue-300/80 mt-0.5">Turno de un representante nuevo</p>
                     </div>
                     <div class="text-right">
-                        <span id="scoreA" class="text-6xl sm:text-7xl font-black text-blue-400 font-mono">0</span>
-                        <span class="block text-xs uppercase font-bold text-slate-400">Puntos</span>
+                        <span id="scoreA" class="text-6xl lg:text-7xl font-black font-display text-blue-400 tracking-tight drop-shadow">0</span>
+                        <span class="block text-xs uppercase tracking-widest text-slate-400 font-bold">Puntos</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 pt-4 border-t border-slate-800">
-                    <button onclick="addPoint('A', 1)" class="btn-press bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition text-center">
-                        +1 Punto
+                <!-- Botones de sumar/restar punto equipo 1 -->
+                <div class="grid grid-cols-2 gap-3 pt-4 border-t border-blue-900/40">
+                    <button onclick="addPoint('A', 1)" class="btn-bounce bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 text-base transition">
+                        <i class="fa-solid fa-plus-circle text-lg"></i>
+                        Punto Equipo 1
                     </button>
-                    <button onclick="addPoint('A', -1)" class="btn-press bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-3 rounded-xl border border-slate-700 transition text-center text-sm">
-                        -1 Restar
+                    <button onclick="addPoint('A', -1)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-blue-300 font-semibold py-3 px-4 rounded-xl border border-blue-500/30 flex items-center justify-center gap-2 text-sm transition">
+                        <i class="fa-solid fa-minus"></i>
+                        Restar
                     </button>
                 </div>
             </div>
 
-            <!-- Equipo 2 -->
-            <div class="bg-slate-900 border-2 border-emerald-600/50 rounded-2xl p-6 flex flex-col justify-between">
-                <div class="flex justify-between items-start mb-4">
+            <!-- EQUIPO 2 -->
+            <div class="bg-gradient-to-br from-slate-900/90 to-pink-950/50 border-2 border-pink-500/40 rounded-3xl p-6 glow-pink relative overflow-hidden flex flex-col justify-between">
+                <div class="flex justify-between items-start mb-3">
                     <div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded border border-emerald-800/60">Lado Derecho</span>
-                        <h2 class="text-2xl font-bold text-white mt-2">Equipo 2</h2>
-                        <p class="text-xs text-slate-400 mt-1">Turno del siguiente estudiante</p>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30 text-xs font-bold tracking-wider uppercase mb-1">
+                            <i class="fa-solid fa-users"></i> Lado Derecho
+                        </div>
+                        <h2 class="text-2xl font-black font-display text-white">EQUIPO 2</h2>
+                        <p class="text-xs text-pink-300/80 mt-0.5">Turno de un representante nuevo</p>
                     </div>
                     <div class="text-right">
-                        <span id="scoreB" class="text-6xl sm:text-7xl font-black text-emerald-400 font-mono">0</span>
-                        <span class="block text-xs uppercase font-bold text-slate-400">Puntos</span>
+                        <span id="scoreB" class="text-6xl lg:text-7xl font-black font-display text-pink-400 tracking-tight drop-shadow">0</span>
+                        <span class="block text-xs uppercase tracking-widest text-slate-400 font-bold">Puntos</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 pt-4 border-t border-slate-800">
-                    <button onclick="addPoint('B', 1)" class="btn-press bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition text-center">
-                        +1 Punto
+                <!-- Botones de sumar/restar punto equipo 2 -->
+                <div class="grid grid-cols-2 gap-3 pt-4 border-t border-pink-900/40">
+                    <button onclick="addPoint('B', 1)" class="btn-bounce bg-pink-600 hover:bg-pink-500 active:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-pink-600/30 flex items-center justify-center gap-2 text-base transition">
+                        <i class="fa-solid fa-plus-circle text-lg"></i>
+                        Punto Equipo 2
                     </button>
-                    <button onclick="addPoint('B', -1)" class="btn-press bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-3 rounded-xl border border-slate-700 transition text-center text-sm">
-                        -1 Restar
+                    <button onclick="addPoint('B', -1)" class="btn-bounce bg-slate-800/80 hover:bg-slate-700/80 text-pink-300 font-semibold py-3 px-4 rounded-xl border border-pink-500/30 flex items-center justify-center gap-2 text-sm transition">
+                        <i class="fa-solid fa-minus"></i>
+                        Restar
                     </button>
                 </div>
             </div>
-
         </section>
 
-        <!-- Control de Ronda y Reproducción -->
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col gap-6">
-
-            <!-- Estado de la Ronda y Límite de Audio -->
+        <!-- ZONA PRINCIPAL DE LA RONDA & REPRODUCCIÓN -->
+        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col gap-6 shadow-2xl relative">
+            
+            <!-- Encabezado de la Ronda -->
             <div class="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-slate-800">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-600 text-white font-black text-2xl flex items-center justify-center font-mono">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30">
                         <span id="roundNumber">1</span>
                     </div>
                     <div>
-                        <span class="text-xs uppercase font-bold tracking-wider text-slate-400">Progreso</span>
-                        <h3 class="text-xl font-bold text-white">Ronda <span id="roundIndicator">1</span> de 15</h3>
+                        <div class="text-xs uppercase tracking-widest text-amber-400 font-bold">En Juego</div>
+                        <h3 class="text-2xl font-black font-display text-white">Ronda <span id="roundIndicator">1</span> de 15</h3>
                     </div>
                 </div>
 
-                <div class="bg-slate-800/90 border border-slate-700 px-4 py-2.5 rounded-xl flex items-center gap-3">
-                    <span class="text-xs font-bold text-slate-400 uppercase">Reproducciones permitidas:</span>
-                    <div class="flex gap-2">
-                        <span id="badge1" class="w-7 h-7 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center border border-slate-600">1</span>
-                        <span id="badge2" class="w-7 h-7 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center border border-slate-600">2</span>
+                <!-- Contador de Reproducciones Disponibles (Máximo 2) -->
+                <div class="bg-slate-800/90 px-5 py-3 rounded-2xl border border-slate-700 flex items-center gap-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Reproducciones:</span>
+                    <div class="flex items-center gap-2">
+                        <div id="playBadge1" class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all">1</div>
+                        <div id="playBadge2" class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all">2</div>
                     </div>
-                    <span id="playsLeftText" class="text-xs font-bold text-blue-400">(2 disponibles)</span>
+                    <span id="playsLeftText" class="text-xs font-semibold text-cyan-400 ml-1">(2 restantes)</span>
                 </div>
             </div>
 
-            <!-- Botón Grande de Audio -->
+            <!-- BOTÓN GIGANTE DE REPRODUCIR AUDIO -->
             <div class="flex flex-col items-center justify-center py-6 text-center">
-                <button id="playAudioBtn" onclick="playSentenceAudio()" class="btn-press px-10 sm:px-14 py-6 sm:py-7 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-black text-2xl sm:text-3xl rounded-2xl shadow-xl transition cursor-pointer flex items-center gap-4">
-                    <svg id="playSvg" class="w-8 h-8 fill-current" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    <span id="playButtonText">REPRODUCIR ORACIÓN</span>
+                <button id="playAudioBtn" onclick="playSentenceAudio()" class="btn-bounce group relative px-8 sm:px-14 py-6 sm:py-8 bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-black font-display text-2xl sm:text-3xl rounded-3xl shadow-2xl shadow-cyan-500/30 flex items-center gap-5 transition-all cursor-pointer">
+                    <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition">
+                        <i id="playIcon" class="fa-solid fa-play text-2xl text-white ml-1"></i>
+                    </div>
+                    <span id="playButtonText">REPRODUCIR AUDIO</span>
                 </button>
-                <p class="text-xs text-slate-400 mt-3 font-medium">
-                    Acento nativo estadounidense (en-US). Máximo 2 reproducciones por estudiante.
+                <p id="audioNotice" class="text-sm text-slate-400 mt-4 flex items-center gap-2">
+                    <i class="fa-solid fa-headphones text-cyan-400"></i>
+                    Pronunciación nativa en inglés americano (US) • Máximo 2 reproducciones
                 </p>
             </div>
 
-            <!-- Ocultar / Revelar Oración para Revisar -->
+            <!-- CAJA DE RESPUESTA OCULTA / REVELADA -->
             <div class="w-full">
                 <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs uppercase font-bold tracking-wider text-slate-400">Verificación en tablero</span>
-                    <button id="revealBtn" onclick="toggleReveal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 transition">
-                        <span id="revealBtnText">Revelar texto</span>
+                    <span class="text-xs uppercase font-bold tracking-wider text-slate-400">Comprobación en el tablero</span>
+                    <button id="revealBtn" onclick="toggleReveal()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+                        <i id="revealIcon" class="fa-solid fa-eye"></i>
+                        <span id="revealBtnText">Revelar Respuesta Correcta</span>
                     </button>
                 </div>
 
-                <div id="sentenceBox" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-6 sm:p-8 text-center min-h-[110px] flex flex-col justify-center items-center">
-                    <div id="hiddenPlaceholder" class="text-slate-500 text-sm font-medium">
-                        Texto oculto durante el dictado. Haz clic en <strong>Revelar texto</strong> cuando ambos representantes terminen de escribir.
+                <!-- Tarjeta que oculta o muestra la oración -->
+                <div id="sentenceCard" class="w-full bg-slate-950/70 border-2 border-dashed border-slate-700 rounded-2xl p-6 sm:p-8 text-center transition-all min-h-[140px] flex flex-col justify-center items-center">
+                    <div id="hiddenPlaceholder" class="flex flex-col items-center justify-center text-slate-500 gap-2">
+                        <i class="fa-solid fa-lock text-3xl text-slate-600"></i>
+                        <p class="text-base font-semibold text-slate-400">La oración está oculta para que nadie haga trampa</p>
+                        <p class="text-xs text-slate-500">Haz clic en "Revelar Respuesta Correcta" cuando ambos equipos terminen de escribir</p>
                     </div>
 
                     <div id="revealedContent" class="hidden w-full">
-                        <span class="text-xs uppercase tracking-wider font-bold text-emerald-400 bg-emerald-950/80 px-2 py-1 rounded border border-emerald-800/60">Oración Correcta</span>
-                        <h4 id="sentenceText" class="text-2xl sm:text-3xl font-extrabold text-white mt-3 font-mono leading-relaxed">
+                        <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider mb-3">
+                            <i class="fa-solid fa-circle-check"></i> Oración Oficial
+                        </div>
+                        <h4 id="sentenceText" class="text-2xl sm:text-4xl font-extrabold text-white tracking-wide font-display text-center leading-snug">
                             <!-- Inyectado dinámicamente -->
                         </h4>
                     </div>
                 </div>
             </div>
 
-            <!-- Navegación de Rondas -->
-            <div class="flex justify-between items-center gap-4 pt-4 border-t border-slate-800">
-                <button onclick="prevRound()" id="prevBtn" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-300 font-bold rounded-xl text-sm transition">
-                    ← Ronda Anterior
+            <!-- CONTROLES DE NAVEGACIÓN DE RONDA (Anterior / Siguiente) -->
+            <div class="flex flex-wrap justify-between items-center gap-4 pt-4 border-t border-slate-800">
+                <button onclick="prevRound()" id="prevBtn" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-300 font-bold rounded-xl text-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Ronda Anterior
                 </button>
 
-                <button onclick="nextRound()" id="nextBtn" class="btn-press px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition">
-                    <span id="nextBtnText">Siguiente Ronda →</span>
+                <!-- Barra de Progreso de 15 Rondas -->
+                <div class="flex-1 max-w-md hidden md:flex flex-col gap-1.5">
+                    <div class="flex justify-between text-xs font-bold text-slate-400">
+                        <span>Progreso del Juego</span>
+                        <span id="progressPercent">7%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                        <div id="progressBar" class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full transition-all duration-300" style="width: 6.66%;"></div>
+                    </div>
+                </div>
+
+                <button onclick="nextRound()" id="nextBtn" class="btn-bounce px-7 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl text-base shadow-lg shadow-emerald-600/30 transition flex items-center gap-2">
+                    <span id="nextBtnText">Siguiente Ronda</span>
+                    <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-
         </section>
 
-        <!-- Cuadro de Calificación Final al terminar la Ronda 15 -->
-        <section id="finalResultsCard" class="hidden bg-slate-900 border-2 border-yellow-500/80 rounded-2xl p-6 sm:p-8 text-center">
-            <h3 class="text-2xl sm:text-3xl font-black text-white uppercase">Calificación Final</h3>
-            <p class="text-slate-400 text-sm mt-1">
-                Regla: El equipo con más aciertos obtiene <strong>5.0</strong> y el otro <strong>4.0</strong>.
-            </p>
+        <!-- SECCIÓN DE RESULTADO FINAL (Al terminar la ronda 15) -->
+        <section id="finalResultsCard" class="hidden bg-slate-900 border-2 border-amber-500/60 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
+            <div class="max-w-2xl mx-auto flex flex-col items-center gap-4">
+                <h3 class="text-3xl sm:text-4xl font-black font-display text-white uppercase">Calificación Final</h3>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Calificación de la actividad: El equipo con más puntos obtiene <strong>5.0</strong> y el otro equipo <strong>4.0</strong>.
+                </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto my-6 text-left">
-                <div id="gradeCardA" class="p-5 rounded-xl border border-slate-700 bg-slate-950">
-                    <span class="text-xs font-bold uppercase text-blue-400">Equipo 1</span>
-                    <div class="flex justify-between items-baseline mt-2">
-                        <span id="finalScoreA" class="text-2xl font-bold text-white">0 pts</span>
-                        <span id="finalGradeA" class="text-4xl font-black text-blue-400">5.0</span>
+                <!-- Cuadro de Calificaciones -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full my-3">
+                    <div id="gradeCardA" class="p-6 rounded-2xl border bg-slate-900/90 text-left">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Equipo 1</span>
+                        <div class="flex justify-between items-baseline mt-2">
+                            <span id="finalScoreA" class="text-3xl font-black font-display text-white">0 pts</span>
+                            <span id="finalGradeA" class="text-4xl font-black font-display text-blue-400">5.0</span>
+                        </div>
+                        <p id="finalStatusA" class="text-xs font-semibold mt-2 text-slate-400"></p>
                     </div>
-                    <span id="finalStatusA" class="text-xs font-semibold text-slate-400 mt-1 block"></span>
-                </div>
 
-                <div id="gradeCardB" class="p-5 rounded-xl border border-slate-700 bg-slate-950">
-                    <span class="text-xs font-bold uppercase text-emerald-400">Equipo 2</span>
-                    <div class="flex justify-between items-baseline mt-2">
-                        <span id="finalScoreB" class="text-2xl font-bold text-white">0 pts</span>
-                        <span id="finalGradeB" class="text-4xl font-black text-emerald-400">4.0</span>
+                    <div id="gradeCardB" class="p-6 rounded-2xl border bg-slate-900/90 text-left">
+                        <span class="text-xs font-bold uppercase tracking-wider text-pink-400">Equipo 2</span>
+                        <div class="flex justify-between items-baseline mt-2">
+                            <span id="finalScoreB" class="text-3xl font-black font-display text-white">0 pts</span>
+                            <span id="finalGradeB" class="text-4xl font-black font-display text-pink-400">4.0</span>
+                        </div>
+                        <p id="finalStatusB" class="text-xs font-semibold mt-2 text-slate-400"></p>
                     </div>
-                    <span id="finalStatusB" class="text-xs font-semibold text-slate-400 mt-1 block"></span>
                 </div>
             </div>
         </section>
+
+        <!-- Reglas / Instrucciones para el Docente -->
+        <footer class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5 text-xs text-slate-400 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-users text-cyan-400 text-base"></i>
+                <span><strong>Regla de rotación:</strong> Cada ronda pasa un estudiante diferente al tablero para que los ~30 participen.</span>
+            </div>
+            <div class="text-slate-500">
+                Límite de audio: 2 reproducciones por ronda • 1 punto por oración correcta
+            </div>
+        </footer>
 
     </main>
 
-    <!-- Modal de Instrucciones -->
+    <!-- MODAL DE INSTRUCCIONES -->
     <div id="rulesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 text-slate-200">
-            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
-                <h3 class="font-bold text-lg text-white">Instrucciones del Juego</h3>
-                <button onclick="toggleModal('rulesModal')" class="text-slate-400 hover:text-white text-lg font-bold">✕</button>
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                <h3 class="text-xl font-black font-display text-white flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-amber-400"></i>
+                    Instrucciones de la Actividad
+                </h3>
+                <button onclick="toggleModal('rulesModal')" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <ul class="text-sm space-y-2 mt-4 text-slate-300">
-                <li>• La clase se divide en 2 equipos (Equipo 1 y Equipo 2).</li>
-                <li>• En cada ronda pasa 1 representante por equipo al tablero.</li>
-                <li>• El audio se puede reproducir un máximo de <strong>2 veces</strong>.</li>
-                <li>• Gana 1 punto el equipo que escriba la oración completa sin errores.</li>
-                <li>• Al terminar las 15 rondas: Mayor puntaje = <strong>5.0</strong>, segundo puesto = <strong>4.0</strong>.</li>
-            </ul>
-            <button onclick="toggleModal('rulesModal')" class="w-full mt-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm transition">
+            <div class="py-4 space-y-3 text-sm text-slate-300">
+                <p><strong>1. Dinámica:</strong> La clase se divide en 2 equipos (Equipo 1 y Equipo 2).</p>
+                <p><strong>2. Rotación:</strong> En cada ronda pasa un representante distinto de cada equipo al tablero con su marcador.</p>
+                <p><strong>3. Audio:</strong> Se puede reproducir la oración hasta <strong>2 veces</strong> como máximo en inglés estadounidense (en-US).</p>
+                <p><strong>4. Puntos:</strong> Se otorga 1 punto si la oración está completamente bien escrita.</p>
+                <p><strong>5. Calificaciones:</strong> Al completar las 15 rondas, el equipo con más puntos recibe <strong>5.0</strong> y el otro <strong>4.0</strong> (en caso de empate, ambos 5.0).</p>
+            </div>
+            <button onclick="toggleModal('rulesModal')" class="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition">
                 Cerrar
             </button>
         </div>
     </div>
 
+    <!-- SCRIPT DE LÓGICA DEL JUEGO -->
     <script>
         const sentences = [
             "You should review your notes before the exam.",
@@ -251,11 +337,11 @@
         let isRevealed = false;
         let usVoice = null;
 
-        function loadUsVoice() {
+        // Carga estricta de voz en inglés americano (US)
+        function initVoices() {
             if ('speechSynthesis' in window) {
                 const pickVoice = () => {
                     const voices = window.speechSynthesis.getVoices();
-                    // Buscar voz estrictamente en-US
                     usVoice = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US') 
                            || voices.find(v => v.lang.startsWith('en')) 
                            || null;
@@ -265,93 +351,112 @@
             }
         }
 
+        // Reproducir la oración actual
         function playSentenceAudio() {
             if (playCount >= 2) {
-                alert("Ya se usaron las 2 reproducciones permitidas para esta ronda.");
+                alert("¡Ya se usaron las 2 reproducciones permitidas para esta ronda!");
                 return;
             }
 
+            speakCurrentSentence();
+            playCount++;
+            updatePlayBadges();
+        }
+
+        function speakCurrentSentence() {
             if (!('speechSynthesis' in window)) {
-                alert("El navegador no soporta síntesis de voz.");
+                alert("Tu navegador no soporta síntesis de audio.");
                 return;
             }
 
             window.speechSynthesis.cancel();
 
-            const text = sentences[currentRound - 1];
-            const utterance = new SpeechSynthesisUtterance(text);
+            const sentence = sentences[currentRound - 1];
+            const utterance = new SpeechSynthesisUtterance(sentence);
             utterance.lang = 'en-US';
-            utterance.rate = 0.90; // Velocidad clara
+            utterance.rate = 0.90; // Velocidad pedagógica clara
 
-            if (usVoice) utterance.voice = usVoice;
+            if (usVoice) {
+                utterance.voice = usVoice;
+            }
 
             const playBtn = document.getElementById('playAudioBtn');
+            const playIcon = document.getElementById('playIcon');
             const playText = document.getElementById('playButtonText');
 
             utterance.onstart = () => {
-                playBtn.classList.add('bg-blue-700');
+                playBtn.classList.add('pulse-subtle');
+                playIcon.className = "fa-solid fa-volume-high text-2xl text-cyan-200 animate-pulse";
                 playText.textContent = "REPRODUCIENDO...";
             };
 
             utterance.onend = () => {
-                playBtn.classList.remove('bg-blue-700');
+                playBtn.classList.remove('pulse-subtle');
+                playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
                 if (playCount >= 2) {
                     playText.textContent = "AUDIO AGOTADO (2/2)";
                 } else {
-                    playText.textContent = "REPRODUCIR ORACIÓN";
+                    playText.textContent = "REPRODUCIR AUDIO";
                 }
             };
 
             window.speechSynthesis.speak(utterance);
-            playCount++;
-            updateBadges();
         }
 
-        function updateBadges() {
-            const b1 = document.getElementById('badge1');
-            const b2 = document.getElementById('badge2');
-            const leftText = document.getElementById('playsLeftText');
+        function updatePlayBadges() {
+            const b1 = document.getElementById('playBadge1');
+            const b2 = document.getElementById('playBadge2');
+            const text = document.getElementById('playsLeftText');
             const playBtn = document.getElementById('playAudioBtn');
             const playText = document.getElementById('playButtonText');
 
             if (playCount === 0) {
-                b1.className = "w-7 h-7 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center border border-slate-600";
-                b2.className = "w-7 h-7 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center border border-slate-600";
-                leftText.textContent = "(2 disponibles)";
-                leftText.className = "text-xs font-bold text-blue-400";
+                b1.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all";
+                b2.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all";
+                text.textContent = "(2 restantes)";
+                text.className = "text-xs font-semibold text-cyan-400 ml-1";
                 playBtn.disabled = false;
-                playText.textContent = "REPRODUCIR ORACIÓN";
+                playText.textContent = "REPRODUCIR AUDIO";
             } else if (playCount === 1) {
-                b1.className = "w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center border border-blue-400";
-                b2.className = "w-7 h-7 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center border border-slate-600";
-                leftText.textContent = "(1 disponible)";
-                leftText.className = "text-xs font-bold text-amber-400";
-                playText.textContent = "REPRODUCIR ORACIÓN (2da vez)";
+                b1.className = "w-8 h-8 rounded-full bg-cyan-500 text-slate-950 font-bold text-xs flex items-center justify-center border border-cyan-400 shadow-md shadow-cyan-500/40 transition-all";
+                b2.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all";
+                text.textContent = "(1 restante)";
+                text.className = "text-xs font-semibold text-amber-400 ml-1";
+                playText.textContent = "REPRODUCIR AUDIO (2da vez)";
             } else {
-                b1.className = "w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center border border-blue-400";
-                b2.className = "w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center border border-blue-400";
-                leftText.textContent = "(0 disponibles)";
-                leftText.className = "text-xs font-bold text-red-400";
+                b1.className = "w-8 h-8 rounded-full bg-cyan-500 text-slate-950 font-bold text-xs flex items-center justify-center border border-cyan-400 transition-all";
+                b2.className = "w-8 h-8 rounded-full bg-indigo-500 text-white font-bold text-xs flex items-center justify-center border border-indigo-400 shadow-md shadow-indigo-500/40 transition-all";
+                text.textContent = "(0 restantes)";
+                text.className = "text-xs font-semibold text-rose-400 ml-1";
                 playText.textContent = "AUDIO AGOTADO (2/2)";
             }
         }
 
+        // Alternar visualización de la respuesta
         function toggleReveal() {
             isRevealed = !isRevealed;
             const hiddenPlaceholder = document.getElementById('hiddenPlaceholder');
             const revealedContent = document.getElementById('revealedContent');
             const sentenceText = document.getElementById('sentenceText');
             const revealBtnText = document.getElementById('revealBtnText');
+            const revealIcon = document.getElementById('revealIcon');
+            const card = document.getElementById('sentenceCard');
 
             if (isRevealed) {
                 sentenceText.textContent = `"${sentences[currentRound - 1]}"`;
                 hiddenPlaceholder.classList.add('hidden');
                 revealedContent.classList.remove('hidden');
-                revealBtnText.textContent = "Ocultar texto";
+                revealBtnText.textContent = "Ocultar Respuesta";
+                revealIcon.className = "fa-solid fa-eye-slash";
+                card.classList.remove('border-dashed', 'border-slate-700');
+                card.classList.add('border-solid', 'border-emerald-500/40', 'bg-emerald-950/20');
             } else {
                 hiddenPlaceholder.classList.remove('hidden');
                 revealedContent.classList.add('hidden');
-                revealBtnText.textContent = "Revelar texto";
+                revealBtnText.textContent = "Revelar Respuesta Correcta";
+                revealIcon.className = "fa-solid fa-eye";
+                card.classList.add('border-dashed', 'border-slate-700');
+                card.classList.remove('border-solid', 'border-emerald-500/40', 'bg-emerald-950/20');
             }
         }
 
@@ -372,15 +477,33 @@
 
             playCount = 0;
             isRevealed = false;
-            updateBadges();
+            updatePlayBadges();
 
-            document.getElementById('hiddenPlaceholder').classList.remove('hidden');
-            document.getElementById('revealedContent').classList.add('hidden');
-            document.getElementById('revealBtnText').textContent = "Revelar texto";
+            const hiddenPlaceholder = document.getElementById('hiddenPlaceholder');
+            const revealedContent = document.getElementById('revealedContent');
+            const revealBtnText = document.getElementById('revealBtnText');
+            const revealIcon = document.getElementById('revealIcon');
+            const card = document.getElementById('sentenceCard');
+
+            hiddenPlaceholder.classList.remove('hidden');
+            revealedContent.classList.add('hidden');
+            revealBtnText.textContent = "Revelar Respuesta Correcta";
+            revealIcon.className = "fa-solid fa-eye";
+            card.classList.add('border-dashed', 'border-slate-700');
+            card.classList.remove('border-solid', 'border-emerald-500/40', 'bg-emerald-950/20');
 
             document.getElementById('prevBtn').disabled = (currentRound === 1);
+
             const nextBtnText = document.getElementById('nextBtnText');
-            nextBtnText.textContent = (currentRound === totalRounds) ? "Ver Calificaciones" : "Siguiente Ronda →";
+            if (currentRound === totalRounds) {
+                nextBtnText.textContent = "Ver Calificaciones";
+            } else {
+                nextBtnText.textContent = "Siguiente Ronda";
+            }
+
+            const percent = Math.round((currentRound / totalRounds) * 100);
+            document.getElementById('progressPercent').textContent = `${percent}%`;
+            document.getElementById('progressBar').style.width = `${percent}%`;
 
             if (currentRound === totalRounds) {
                 updateFinalResults();
@@ -414,27 +537,35 @@
             const gradeB = document.getElementById('finalGradeB');
             const statusA = document.getElementById('finalStatusA');
             const statusB = document.getElementById('finalStatusB');
+            const cardA = document.getElementById('gradeCardA');
+            const cardB = document.getElementById('gradeCardB');
 
             if (scoreA > scoreB) {
                 gradeA.textContent = "5.0";
                 gradeB.textContent = "4.0";
                 statusA.textContent = "Mayor puntaje";
-                statusB.textContent = "Segundo puesto";
+                statusB.textContent = "Segundo lugar";
+                cardA.className = "p-6 rounded-2xl border-2 border-blue-500 bg-blue-950/40 text-left shadow-lg shadow-blue-500/20";
+                cardB.className = "p-6 rounded-2xl border border-slate-700 bg-slate-900/80 text-left";
             } else if (scoreB > scoreA) {
                 gradeA.textContent = "4.0";
                 gradeB.textContent = "5.0";
-                statusA.textContent = "Segundo puesto";
+                statusA.textContent = "Segundo lugar";
                 statusB.textContent = "Mayor puntaje";
+                cardA.className = "p-6 rounded-2xl border border-slate-700 bg-slate-900/80 text-left";
+                cardB.className = "p-6 rounded-2xl border-2 border-pink-500 bg-pink-950/40 text-left shadow-lg shadow-pink-500/20";
             } else {
                 gradeA.textContent = "5.0";
                 gradeB.textContent = "5.0";
                 statusA.textContent = "Empate";
                 statusB.textContent = "Empate";
+                cardA.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/30 text-left";
+                cardB.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/30 text-left";
             }
         }
 
-        function resetGame() {
-            if (confirm("¿Reiniciar la actividad a la ronda 1 y poner los puntajes en cero?")) {
+        function confirmReset() {
+            if (confirm("¿Deseas reiniciar la actividad a la ronda 1 y poner los puntajes en cero?")) {
                 currentRound = 1;
                 scoreA = 0;
                 scoreB = 0;
@@ -445,12 +576,13 @@
             }
         }
 
-        function toggleModal(id) {
-            document.getElementById(id).classList.toggle('hidden');
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadUsVoice();
+            initVoices();
             updateRoundUI();
         });
     </script>
