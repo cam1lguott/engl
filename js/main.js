@@ -14,7 +14,6 @@ const translations = {
     nav_history: "Historia",
     nav_components: "Componentes",
     nav_lab: "Laboratorio",
-    nav_team: "Equipo",
     
     // Historia
     hist_title: "Computadores Históricos (Antes de 1980)",
@@ -59,13 +58,7 @@ const translations = {
     ps_title: "Diagnóstico de Hardware (PowerShell)",
     ps_desc: "Comando nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:",
 
-    // Equipo
-    team_title: "Organización y Trabajo en Equipo",
-    team_desc: "Colaboración distribuida para la materia Estructura de Redes con soporte para GitHub y despliegue web.",
-    member_1_title: "Integrantes del Proyecto",
-    member_1_role: "Edición colaborativa en GitHub",
-    team_note: "Cada miembro tiene ramas y archivos listos para editar sin sobreescribir el trabajo de los compañeros.",
-    footer_text: "Proyecto Escolar • Estructura de Redes & Inglés"
+    footer_text: "Estructura de Redes"
   },
   en: {
     badge_hero: "Network Structure • School Project",
@@ -76,7 +69,6 @@ const translations = {
     nav_history: "History",
     nav_components: "Components",
     nav_lab: "Lab",
-    nav_team: "Team",
 
     // History
     hist_title: "Historical Computers (Pre-1980s)",
@@ -121,13 +113,7 @@ const translations = {
     ps_title: "Hardware Diagnostics (PowerShell)",
     ps_desc: "Native Windows command to inspect the physical hardware specifications during lab sessions:",
 
-    // Team
-    team_title: "Team Organization & Collaboration",
-    team_desc: "Distributed collaboration for Network Structure with GitHub support and web hosting deployment.",
-    member_1_title: "Project Members",
-    member_1_role: "Collaborative editing via GitHub",
-    team_note: "Each member can work on dedicated branches without overwriting teammates' work.",
-    footer_text: "School Project • Network Structure & English Class"
+    footer_text: "Network Structure"
   }
 };
 
