@@ -1,6 +1,6 @@
 /**
- * main.js - Manejo de traducción bilingüe (Español / Inglés)
- * y funcionalidades interactivas base del proyecto.
+ * main.js - Manejo de traducción bilingüe (Español / Inglés),
+ * menú adaptativo para dispositivos móviles y utilidades interactivas.
  */
 
 // Diccionario de textos bilingüe
@@ -169,10 +169,12 @@ const translations = {
   }
 };
 
-let currentLang = 'es';
+// Carga de idioma persistente (guarda en localStorage)
+let currentLang = localStorage.getItem('user_lang') || 'es';
 
 function toggleLanguage() {
   currentLang = currentLang === 'es' ? 'en' : 'es';
+  localStorage.setItem('user_lang', currentLang);
   applyLanguage(currentLang);
 }
 
@@ -192,6 +194,7 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
+// Configuración del botón de copiar código
 function setupCopyButton() {
   const copyBtn = document.getElementById('copy-code-btn');
   const codeElem = document.getElementById('ps-code');
@@ -208,11 +211,37 @@ function setupCopyButton() {
   });
 }
 
+// Menú hamburguesa (3 rayitas) para móviles y tablets
+function setupMobileMenu() {
+  const menuBtn = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if (!menuBtn || !navMenu) return;
+
+  menuBtn.addEventListener('click', () => {
+    const isActive = navMenu.classList.toggle('is-active');
+    menuBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    menuBtn.textContent = isActive ? '✕' : '☰';
+  });
+
+  // Cerrar el menú automáticamente al hacer clic en cualquier enlace
+  const links = navMenu.querySelectorAll('a');
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (navMenu.classList.contains('is-active')) {
+        navMenu.classList.remove('is-active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = '☰';
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const langToggleBtn = document.getElementById('lang-toggle');
   if (langToggleBtn) {
     langToggleBtn.addEventListener('click', toggleLanguage);
   }
   setupCopyButton();
+  setupMobileMenu();
   applyLanguage(currentLang);
 });

@@ -9,10 +9,10 @@
 </head>
 <body>
 
-  <!-- Encabezado y Navegación Principal -->
+  <!-- Encabezado y Barra de Navegación Adaptativa -->
   <header class="site-header">
     <div class="header-container">
-      <nav>
+      <nav id="nav-menu" class="nav-menu">
         <ul class="nav-links">
           <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
           <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
@@ -22,10 +22,18 @@
         </ul>
       </nav>
 
-      <!-- Selector bilingüe Español / Inglés -->
-      <button id="lang-toggle" class="lang-switch-btn" title="Cambiar idioma / Switch language">
-        🌐 <span id="lang-label">ES</span>
-      </button>
+      <!-- Botones de acción: Idioma y Menú Hamburguesa en móvil -->
+      <div class="header-actions">
+        <!-- Selector bilingüe Español / Inglés -->
+        <button id="lang-toggle" class="lang-switch-btn" title="Cambiar idioma / Switch language">
+          🌐 <span id="lang-label">ES</span>
+        </button>
+
+        <!-- Botón de tres rayitas (Hamburguesa) para celulares -->
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Abrir menú" aria-expanded="false">
+          ☰
+        </button>
+      </div>
     </div>
   </header>
 
@@ -319,7 +327,7 @@
     <p data-i18n="footer_text">Estructura de Redes</p>
   </footer>
 
-  <!-- Script interactivo bilingüe -->
+  <!-- Script interactivo bilingüe y menú móvil -->
   <script src="js/main.js"></script>
 </body>
 </html>
