@@ -56,7 +56,7 @@ const translations = {
     model3d_desc: "Espacio reservado para integrar Three.js o un visor 3D interactivo que permita rotar y desarmar una torre de PC virtual.",
     model3d_wait: "Modelo 3D en desarrollo (Three.js / WebGL)",
     ps_title: "Diagnóstico de Hardware (PowerShell)",
-    ps_desc: "Comando nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:",
+    ps_desc: "Código nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:",
 
     footer_text: "Estructura de Redes"
   },
@@ -111,7 +111,7 @@ const translations = {
     model3d_desc: "Reserved space to integrate Three.js or WebGL models to inspect and disassemble a virtual PC tower.",
     model3d_wait: "3D model placeholder (Three.js / WebGL)",
     ps_title: "Hardware Diagnostics (PowerShell)",
-    ps_desc: "Native Windows command to inspect the physical hardware specifications during lab sessions:",
+    ps_desc: "Native Windows code to inspect the physical hardware specifications during lab sessions:",
 
     footer_text: "Network Structure"
   }
