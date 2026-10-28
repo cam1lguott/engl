@@ -20,13 +20,13 @@ const translations = {
     // Historia
     hist_title: "Computadores Históricos (Antes de 1980)",
     hist_desc: "Los primeros hitos de la computación que sentaron las bases para las redes y la microcomputación moderna.",
-    eniac_title: "ENIAC - Primer Computador Electrónico General",
+    eniac_title: "ENIAC - Primer Computador Electrónico de Propósito General",
     eniac_desc: "Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.",
-    ibm7090_title: "IBM 7090 - La Era de los Transistores",
+    ibm7090_title: "IBM 7090 - Sistema Central Transistorizado",
     ibm7090_desc: "Reemplazó las válvulas de vacío por transistores, multiplicando por 6 la velocidad de cálculo y reduciendo el consumo eléctrico.",
-    altair_title: "Altair 8800 - El Despertar del Microcomputador",
+    altair_title: "Altair 8800 - Primer Microcomputador Comercial",
     altair_desc: "Basado en el procesador Intel 8080. Dio origen al software de microcomputadoras y al inicio de la informática personal.",
-    apple2_title: "Apple II - Computación Personal con Gráficos",
+    apple2_title: "Apple II - Microcomputador Personal Integrado",
     apple2_desc: "Uno de los primeros microcomputadores producidos en masa con teclado integrado, gráficos a color y ranuras de expansión.",
 
     // Componentes
@@ -101,13 +101,13 @@ const translations = {
     // History
     hist_title: "Historical Computers (Pre-1980s)",
     hist_desc: "Pioneering milestones in computing that paved the way for networking and modern personal computing.",
-    eniac_title: "ENIAC - First General Electronic Computer",
+    eniac_title: "ENIAC - General-Purpose Electronic Computer",
     eniac_desc: "Occupied an entire room and used over 17,000 vacuum tubes. Key for ballistic trajectories and scientific calculation.",
-    ibm7090_title: "IBM 7090 - The Transistor Revolution",
+    ibm7090_title: "IBM 7090 - Transistorized Mainframe System",
     ibm7090_desc: "Replaced fragile vacuum tubes with solid-state transistors, multiplying computing speeds by 6 and saving energy.",
-    altair_title: "Altair 8800 - The Microcomputer Spark",
+    altair_title: "Altair 8800 - First Commercial Microcomputer",
     altair_desc: "Powered by the Intel 8080 CPU. Marked the birth of microcomputer software and the dawn of personal computing.",
-    apple2_title: "Apple II - Personal Computing with Color Graphics",
+    apple2_title: "Apple II - Integrated Personal Microcomputer",
     apple2_desc: "One of the first mass-produced microcomputers with integrated keyboard, color graphics, and expansion slots.",
 
     // Components
@@ -192,7 +192,6 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
-// Función para copiar código al portapapeles
 function setupCopyButton() {
   const copyBtn = document.getElementById('copy-code-btn');
   const codeElem = document.getElementById('ps-code');
