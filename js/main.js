@@ -6,7 +6,7 @@
 // Diccionario de textos bilingüe
 const translations = {
   es: {
-    badge_hero: "Estructura de Redes • Proyecto Escolar",
+    badge_hero: "Estructura de Redes",
     hero_title: "Arquitectura y Evolución de los Computadores",
     hero_desc: "Una base interactiva diseñada para explorar la historia, componentes y funcionamiento del hardware computacional y su impacto en las redes.",
     btn_timeline: "Línea de Tiempo",
@@ -87,7 +87,7 @@ const translations = {
     footer_text: "Estructura de Redes"
   },
   en: {
-    badge_hero: "Network Structure • School Project",
+    badge_hero: "Network Structure",
     hero_title: "Computer Architecture and Evolution",
     hero_desc: "An interactive baseline designed to explore the history, hardware components, and networking foundation of computers.",
     btn_timeline: "Timeline",
@@ -169,7 +169,6 @@ const translations = {
   }
 };
 
-// Carga de idioma persistente (guarda en localStorage)
 let currentLang = localStorage.getItem('user_lang') || 'es';
 
 function toggleLanguage() {
@@ -194,7 +193,6 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
-// Configuración del botón de copiar código
 function setupCopyButton() {
   const copyBtn = document.getElementById('copy-code-btn');
   const codeElem = document.getElementById('ps-code');
@@ -211,7 +209,6 @@ function setupCopyButton() {
   });
 }
 
-// Menú hamburguesa (3 rayitas) para móviles y tablets
 function setupMobileMenu() {
   const menuBtn = document.getElementById('menu-toggle');
   const navMenu = document.getElementById('nav-menu');
@@ -223,7 +220,6 @@ function setupMobileMenu() {
     menuBtn.textContent = isActive ? '✕' : '☰';
   });
 
-  // Cerrar el menú automáticamente al hacer clic en cualquier enlace
   const links = navMenu.querySelectorAll('a');
   links.forEach((link) => {
     link.addEventListener('click', () => {
