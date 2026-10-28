@@ -13,6 +13,8 @@ const translations = {
     btn_components: "Ver Componentes",
     nav_history: "Historia",
     nav_components: "Componentes",
+    nav_network: "Hardware & Redes",
+    nav_glossary: "Glosario",
     nav_lab: "Laboratorio",
     
     // Historia
@@ -49,6 +51,28 @@ const translations = {
     psu_desc: "Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.",
     psu_sub: "Distribución Eléctrica",
 
+    // Hardware y Redes
+    net_title: "Del Hardware a la Red",
+    net_desc: "Cómo el equipo físico se enlaza e interactúa en una infraestructura de red local (LAN).",
+    mac_title: "Dirección MAC (Hardware Address)",
+    mac_desc: "Identificador físico único de 48 bits grabado directamente en la memoria ROM de cada tarjeta de red (NIC) para la capa de enlace de datos.",
+    eth_title: "Puertos Físicos y Conectividad",
+    eth_desc: "Interfaces RJ-45 para cable de par trenzado (Ethernet) e interfaces de radiofrecuencia (Wi-Fi) conectadas mediante el bus PCIe.",
+    flow_title: "Flujo de Datos en el Host",
+    flow_desc: "Los paquetes viajan desde la memoria RAM, son procesados por la CPU y enviados al controlador NIC para su modulación y transmisión en el medio físico.",
+
+    // Glosario
+    glos_title: "Glosario Técnico de Redes y Computación",
+    glos_desc: "Conceptos esenciales en inglés técnico para la comunicación en redes y arquitectura de sistemas.",
+    term_throughput: "Throughput (Tasa de transferencia efectiva)",
+    desc_throughput: "Volumen real de datos transferidos con éxito entre dos puntos de la red en un intervalo de tiempo.",
+    term_bandwidth: "Bandwidth (Ancho de banda)",
+    desc_bandwidth: "Capacidad máxima teórica de transmisión de un canal o medio de red medido en bps (bits por segundo).",
+    term_nic: "NIC (Network Interface Card)",
+    desc_nic: "Circuito integrado que proporciona el puente físico y lógico entre el bus interno del computador y el cable de red.",
+    term_packet: "Packet (Paquete de red)",
+    desc_packet: "Unidad de datos formateada con encabezados de origen, destino y carga útil que viaja por la red.",
+
     // Laboratorio
     lab_title: "Área de Innovación & Expansiones",
     lab_desc: "Módulos experimentales preparados para futuras entregas del equipo.",
@@ -57,6 +81,8 @@ const translations = {
     model3d_wait: "Modelo 3D en desarrollo (Three.js / WebGL)",
     ps_title: "Diagnóstico de Hardware (PowerShell)",
     ps_desc: "Código nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:",
+    copy_code: "Copiar",
+    copied_code: "¡Copiado!",
 
     footer_text: "Estructura de Redes"
   },
@@ -68,6 +94,8 @@ const translations = {
     btn_components: "View Components",
     nav_history: "History",
     nav_components: "Components",
+    nav_network: "Hardware & Networks",
+    nav_glossary: "Glossary",
     nav_lab: "Lab",
 
     // History
@@ -104,6 +132,28 @@ const translations = {
     psu_desc: "Converts household AC power into regulated low-voltage DC power to safely feed all hardware components.",
     psu_sub: "Clean Power Distribution",
 
+    // Hardware & Networks
+    net_title: "From Hardware to Network",
+    net_desc: "How physical host hardware interfaces with local area network (LAN) infrastructures.",
+    mac_title: "MAC Address (Hardware Address)",
+    mac_desc: "A unique 48-bit physical identifier permanently stored in the NIC ROM used at the Data Link Layer.",
+    eth_title: "Physical Ports and Connectivity",
+    eth_desc: "RJ-45 interfaces for twisted pair Ethernet cables and wireless RF adapters interconnected through the PCIe bus.",
+    flow_title: "Host Data Flow Architecture",
+    flow_desc: "Data packets stream from RAM buffers, undergo CPU processing, and are dispatched to the NIC controller for physical signal modulation.",
+
+    // Glossary
+    glos_title: "Technical Glossary (Networks & Hardware)",
+    glos_desc: "Core English terminology essential for computer architecture and network engineering.",
+    term_throughput: "Throughput",
+    desc_throughput: "Actual amount of data successfully transferred across a network link within a specific timeframe.",
+    term_bandwidth: "Bandwidth",
+    desc_bandwidth: "Theoretical maximum transmission capacity of a network communication channel measured in bps.",
+    term_nic: "NIC (Network Interface Card)",
+    desc_nic: "Dedicated expansion card or integrated chipset providing physical and logical access to network media.",
+    term_packet: "Packet",
+    desc_packet: "A structured unit of data formatted with headers containing source, destination, and payload.",
+
     // Lab
     lab_title: "Innovation Lab & Expansions",
     lab_desc: "Experimental modules prepared for team milestones and advanced presentations.",
@@ -112,6 +162,8 @@ const translations = {
     model3d_wait: "3D model placeholder (Three.js / WebGL)",
     ps_title: "Hardware Diagnostics (PowerShell)",
     ps_desc: "Native Windows code to inspect the physical hardware specifications during lab sessions:",
+    copy_code: "Copy",
+    copied_code: "Copied!",
 
     footer_text: "Network Structure"
   }
@@ -119,7 +171,6 @@ const translations = {
 
 let currentLang = 'es';
 
-// Función para cambiar de idioma
 function toggleLanguage() {
   currentLang = currentLang === 'es' ? 'en' : 'es';
   applyLanguage(currentLang);
@@ -141,11 +192,28 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
-// Inicialización cuando carga el DOM
+// Función para copiar código al portapapeles
+function setupCopyButton() {
+  const copyBtn = document.getElementById('copy-code-btn');
+  const codeElem = document.getElementById('ps-code');
+  if (!copyBtn || !codeElem) return;
+
+  copyBtn.addEventListener('click', () => {
+    const textToCopy = codeElem.textContent.trim();
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      copyBtn.textContent = translations[currentLang].copied_code;
+      setTimeout(() => {
+        copyBtn.textContent = translations[currentLang].copy_code;
+      }, 2000);
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const langToggleBtn = document.getElementById('lang-toggle');
   if (langToggleBtn) {
     langToggleBtn.addEventListener('click', toggleLanguage);
   }
+  setupCopyButton();
   applyLanguage(currentLang);
 });

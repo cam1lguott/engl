@@ -16,6 +16,8 @@
         <ul class="nav-links">
           <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
           <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
+          <li><a href="#redes" data-i18n="nav_network">Hardware & Redes</a></li>
+          <li><a href="#glosario" data-i18n="nav_glossary">Glosario</a></li>
           <li><a href="#laboratorio" data-i18n="nav_lab">Laboratorio</a></li>
         </ul>
       </nav>
@@ -43,7 +45,7 @@
   </header>
 
   <main>
-    <!-- SECCIÓN 1: Computadores Antiguos (Antes de 1980) -->
+    <!-- SECCIÓN 1: Computadores Antiguos (Antes de 1980) con Imágenes Históricas Reales -->
     <section id="historia" class="container">
       <h2 class="section-title">
         ⏳ <span data-i18n="hist_title">Computadores Históricos (Antes de 1980)</span>
@@ -55,46 +57,66 @@
       <div class="timeline-container">
         <!-- Item 1: ENIAC -->
         <article class="timeline-item">
-          <div class="timeline-header">
-            <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico General</h3>
-            <span class="timeline-year">1945</span>
+          <div class="timeline-img-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Classic_shot_of_the_ENIAC.jpg" alt="ENIAC Computer" class="timeline-img" loading="lazy">
           </div>
-          <p data-i18n="eniac_desc">
-            Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
-          </p>
+          <div class="timeline-body">
+            <div class="timeline-header">
+              <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico General</h3>
+              <span class="timeline-year">1945</span>
+            </div>
+            <p data-i18n="eniac_desc">
+              Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
+            </p>
+          </div>
         </article>
 
         <!-- Item 2: IBM 7090 -->
         <article class="timeline-item">
-          <div class="timeline-header">
-            <h3 data-i18n="ibm7090_title">IBM 7090 - La Era de los Transistores</h3>
-            <span class="timeline-year">1959</span>
+          <div class="timeline-img-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/IBM_7090_computer.jpg" alt="IBM 7090 Computer" class="timeline-img" loading="lazy">
           </div>
-          <p data-i18n="ibm7090_desc">
-            Reemplazó las válvulas de vacío por transistores, multiplicando por 6 la velocidad de cálculo y reduciendo el consumo eléctrico.
-          </p>
+          <div class="timeline-body">
+            <div class="timeline-header">
+              <h3 data-i18n="ibm7090_title">IBM 7090 - La Era de los Transistores</h3>
+              <span class="timeline-year">1959</span>
+            </div>
+            <p data-i18n="ibm7090_desc">
+              Reemplazó las válvulas de vacío por transistores, multiplicando por 6 la velocidad de cálculo y reduciendo el consumo eléctrico.
+            </p>
+          </div>
         </article>
 
         <!-- Item 3: Altair 8800 -->
         <article class="timeline-item">
-          <div class="timeline-header">
-            <h3 data-i18n="altair_title">Altair 8800 - El Despertar del Microcomputador</h3>
-            <span class="timeline-year">1974</span>
+          <div class="timeline-img-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Altair_8800_Computer.jpg" alt="Altair 8800 Microcomputer" class="timeline-img" loading="lazy">
           </div>
-          <p data-i18n="altair_desc">
-            Basado en el procesador Intel 8080. Dio origen al software de microcomputadoras y al inicio de la informática personal.
-          </p>
+          <div class="timeline-body">
+            <div class="timeline-header">
+              <h3 data-i18n="altair_title">Altair 8800 - El Despertar del Microcomputador</h3>
+              <span class="timeline-year">1974</span>
+            </div>
+            <p data-i18n="altair_desc">
+              Basado en el procesador Intel 8080. Dio origen al software de microcomputadoras y al inicio de la informática personal.
+            </p>
+          </div>
         </article>
 
         <!-- Item 4: Apple II -->
         <article class="timeline-item">
-          <div class="timeline-header">
-            <h3 data-i18n="apple2_title">Apple II - Computación Personal con Gráficos</h3>
-            <span class="timeline-year">1977</span>
+          <div class="timeline-img-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Apple-II.jpg" alt="Apple II Computer" class="timeline-img" loading="lazy">
           </div>
-          <p data-i18n="apple2_desc">
-            Uno de los primeros microcomputadores producidos en masa con teclado integrado, gráficos a color y ranuras de expansión.
-          </p>
+          <div class="timeline-body">
+            <div class="timeline-header">
+              <h3 data-i18n="apple2_title">Apple II - Computación Personal con Gráficos</h3>
+              <span class="timeline-year">1977</span>
+            </div>
+            <p data-i18n="apple2_desc">
+              Uno de los primeros microcomputadores producidos en masa con teclado integrado, gráficos a color y ranuras de expansión.
+            </p>
+          </div>
         </article>
       </div>
     </section>
@@ -171,7 +193,83 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: Laboratorio de Innovación (Opciones avanzadas) -->
+    <!-- SECCIÓN 3: Del Hardware a la Red (Enfoque directo para Estructura de Redes) -->
+    <section id="redes" class="container">
+      <h2 class="section-title">
+        🔗 <span data-i18n="net_title">Del Hardware a la Red</span>
+      </h2>
+      <p class="section-desc" data-i18n="net_desc">
+        Cómo el equipo físico se enlaza e interactúa en una infraestructura de red local (LAN).
+      </p>
+
+      <div class="network-bridge-grid">
+        <div class="network-bridge-card">
+          <span class="network-badge">Capa de Enlace</span>
+          <h3 data-i18n="mac_title">Dirección MAC (Hardware Address)</h3>
+          <p data-i18n="mac_desc">
+            Identificador físico único de 48 bits grabado directamente en la memoria ROM de cada tarjeta de red (NIC) para la capa de enlace de datos.
+          </p>
+        </div>
+
+        <div class="network-bridge-card">
+          <span class="network-badge">Medio Físico</span>
+          <h3 data-i18n="eth_title">Puertos Físicos y Conectividad</h3>
+          <p data-i18n="eth_desc">
+            Interfaces RJ-45 para cable de par trenzado (Ethernet) e interfaces de radiofrecuencia (Wi-Fi) conectadas mediante el bus PCIe.
+          </p>
+        </div>
+
+        <div class="network-bridge-card">
+          <span class="network-badge">Arquitectura Host</span>
+          <h3 data-i18n="flow_title">Flujo de Datos en el Host</h3>
+          <p data-i18n="flow_desc">
+            Los paquetes viajan desde la memoria RAM, son procesados por la CPU y enviados al controlador NIC para su modulación y transmisión en el medio físico.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: Glosario Técnico (Para la clase de Inglés) -->
+    <section id="glosario" class="container">
+      <h2 class="section-title">
+        📖 <span data-i18n="glos_title">Glosario Técnico de Redes y Computación</span>
+      </h2>
+      <p class="section-desc" data-i18n="glos_desc">
+        Conceptos esenciales en inglés técnico para la comunicación en redes y arquitectura de sistemas.
+      </p>
+
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_throughput">Throughput</h4>
+          <p class="glossary-desc" data-i18n="desc_throughput">
+            Volumen real de datos transferidos con éxito entre dos puntos de la red en un intervalo de tiempo.
+          </p>
+        </div>
+
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_bandwidth">Bandwidth</h4>
+          <p class="glossary-desc" data-i18n="desc_bandwidth">
+            Capacidad máxima teórica de transmisión de un canal o medio de red medido en bps (bits por segundo).
+          </p>
+        </div>
+
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_nic">NIC</h4>
+          <p class="glossary-desc" data-i18n="desc_nic">
+            Circuito integrado que proporciona el puente físico y lógico entre el bus interno del computador y el cable de red.
+          </p>
+        </div>
+
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_packet">Packet</h4>
+          <p class="glossary-desc" data-i18n="desc_packet">
+            Unidad de datos formateada con encabezados de origen, destino y carga útil que viaja por la red.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: Laboratorio de Innovación (Opciones avanzadas con botón de copiar código) -->
     <section id="laboratorio" class="container">
       <h2 class="section-title">
         🔬 <span data-i18n="lab_title">Área de Innovación & Expansiones</span>
@@ -194,15 +292,22 @@
           </div>
         </div>
 
-        <!-- Módulo PowerShell opcional -->
+        <!-- Módulo PowerShell con botón de copiar -->
         <div class="lab-card">
           <span class="lab-status">Módulo Opcional</span>
           <h3 data-i18n="ps_title">Diagnóstico de Hardware (PowerShell)</h3>
           <p data-i18n="ps_desc">
             Código nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:
           </p>
-          <div class="powershell-box">
-            <code>Get-ComputerInfo | Select-Object CsManufacturer, CsModel, CsProcessors, CsTotalPhysicalMemory</code>
+
+          <div>
+            <div class="code-header">
+              <span class="code-title">powershell</span>
+              <button id="copy-code-btn" class="copy-btn" data-i18n="copy_code">Copiar</button>
+            </div>
+            <div class="powershell-box">
+              <code id="ps-code">Get-ComputerInfo | Select-Object CsManufacturer, CsModel, CsProcessors, CsTotalPhysicalMemory</code>
+            </div>
           </div>
         </div>
       </div>

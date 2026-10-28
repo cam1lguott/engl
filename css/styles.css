@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* Estilo Claro Minimalista (Apple / Stripe) */
+  /* Estilo Claro Minimalista */
   --bg-deep: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #ffffff;
   --bg-card: #ffffff;
   
   --border-subtle: #e2e8f0;
@@ -14,11 +13,9 @@
   --text-secondary: #475569;
   --text-muted: #64748b;
   
-  /* Acentos elegantes */
   --accent-blue: #0284c7;
   --accent-cyan: #0ea5e9;
   --accent-indigo: #2563eb;
-  --accent-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
@@ -70,32 +67,9 @@ body {
   gap: 1rem;
 }
 
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-}
-
-.logo-badge {
-  font-size: 1.4rem;
-  display: inline-flex;
-  padding: 0.35rem;
-  background: #f1f5f9;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-}
-
-.logo-text {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-}
-
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.8rem;
   list-style: none;
 }
 
@@ -269,12 +243,12 @@ body {
   max-width: 700px;
 }
 
-/* Línea de Tiempo (Computadores Históricos) */
+/* Línea de Tiempo con Imágenes Reales */
 .timeline-container {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 2.25rem;
   padding-left: 1.5rem;
   border-left: 2px solid #cbd5e1;
 }
@@ -283,11 +257,19 @@ body {
   position: relative;
   background: #ffffff;
   border: 1px solid var(--border-subtle);
-  padding: 1.75rem;
   border-radius: var(--radius-md);
   margin-left: 1.5rem;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .timeline-item {
+    flex-direction: row;
+  }
 }
 
 .timeline-item::before {
@@ -307,6 +289,28 @@ body {
   transform: translateX(4px);
   border-color: #cbd5e1;
   box-shadow: var(--shadow-md);
+}
+
+.timeline-img-wrap {
+  flex: 0 0 280px;
+  background: #f1f5f9;
+  position: relative;
+  min-height: 200px;
+}
+
+.timeline-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.timeline-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .timeline-header {
@@ -335,7 +339,7 @@ body {
   font-family: 'JetBrains Mono', monospace;
 }
 
-.timeline-item p {
+.timeline-body p {
   color: var(--text-secondary);
   font-size: 0.98rem;
 }
@@ -394,6 +398,80 @@ body {
   font-size: 0.95rem;
 }
 
+/* Sección Del Hardware a la Red */
+.network-bridge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.network-bridge-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.network-bridge-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+.network-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.network-bridge-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.6rem;
+}
+
+.network-bridge-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Glosario de Redes & Computadores */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.glossary-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.glossary-term {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0284c7;
+  margin-bottom: 0.4rem;
+}
+
+.glossary-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
 /* Área de Laboratorio & Expansión */
 .lab-grid {
   display: grid;
@@ -437,11 +515,46 @@ body {
   font-size: 0.95rem;
 }
 
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #090d16;
+  padding: 0.6rem 1rem;
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  border: 1px solid #1e293b;
+  border-bottom: none;
+}
+
+.code-title {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.copy-btn {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.copy-btn:hover {
+  background: #334155;
+}
+
 .powershell-box {
   background: #0f172a;
   border: 1px solid #1e293b;
-  border-radius: var(--radius-sm);
-  padding: 1.2rem;
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  padding: 1.1rem;
   font-family: 'JetBrains Mono', Consolas, monospace;
   font-size: 0.85rem;
   color: #38bdf8;
