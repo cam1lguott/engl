@@ -1,790 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LISTENING TASK - ENGLISH | Dictation Challenge</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            navy: '#0F172A',
-                            teamA: '#3B82F6',
-                            teamB: '#EC4899',
-                            emerald: '#10B981',
-                            amber: '#F59E0B'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background: radial-gradient(circle at 10% 10%, #1e1b4b 0%, #0f172a 50%, #030712 100%);
-            min-height: 100vh;
-        }
-        .glow-blue {
-            box-shadow: 0 0 35px -5px rgba(59, 130, 246, 0.4);
-        }
-        .glow-pink {
-            box-shadow: 0 0 35px -5px rgba(236, 72, 153, 0.4);
-        }
-        .btn-bounce:active {
-            transform: scale(0.97);
-        }
-        .pulse-subtle {
-            animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.85; transform: scale(1.02); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura de Redes | Hardware y Computadores</title>
+  <!-- Hojas de estilo modular -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+<body>
 
-    <!-- Top Navigation / Header -->
-    <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center gap-4 sticky top-0 z-40">
-        <div>
-            <h1 class="text-xl sm:text-2xl font-black font-display tracking-tight text-white uppercase">
-                LISTENING TASK - ENGLISH
-            </h1>
-        </div>
+  <!-- Encabezado y Navegación Principal -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-badge">🖥️</span>
+        <span class="logo-text">NetHardware</span>
+      </div>
 
-        <!-- Controls: Prueba (Toggle), Instrucciones & Reset -->
-        <div class="flex items-center gap-2 sm:gap-3">
-            <button onclick="togglePracticeMode()" id="practiceBtn" class="w-10 h-10 rounded-xl border transition flex items-center justify-center cursor-pointer text-base bg-slate-800 border-slate-700 text-slate-400 hover:text-amber-300" title="Activar/Desactivar Ronda de Prueba">
-                <i class="fa-solid fa-flask text-lg"></i>
-            </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
+          <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
+          <li><a href="#laboratorio" data-i18n="nav_lab">Laboratorio</a></li>
+          <li><a href="#equipo" data-i18n="nav_team">Equipo</a></li>
+        </ul>
+      </nav>
 
-            <button onclick="toggleModal('rulesModal')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-lg border border-slate-700 transition flex items-center gap-2 cursor-pointer">
-                <i class="fa-solid fa-circle-question text-cyan-400"></i>
-                Instrucciones
-            </button>
-
-            <button onclick="confirmReset()" class="px-3 py-2 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-semibold rounded-lg border border-rose-800/50 transition flex items-center gap-2 cursor-pointer">
-                <i class="fa-solid fa-rotate-left"></i>
-                Reiniciar
-            </button>
-        </div>
-    </header>
-
-    <!-- Banner visible solo en la Ronda de Prueba -->
-    <div id="practiceBanner" class="hidden bg-amber-500/10 border-b border-amber-500/30 px-6 py-2.5 text-center text-xs font-bold text-amber-300 flex flex-wrap items-center justify-center gap-2">
-        <i class="fa-solid fa-circle-info text-amber-400"></i>
-        <span>MODO PRUEBA ACTIVO: No suma puntos oficiales.</span>
-        <button onclick="togglePracticeMode(false)" class="ml-2 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs transition cursor-pointer">
-            Desactivar prueba y volver a Ronda 1 →
-        </button>
+      <!-- Selector bilingüe Español / Inglés -->
+      <button id="lang-toggle" class="lang-switch-btn" title="Cambiar idioma / Switch language">
+        🌐 <span id="lang-label">ES</span>
+      </button>
     </div>
+  </header>
 
-    <!-- Main Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-6">
-
-        <!-- Marcadores de Equipos (Diseño Pulido y Moderno) -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-            
-            <!-- EQUIPO 1 -->
-            <div class="bg-gradient-to-br from-slate-900/90 to-blue-950/50 border-2 border-blue-500/40 rounded-3xl p-6 glow-blue relative overflow-hidden flex flex-col justify-between">
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-bold tracking-wider uppercase mb-1">
-                            <i class="fa-solid fa-users"></i> Lado Izquierdo
-                        </div>
-                        <h2 class="text-2xl font-black font-display text-white">EQUIPO 1</h2>
-                        <p class="text-xs text-blue-300/80 mt-0.5">Turno de un representante nuevo</p>
-                    </div>
-                    <div class="text-right">
-                        <span id="scoreA" class="text-6xl lg:text-7xl font-black font-display text-blue-400 tracking-tight drop-shadow">0</span>
-                        <span class="block text-xs uppercase tracking-widest text-slate-400 font-bold">Puntos</span>
-                    </div>
-                </div>
-
-                <!-- Botones Estilizados de Puntuación Equipo 1 -->
-                <div class="pt-4 border-t border-blue-900/40 flex flex-col gap-2">
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="addPoint('A', 1)" class="btn-bounce bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 text-sm sm:text-base transition cursor-pointer">
-                            <i class="fa-solid fa-circle-check text-blue-200"></i>
-                            <span>+1 Punto</span>
-                        </button>
-                        <button onclick="addPoint('A', 0.5)" class="btn-bounce bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
-                            <i class="fa-solid fa-language text-indigo-200"></i>
-                            <span>+0.5 Traducir</span>
-                        </button>
-                    </div>
-                    <button onclick="addPoint('A', -0.5)" class="btn-bounce w-full py-2 bg-slate-800/60 hover:bg-slate-700/80 text-blue-300/80 hover:text-blue-200 font-semibold rounded-xl border border-blue-500/20 flex items-center justify-center gap-1.5 text-xs transition cursor-pointer">
-                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
-                        <span>Corregir (-0.5 pts)</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- EQUIPO 2 -->
-            <div class="bg-gradient-to-br from-slate-900/90 to-pink-950/50 border-2 border-pink-500/40 rounded-3xl p-6 glow-pink relative overflow-hidden flex flex-col justify-between">
-                <div class="flex justify-between items-start mb-4">
-                    <div>
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30 text-xs font-bold tracking-wider uppercase mb-1">
-                            <i class="fa-solid fa-users"></i> Lado Derecho
-                        </div>
-                        <h2 class="text-2xl font-black font-display text-white">EQUIPO 2</h2>
-                        <p class="text-xs text-pink-300/80 mt-0.5">Turno de un representante nuevo</p>
-                    </div>
-                    <div class="text-right">
-                        <span id="scoreB" class="text-6xl lg:text-7xl font-black font-display text-pink-400 tracking-tight drop-shadow">0</span>
-                        <span class="block text-xs uppercase tracking-widest text-slate-400 font-bold">Puntos</span>
-                    </div>
-                </div>
-
-                <!-- Botones Estilizados de Puntuación Equipo 2 -->
-                <div class="pt-4 border-t border-pink-900/40 flex flex-col gap-2">
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="addPoint('B', 1)" class="btn-bounce bg-pink-600 hover:bg-pink-500 active:bg-pink-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-pink-600/30 flex items-center justify-center gap-2 text-sm sm:text-base transition cursor-pointer">
-                            <i class="fa-solid fa-circle-check text-pink-200"></i>
-                            <span>+1 Punto</span>
-                        </button>
-                        <button onclick="addPoint('B', 0.5)" class="btn-bounce bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white font-black py-3 px-3 rounded-2xl shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2 text-xs sm:text-sm transition cursor-pointer" title="Medio punto por traducción correcta">
-                            <i class="fa-solid fa-language text-purple-200"></i>
-                            <span>+0.5 Traducir</span>
-                        </button>
-                    </div>
-                    <button onclick="addPoint('B', -0.5)" class="btn-bounce w-full py-2 bg-slate-800/60 hover:bg-slate-700/80 text-pink-300/80 hover:text-pink-200 font-semibold rounded-xl border border-pink-500/20 flex items-center justify-center gap-1.5 text-xs transition cursor-pointer">
-                        <i class="fa-solid fa-rotate-left text-[11px]"></i>
-                        <span>Corregir (-0.5 pts)</span>
-                    </button>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- ZONA PRINCIPAL DE LA RONDA & REPRODUCCIÓN -->
-        <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col gap-6 shadow-2xl relative">
-            
-            <!-- Encabezado de la Ronda -->
-            <div class="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-slate-800">
-                <div class="flex items-center gap-4">
-                    <div id="roundNumberBadge" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30">
-                        <span id="roundNumber">1</span>
-                    </div>
-                    <div>
-                        <div id="roundTagText" class="text-xs uppercase tracking-widest text-amber-400 font-bold">En Juego</div>
-                        <h3 id="roundTitleText" class="text-2xl font-black font-display text-white">Ronda 1 de 15</h3>
-                    </div>
-                </div>
-
-                <!-- Contador de Reproducciones Disponibles (Máximo 2) -->
-                <div class="bg-slate-800/90 px-5 py-3 rounded-2xl border border-slate-700 flex items-center gap-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Reproducciones:</span>
-                    <div class="flex items-center gap-2">
-                        <div id="playBadge1" class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all">1</div>
-                        <div id="playBadge2" class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all">2</div>
-                    </div>
-                    <span id="playsLeftText" class="text-xs font-semibold text-cyan-400 ml-1">(2 restantes)</span>
-                </div>
-            </div>
-
-            <!-- BOTÓN GIGANTE DE REPRODUCIR AUDIO -->
-            <div class="flex flex-col items-center justify-center py-6 text-center">
-                <button id="playAudioBtn" onclick="playSentenceAudio()" class="btn-bounce group relative px-8 sm:px-14 py-6 sm:py-8 bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-black font-display text-2xl sm:text-3xl rounded-3xl shadow-2xl shadow-cyan-500/30 flex items-center gap-5 transition-all cursor-pointer">
-                    <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition">
-                        <i id="playIcon" class="fa-solid fa-play text-2xl text-white ml-1"></i>
-                    </div>
-                    <span id="playButtonText">REPRODUCIR AUDIO</span>
-                </button>
-                <p id="audioNotice" class="text-sm text-slate-400 mt-4 flex items-center gap-2">
-                    <i class="fa-solid fa-headphones text-cyan-400"></i>
-                    Pronunciación en inglés • Máximo 2 reproducciones
-                </p>
-            </div>
-
-            <!-- CAJA DE RESPUESTA OCULTA / REVELADA -->
-            <div class="w-full">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs uppercase font-bold tracking-wider text-slate-400">Comprobación en el tablero</span>
-                    <button id="revealBtn" onclick="toggleReveal()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2 cursor-pointer">
-                        <i id="revealIcon" class="fa-solid fa-eye"></i>
-                        <span id="revealBtnText">Revelar Respuesta Correcta</span>
-                    </button>
-                </div>
-
-                <!-- Tarjeta que oculta o muestra la oración -->
-                <div id="sentenceCard" class="w-full bg-slate-950/70 border-2 border-dashed border-slate-700 rounded-2xl p-6 sm:p-8 text-center transition-all min-h-[140px] flex flex-col justify-center items-center">
-                    <div id="hiddenPlaceholder" class="flex flex-col items-center justify-center text-slate-500 gap-2">
-                        <i class="fa-solid fa-lock text-3xl text-slate-600"></i>
-                        <p class="text-base font-semibold text-slate-400">La oración está oculta para que nadie haga trampa</p>
-                        <p class="text-xs text-slate-500">Haz clic en "Revelar Respuesta Correcta" cuando ambos equipos terminen de escribir</p>
-                    </div>
-
-                    <div id="revealedContent" class="hidden w-full flex flex-col items-center">
-                        <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider mb-3">
-                            <i class="fa-solid fa-circle-check"></i> Oración Oficial
-                        </div>
-                        <div class="flex flex-wrap items-center justify-center gap-4 w-full">
-                            <h4 id="sentenceText" class="text-2xl sm:text-4xl font-extrabold text-white tracking-wide font-display text-center leading-snug">
-                                <!-- Inyectado dinámicamente -->
-                            </h4>
-                            <button onclick="playReviewAudio()" id="reviewAudioBtn" class="btn-bounce w-11 h-11 rounded-xl bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/30 transition flex items-center justify-center cursor-pointer" title="Escuchar de nuevo para contrastar con el tablero">
-                                <i id="reviewAudioIcon" class="fa-solid fa-volume-high text-lg"></i>
-                            </button>
-                        </div>
-
-                        <!-- Zona de Traducción al Español (Opcional por +0.5 puntos) -->
-                        <div class="mt-5 pt-4 border-t border-slate-800/80 w-full flex flex-col items-center">
-                            <button id="toggleTransBtn" onclick="toggleTranslation()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700 transition flex items-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-language text-indigo-400"></i>
-                                <span id="transBtnText">Ver traducción al español (+0.5 pts)</span>
-                            </button>
-                            <p id="translationText" class="hidden text-base sm:text-lg font-medium text-indigo-300 mt-2.5 italic text-center max-w-xl">
-                                <!-- Inyectada dinámicamente -->
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CONTROLES DE NAVEGACIÓN DE RONDA (Anterior / Siguiente) -->
-            <div class="flex flex-wrap justify-between items-center gap-4 pt-4 border-t border-slate-800">
-                <button onclick="prevRound()" id="prevBtn" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-slate-300 font-bold rounded-xl text-sm transition flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    Ronda Anterior
-                </button>
-
-                <!-- Barra de Progreso de 15 Rondas -->
-                <div class="flex-1 max-w-md hidden md:flex flex-col gap-1.5">
-                    <div class="flex justify-between text-xs font-bold text-slate-400">
-                        <span>Progreso del Juego</span>
-                        <span id="progressPercent">0%</span>
-                    </div>
-                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                        <div id="progressBar" class="bg-gradient-to-r from-cyan-500 to-indigo-500 h-full transition-all duration-300" style="width: 0%;"></div>
-                    </div>
-                </div>
-
-                <button onclick="nextRound()" id="nextBtn" class="btn-bounce px-7 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl text-base shadow-lg shadow-emerald-600/30 transition flex items-center gap-2 cursor-pointer">
-                    <span id="nextBtnText">Siguiente Ronda</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-        </section>
-
-        <!-- SECCIÓN DE RESULTADO FINAL (Al terminar la ronda 15) -->
-        <section id="finalResultsCard" class="hidden bg-slate-900 border-2 border-amber-500/60 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
-            <div class="max-w-2xl mx-auto flex flex-col items-center gap-4">
-                <div id="finalTrophyIcon" class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-3xl border border-amber-500/40">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-                <h3 id="finalWinnerTitle" class="text-3xl sm:text-4xl font-black font-display text-white uppercase">
-                    ¡RESULTADOS FINALES!
-                </h3>
-                <p id="finalWinnerSubtitle" class="text-slate-300 text-sm sm:text-base">
-                    Fin de la actividad. El equipo con mayor puntaje acumulado es el ganador.
-                </p>
-
-                <!-- Cuadro de Resultados Finales por Equipos -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full my-3">
-                    <div id="gradeCardA" class="p-6 rounded-2xl border bg-slate-900/90 text-left">
-                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Equipo 1</span>
-                        <div class="flex justify-between items-baseline mt-2">
-                            <span id="finalScoreA" class="text-3xl font-black font-display text-white">0 pts</span>
-                            <span id="finalBadgeA" class="text-sm font-black font-display px-3 py-1 rounded-lg"></span>
-                        </div>
-                        <p id="finalStatusA" class="text-xs font-semibold mt-2 text-slate-400"></p>
-                    </div>
-
-                    <div id="gradeCardB" class="p-6 rounded-2xl border bg-slate-900/90 text-left">
-                        <span class="text-xs font-bold uppercase tracking-wider text-pink-400">Equipo 2</span>
-                        <div class="flex justify-between items-baseline mt-2">
-                            <span id="finalScoreB" class="text-3xl font-black font-display text-white">0 pts</span>
-                            <span id="finalBadgeB" class="text-sm font-black font-display px-3 py-1 rounded-lg"></span>
-                        </div>
-                        <p id="finalStatusB" class="text-xs font-semibold mt-2 text-slate-400"></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reglas / Instrucciones para el Docente -->
-        <footer class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-5 text-xs text-slate-400 flex flex-col md:flex-row justify-between items-center gap-3">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-users text-cyan-400 text-base"></i>
-                <span><strong>Regla de rotación:</strong> Cada ronda pasa un estudiante diferente al tablero para que todos participen.</span>
-            </div>
-            <div class="text-slate-500">
-                Límite de audio: 2 reproducciones por ronda • 1 punto por oración correcta • +0.5 por traducir
-            </div>
-        </footer>
-
-    </main>
-
-    <!-- MODAL DE INSTRUCCIONES -->
-    <div id="rulesModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
-            <div class="flex justify-between items-center pb-4 border-b border-slate-800">
-                <h3 class="text-xl font-black font-display text-white flex items-center gap-2">
-                    <i class="fa-solid fa-list-check text-amber-400"></i>
-                    Instrucciones de la Actividad
-                </h3>
-                <button onclick="toggleModal('rulesModal')" class="text-slate-400 hover:text-white text-lg cursor-pointer">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="py-4 space-y-3 text-sm text-slate-300">
-                <p><strong>1. Dinámica:</strong> La clase se divide en 2 equipos (Equipo 1 y Equipo 2).</p>
-                <p><strong>2. Rotación:</strong> En cada ronda pasa un representante distinto de cada equipo al tablero con su marcador.</p>
-                <p><strong>3. Audio:</strong> Se puede reproducir la oración hasta <strong>2 veces</strong> como máximo en inglés estadounidense (en-US). La 2da vez es más lenta.</p>
-                <p><strong>4. Puntos:</strong> Se otorga <strong>1 punto</strong> si la oración está completamente bien escrita en el tablero.</p>
-                <p><strong>5. Traducción (+0.5):</strong> El estudiante que termine y diga correctamente el significado en español se gana <strong>medio punto extra</strong>.</p>
-                <p><strong>6. Ganador:</strong> Al completar las 15 rondas, el equipo con mayor puntaje acumulado será el <strong>Equipo Ganador</strong>.</p>
-            </div>
-            <button onclick="toggleModal('rulesModal')" class="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition cursor-pointer">
-                Cerrar
-            </button>
-        </div>
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <span class="tag-badge" data-i18n="badge_hero">Estructura de Redes • Proyecto Escolar</span>
+      <h1 class="hero-title" data-i18n="hero_title">Arquitectura y Evolución de los Computadores</h1>
+      <p class="hero-subtitle" data-i18n="hero_desc">
+        Una base interactiva diseñada para explorar la historia, componentes y funcionamiento del hardware computacional y su impacto en las redes.
+      </p>
+      <div class="hero-buttons">
+        <a href="#historia" class="btn-primary" data-i18n="btn_timeline">Línea de Tiempo</a>
+        <a href="#componentes" class="btn-secondary" data-i18n="btn_components">Ver Componentes</a>
+      </div>
     </div>
+  </header>
 
-    <!-- SCRIPT DE LÓGICA DEL JUEGO -->
-    <script>
-        const practiceSentence = "I like English class.";
-        const practiceTranslation = "Me gusta la clase de inglés.";
+  <main>
+    <!-- SECCIÓN 1: Computadores Antiguos (Antes de 1980) -->
+    <section id="historia" class="container">
+      <h2 class="section-title">
+        ⏳ <span data-i18n="hist_title">Computadores Históricos (Antes de 1980)</span>
+      </h2>
+      <p class="section-desc" data-i18n="hist_desc">
+        Los primeros hitos de la computación que sentaron las bases para las redes y la microcomputación moderna.
+      </p>
 
-        const sentences = [
-            "You should drink more water.",
-            "We should eat lunch now.",
-            "You shouldn’t run in class.",
-            "She should clean her room.",
-            "They should study today.",
-            "Can you open the door, please?",
-            "Could you help me, please?",
-            "Can I go to the bathroom?",
-            "Could I use your pen?",
-            "Can you repeat that, please?",
-            "I can speak English.",
-            "He can play soccer very well.",
-            "She can swim fast.",
-            "I can’t find my keys.",
-            "They can’t see the board."
-        ];
+      <div class="timeline-container">
+        <!-- Item 1: ENIAC -->
+        <article class="timeline-item">
+          <div class="timeline-header">
+            <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico General</h3>
+            <span class="timeline-year">1945</span>
+          </div>
+          <p data-i18n="eniac_desc">
+            Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
+          </p>
+        </article>
 
-        const translations = [
-            "Deberías beber más agua.",
-            "Deberíamos almorzar ahora.",
-            "No deberías correr en clase.",
-            "Ella debería limpiar su habitación.",
-            "Ellos deberían estudiar hoy.",
-            "¿Puedes abrir la puerta, por favor?",
-            "¿Podrías ayudarme, por favor?",
-            "¿Puedo ir al baño?",
-            "¿Podría usar tu lapicero?",
-            "¿Puedes repetir eso, por favor?",
-            "Puedo hablar inglés.",
-            "Él puede jugar fútbol muy bien.",
-            "Ella puede nadar rápido.",
-            "No puedo encontrar mis llaves.",
-            "Ellos no pueden ver el tablero."
-        ];
+        <!-- Item 2: IBM 7090 -->
+        <article class="timeline-item">
+          <div class="timeline-header">
+            <h3 data-i18n="ibm7090_title">IBM 7090 - La Era de los Transistores</h3>
+            <span class="timeline-year">1959</span>
+          </div>
+          <p data-i18n="ibm7090_desc">
+            Reemplazó las válvulas de vacío por transistores, multiplicando por 6 la velocidad de cálculo y reduciendo el consumo eléctrico.
+          </p>
+        </article>
 
-        let currentRound = 1;
-        const totalRounds = sentences.length;
-        let scoreA = 0;
-        let scoreB = 0;
-        let playCount = 0;
-        let isRevealed = false;
-        let isTransRevealed = false;
-        let isPracticeMode = false;
-        let usVoice = null;
+        <!-- Item 3: Altair 8800 -->
+        <article class="timeline-item">
+          <div class="timeline-header">
+            <h3 data-i18n="altair_title">Altair 8800 - El Despertar del Microcomputador</h3>
+            <span class="timeline-year">1974</span>
+          </div>
+          <p data-i18n="altair_desc">
+            Basado en el procesador Intel 8080. Dio origen al software de microcomputadoras y al inicio de la informática personal.
+          </p>
+        </article>
 
-        // Carga estricta de voz en inglés americano (US)
-        function initVoices() {
-            if ('speechSynthesis' in window) {
-                const pickVoice = () => {
-                    const voices = window.speechSynthesis.getVoices();
-                    usVoice = voices.find(v => v.lang === 'en-US' || v.lang === 'en_US') 
-                           || voices.find(v => v.lang.startsWith('en')) 
-                           || null;
-                };
-                window.speechSynthesis.onvoiceschanged = pickVoice;
-                pickVoice();
-            }
-        }
+        <!-- Item 4: Apple II -->
+        <article class="timeline-item">
+          <div class="timeline-header">
+            <h3 data-i18n="apple2_title">Apple II - Computación Personal con Gráficos</h3>
+            <span class="timeline-year">1977</span>
+          </div>
+          <p data-i18n="apple2_desc">
+            Uno de los primeros microcomputadores producidos en masa con teclado integrado, gráficos a color y ranuras de expansión.
+          </p>
+        </article>
+      </div>
+    </section>
 
-        function getCurrentSentenceText() {
-            return isPracticeMode ? practiceSentence : sentences[currentRound - 1];
-        }
+    <!-- SECCIÓN 2: Componentes del Computador -->
+    <section id="componentes" class="container">
+      <h2 class="section-title">
+        ⚙️ <span data-i18n="comp_title">Componentes de un Computador</span>
+      </h2>
+      <p class="section-desc" data-i18n="comp_desc">
+        Los pilares del hardware que permiten procesar datos, ejecutar programas y comunicarse en red.
+      </p>
 
-        function getCurrentTranslationText() {
-            return isPracticeMode ? practiceTranslation : translations[currentRound - 1];
-        }
+      <div class="components-grid">
+        <!-- Tarjeta Madre -->
+        <div class="component-card">
+          <span class="card-icon">🖲️</span>
+          <h3 class="card-title" data-i18n="mb_title">Placa Madre (Motherboard)</h3>
+          <span class="card-detail" data-i18n="mb_sub">Conectividad & Buses</span>
+          <p data-i18n="mb_desc">
+            El circuito principal que interconecta el procesador, memorias, tarjetas de red y dispositivos de almacenamiento.
+          </p>
+        </div>
 
-        // Reproducir la oración actual
-        function playSentenceAudio() {
-            if (playCount >= 2) {
-                alert("¡Ya se usaron las 2 reproducciones permitidas para esta ronda!");
-                return;
-            }
+        <!-- CPU -->
+        <div class="component-card">
+          <span class="card-icon">🧠</span>
+          <h3 class="card-title" data-i18n="cpu_title">Procesador (CPU)</h3>
+          <span class="card-detail" data-i18n="cpu_sub">Unidad Central de Procesamiento</span>
+          <p data-i18n="cpu_desc">
+            El cerebro del sistema encargado de ejecutar instrucciones, realizar cálculos lógicos y coordinar periféricos.
+          </p>
+        </div>
 
-            speakCurrentSentence();
-        }
+        <!-- Memoria RAM -->
+        <div class="component-card">
+          <span class="card-icon">⚡</span>
+          <h3 class="card-title" data-i18n="ram_title">Memoria RAM</h3>
+          <span class="card-detail" data-i18n="ram_sub">Memoria de Acceso Aleatorio</span>
+          <p data-i18n="ram_desc">
+            Almacenamiento de alta velocidad y temporal donde se cargan los programas en ejecución y los búferes de red.
+          </p>
+        </div>
 
-        function speakCurrentSentence() {
-            if (!('speechSynthesis' in window)) {
-                alert("Tu navegador no soporta síntesis de audio.");
-                return;
-            }
+        <!-- Almacenamiento -->
+        <div class="component-card">
+          <span class="card-icon">💾</span>
+          <h3 class="card-title" data-i18n="storage_title">Almacenamiento (SSD / HDD)</h3>
+          <span class="card-detail" data-i18n="storage_sub">Persistencia de Datos</span>
+          <p data-i18n="storage_desc">
+            Memoria persistente donde se almacena el sistema operativo, controladores, datos y servicios de red.
+          </p>
+        </div>
 
-            window.speechSynthesis.cancel();
+        <!-- Adaptador de Red (NIC) -->
+        <div class="component-card">
+          <span class="card-icon">🌐</span>
+          <h3 class="card-title" data-i18n="nic_title">Adaptador de Red (NIC)</h3>
+          <span class="card-detail" data-i18n="nic_sub">Interfaz LAN / WLAN</span>
+          <p data-i18n="nic_desc">
+            Hardware clave en estructura de redes para conectar el host a redes Ethernet LAN o inalámbricas Wi-Fi.
+          </p>
+        </div>
 
-            const isSecondChance = (playCount === 1);
-            const sentence = getCurrentSentenceText();
-            const utterance = new SpeechSynthesisUtterance(sentence);
-            utterance.lang = 'en-US';
-            utterance.rate = isSecondChance ? 0.75 : 0.95;
-            utterance.volume = 1.0;
+        <!-- Fuente de Poder -->
+        <div class="component-card">
+          <span class="card-icon">🔌</span>
+          <h3 class="card-title" data-i18n="psu_title">Fuente de Poder (PSU)</h3>
+          <span class="card-detail" data-i18n="psu_sub">Distribución Eléctrica</span>
+          <p data-i18n="psu_desc">
+            Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.
+          </p>
+        </div>
+      </div>
+    </section>
 
-            if (usVoice) {
-                utterance.voice = usVoice;
-            }
+    <!-- SECCIÓN 3: Laboratorio de Innovación (Opciones avanzadas) -->
+    <section id="laboratorio" class="container">
+      <h2 class="section-title">
+        🔬 <span data-i18n="lab_title">Área de Innovación & Expansiones</span>
+      </h2>
+      <p class="section-desc" data-i18n="lab_desc">
+        Módulos experimentales preparados para futuras entregas del equipo.
+      </p>
 
-            const playBtn = document.getElementById('playAudioBtn');
-            const playIcon = document.getElementById('playIcon');
-            const playText = document.getElementById('playButtonText');
+      <div class="lab-grid">
+        <!-- Módulo 3D opcional -->
+        <div class="lab-card">
+          <span class="lab-status">Módulo Opcional</span>
+          <h3 data-i18n="model3d_title">Simulación de Torre 3D</h3>
+          <p data-i18n="model3d_desc">
+            Espacio reservado para integrar Three.js o un visor 3D interactivo que permita rotar y desarmar una torre de PC virtual.
+          </p>
+          <div class="model-3d-placeholder">
+            <span style="font-size: 2rem;">🧊</span>
+            <span data-i18n="model3d_wait">Modelo 3D en desarrollo (Three.js / WebGL)</span>
+          </div>
+        </div>
 
-            utterance.onstart = () => {
-                playBtn.classList.add('pulse-subtle');
-                playIcon.className = "fa-solid fa-volume-high text-2xl text-cyan-200 animate-pulse";
-                playText.textContent = isSecondChance ? "REPRODUCIENDO (MÁS LENTO Y CLARO)..." : "REPRODUCIENDO...";
-            };
+        <!-- Módulo PowerShell opcional -->
+        <div class="lab-card">
+          <span class="lab-status">Módulo Opcional</span>
+          <h3 data-i18n="ps_title">Diagnóstico de Hardware (PowerShell)</h3>
+          <p data-i18n="ps_desc">
+            Comando nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:
+          </p>
+          <div class="powershell-box">
+            <code>Get-ComputerInfo | Select-Object CsManufacturer, CsModel, CsProcessors, CsTotalPhysicalMemory</code>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            utterance.onend = () => {
-                playBtn.classList.remove('pulse-subtle');
-                playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
-                playCount++;
-                updatePlayBadges();
-            };
+    <!-- SECCIÓN 4: Equipo y Trabajo Colaborativo -->
+    <section id="equipo" class="container">
+      <div class="team-container">
+        <h2 class="section-title">
+          👥 <span data-i18n="team_title">Organización y Trabajo en Equipo</span>
+        </h2>
+        <p class="section-desc" data-i18n="team_desc">
+          Colaboración distribuida para la materia Estructura de Redes con soporte para GitHub y despliegue web.
+        </p>
 
-            utterance.onerror = () => {
-                playBtn.classList.remove('pulse-subtle');
-                playIcon.className = "fa-solid fa-play text-2xl text-white ml-1";
-            };
+        <div class="team-grid">
+          <div class="member-slot">
+            <h4>Rol: Historia Pre-1980</h4>
+            <p class="member-role">Investigación y fotos históricas</p>
+          </div>
+          <div class="member-slot">
+            <h4>Rol: Hardware & Redes</h4>
+            <p class="member-role">Componentes y NIC en redes</p>
+          </div>
+          <div class="member-slot">
+            <h4>Rol: Traducción Inglés</h4>
+            <p class="member-role">Glosario técnico en inglés</p>
+          </div>
+          <div class="member-slot">
+            <h4>Rol: Estilos & Multimedia</h4>
+            <p class="member-role">Diseño visual, imágenes y 3D</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            window.speechSynthesis.speak(utterance);
-        }
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p data-i18n="footer_text">Proyecto Escolar • Estructura de Redes & Inglés</p>
+    <p class="footer-domain">Dominio asignado: nvision.social</p>
+  </footer>
 
-        // Reproducir audio sin gastar intentos cuando la frase ya está revelada
-        function playReviewAudio() {
-            if (!('speechSynthesis' in window)) return;
-            window.speechSynthesis.cancel();
-
-            const sentence = getCurrentSentenceText();
-            const utterance = new SpeechSynthesisUtterance(sentence);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.88;
-            utterance.volume = 1.0;
-
-            if (usVoice) utterance.voice = usVoice;
-
-            const icon = document.getElementById('reviewAudioIcon');
-            utterance.onstart = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-lg text-cyan-200 animate-pulse";
-            };
-            utterance.onend = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-lg";
-            };
-            utterance.onerror = () => {
-                if (icon) icon.className = "fa-solid fa-volume-high text-lg";
-            };
-
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function updatePlayBadges() {
-            const b1 = document.getElementById('playBadge1');
-            const b2 = document.getElementById('playBadge2');
-            const text = document.getElementById('playsLeftText');
-            const playBtn = document.getElementById('playAudioBtn');
-            const playText = document.getElementById('playButtonText');
-
-            if (playCount === 0) {
-                b1.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all";
-                b2.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all";
-                text.textContent = "(2 restantes)";
-                text.className = "text-xs font-semibold text-cyan-400 ml-1";
-                playBtn.disabled = false;
-                playText.textContent = "REPRODUCIR AUDIO";
-            } else if (playCount === 1) {
-                b1.className = "w-8 h-8 rounded-full bg-cyan-500 text-slate-950 font-bold text-xs flex items-center justify-center border border-cyan-400 shadow-md shadow-cyan-500/40 transition-all";
-                b2.className = "w-8 h-8 rounded-full bg-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center border border-slate-600 transition-all";
-                text.textContent = "(1 restante - más lenta)";
-                text.className = "text-xs font-semibold text-amber-400 ml-1";
-                playText.textContent = "REPRODUCIR AUDIO (2da vez más lenta)";
-            } else {
-                b1.className = "w-8 h-8 rounded-full bg-cyan-500 text-slate-950 font-bold text-xs flex items-center justify-center border border-cyan-400 transition-all";
-                b2.className = "w-8 h-8 rounded-full bg-indigo-500 text-white font-bold text-xs flex items-center justify-center border border-indigo-400 shadow-md shadow-indigo-500/40 transition-all";
-                text.textContent = "(0 restantes)";
-                text.className = "text-xs font-semibold text-rose-400 ml-1";
-                playText.textContent = "AUDIO AGOTADO (2/2)";
-            }
-        }
-
-        // Alternar visualización de la respuesta
-        function toggleReveal() {
-            isRevealed = !isRevealed;
-            const hiddenPlaceholder = document.getElementById('hiddenPlaceholder');
-            const revealedContent = document.getElementById('revealedContent');
-            const sentenceText = document.getElementById('sentenceText');
-            const revealBtnText = document.getElementById('revealBtnText');
-            const revealIcon = document.getElementById('revealIcon');
-            const card = document.getElementById('sentenceCard');
-
-            if (isRevealed) {
-                sentenceText.textContent = getCurrentSentenceText();
-                hiddenPlaceholder.classList.add('hidden');
-                revealedContent.classList.remove('hidden');
-                revealBtnText.textContent = "Ocultar Respuesta";
-                revealIcon.className = "fa-solid fa-eye-slash";
-                card.classList.remove('border-dashed', 'border-slate-700');
-                card.classList.add('border-solid', 'border-emerald-500/40', 'bg-emerald-950/20');
-            } else {
-                hiddenPlaceholder.classList.remove('hidden');
-                revealedContent.classList.add('hidden');
-                revealBtnText.textContent = "Revelar Respuesta Correcta";
-                revealIcon.className = "fa-solid fa-eye";
-                card.classList.add('border-dashed', 'border-slate-700');
-                card.classList.remove('border-solid', 'border-emerald-500/40', 'bg-emerald-950/20');
-            }
-        }
-
-        function toggleTranslation() {
-            isTransRevealed = !isTransRevealed;
-            const textElem = document.getElementById('translationText');
-            const btnText = document.getElementById('transBtnText');
-            if (isTransRevealed) {
-                textElem.textContent = getCurrentTranslationText();
-                textElem.classList.remove('hidden');
-                btnText.textContent = "Ocultar traducción";
-            } else {
-                textElem.classList.add('hidden');
-                btnText.textContent = "Ver traducción al español (+0.5 pts)";
-            }
-        }
-
-        function addPoint(team, delta) {
-            if (team === 'A') {
-                scoreA = Math.max(0, parseFloat((scoreA + delta).toFixed(1)));
-                document.getElementById('scoreA').textContent = scoreA;
-            } else {
-                scoreB = Math.max(0, parseFloat((scoreB + delta).toFixed(1)));
-                document.getElementById('scoreB').textContent = scoreB;
-            }
-            updateFinalResults();
-        }
-
-        function updateRoundUI() {
-            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-
-            const roundNumberElem = document.getElementById('roundNumber');
-            const roundTag = document.getElementById('roundTagText');
-            const roundTitle = document.getElementById('roundTitleText');
-            const badgeBox = document.getElementById('roundNumberBadge');
-            const banner = document.getElementById('practiceBanner');
-            const pBtn = document.getElementById('practiceBtn');
-
-            if (isPracticeMode) {
-                roundNumberElem.innerHTML = '<i class="fa-solid fa-flask text-xl text-amber-400"></i>';
-                roundTag.textContent = "DEMOSTRACIÓN";
-                roundTitle.textContent = "Ronda de Prueba (Sin Puntos)";
-                badgeBox.className = "w-14 h-14 rounded-2xl bg-amber-500/20 border-2 border-amber-500/60 flex items-center justify-center text-amber-300 text-2xl font-black font-display shadow-lg shadow-amber-500/30";
-                banner.classList.remove('hidden');
-                
-                pBtn.className = "w-10 h-10 rounded-xl transition flex items-center justify-center cursor-pointer text-base bg-amber-500 text-slate-950 border-2 border-amber-300 shadow-lg shadow-amber-500/50 scale-105 font-bold";
-                pBtn.title = "Ronda de prueba ENCENDIDA (Clic para apagar)";
-            } else {
-                roundNumberElem.textContent = currentRound;
-                roundTag.textContent = "En Juego";
-                roundTitle.textContent = `Ronda ${currentRound} de 15`;
-                badgeBox.className = "w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl font-black font-display shadow-lg shadow-amber-500/30";
-                banner.classList.add('hidden');
-
-                pBtn.className = "w-10 h-10 rounded-xl border transition flex items-center justify-center cursor-pointer text-base bg-slate-800 border-slate-700 text-slate-400 hover:text-amber-300";
-                pBtn.title = "Activar Ronda de Prueba";
-            }
-
-            playCount = 0;
-            isRevealed = false;
-            isTransRevealed = false;
-            updatePlayBadges();
-
-            const hiddenPlaceholder = document.getElementById('hiddenPlaceholder');
-            const revealedContent = document.getElementById('revealedContent');
-            const revealBtnText = document.getElementById('revealBtnText');
-            const revealIcon = document.getElementById('revealIcon');
-            const card = document.getElementById('sentenceCard');
-
-            hiddenPlaceholder.classList.remove('hidden');
-            revealedContent.classList.add('hidden');
-            revealBtnText.textContent = "Revelar Respuesta Correcta";
-            revealIcon.className = "fa-solid fa-eye";
-            card.classList.add('border-dashed', 'border-slate-700');
-            card.classList.remove('border-solid', 'border-emerald-500/40', 'bg-emerald-950/20');
-
-            // Resetear estado de traducción
-            document.getElementById('translationText').classList.add('hidden');
-            document.getElementById('transBtnText').textContent = "Ver traducción al español (+0.5 pts)";
-
-            // Botones nav
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtnText = document.getElementById('nextBtnText');
-
-            if (isPracticeMode) {
-                prevBtn.disabled = true;
-                nextBtnText.textContent = "Comenzar Ronda 1 Oficial →";
-            } else {
-                prevBtn.disabled = (currentRound === 1);
-                if (currentRound === totalRounds) {
-                    nextBtnText.textContent = "Ver Ganador";
-                } else {
-                    nextBtnText.textContent = "Siguiente Ronda";
-                }
-            }
-
-            // Progreso del juego oficial
-            const completedRounds = isPracticeMode ? 0 : (currentRound - 1);
-            const percent = Math.round((completedRounds / totalRounds) * 100);
-            document.getElementById('progressPercent').textContent = `${percent}%`;
-            document.getElementById('progressBar').style.width = `${percent}%`;
-
-            if (currentRound === totalRounds && !isPracticeMode) {
-                updateFinalResults();
-            }
-        }
-
-        // Alternar modo de prueba (On / Off)
-        function togglePracticeMode(forcedState = null) {
-            if (forcedState !== null) {
-                isPracticeMode = forcedState;
-            } else {
-                isPracticeMode = !isPracticeMode;
-            }
-
-            if (!isPracticeMode) {
-                currentRound = 1;
-            }
-            updateRoundUI();
-        }
-
-        function nextRound() {
-            if (isPracticeMode) {
-                togglePracticeMode(false);
-                return;
-            }
-
-            if (currentRound < totalRounds) {
-                currentRound++;
-                updateRoundUI();
-            } else {
-                document.getElementById('progressPercent').textContent = "100%";
-                document.getElementById('progressBar').style.width = "100%";
-
-                const finalCard = document.getElementById('finalResultsCard');
-                finalCard.classList.remove('hidden');
-                finalCard.scrollIntoView({ behavior: 'smooth' });
-                updateFinalResults();
-            }
-        }
-
-        function prevRound() {
-            if (isPracticeMode) return;
-            if (currentRound > 1) {
-                currentRound--;
-                updateRoundUI();
-            }
-        }
-
-        function updateFinalResults() {
-            document.getElementById('finalScoreA').textContent = `${scoreA} pts`;
-            document.getElementById('finalScoreB').textContent = `${scoreB} pts`;
-
-            const badgeA = document.getElementById('finalBadgeA');
-            const badgeB = document.getElementById('finalBadgeB');
-            const statusA = document.getElementById('finalStatusA');
-            const statusB = document.getElementById('finalStatusB');
-            const cardA = document.getElementById('gradeCardA');
-            const cardB = document.getElementById('gradeCardB');
-            const winnerTitle = document.getElementById('finalWinnerTitle');
-            const winnerSubtitle = document.getElementById('finalWinnerSubtitle');
-
-            if (scoreA > scoreB) {
-                winnerTitle.textContent = "¡EQUIPO 1 ES EL GANADOR!";
-                winnerSubtitle.textContent = `Gran victoria del Equipo 1 con un total de ${scoreA} puntos acumulados.`;
-                badgeA.textContent = "🏆 GANADOR";
-                badgeA.className = "text-sm font-black px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
-                badgeB.textContent = "2º LUGAR";
-                badgeB.className = "text-sm font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700";
-                statusA.textContent = "Mayor puntaje de la clase";
-                statusB.textContent = "Segundo lugar";
-                cardA.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/20 text-left shadow-lg shadow-emerald-500/20";
-                cardB.className = "p-6 rounded-2xl border border-slate-700 bg-slate-900/80 text-left";
-            } else if (scoreB > scoreA) {
-                winnerTitle.textContent = "¡EQUIPO 2 ES EL GANADOR!";
-                winnerSubtitle.textContent = `Gran victoria del Equipo 2 con un total de ${scoreB} puntos acumulados.`;
-                badgeA.textContent = "2º LUGAR";
-                badgeA.className = "text-sm font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700";
-                badgeB.textContent = "🏆 GANADOR";
-                badgeB.className = "text-sm font-black px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
-                statusA.textContent = "Segundo lugar";
-                statusB.textContent = "Mayor puntaje de la clase";
-                cardA.className = "p-6 rounded-2xl border border-slate-700 bg-slate-900/80 text-left";
-                cardB.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-950/20 text-left shadow-lg shadow-emerald-500/20";
-            } else {
-                winnerTitle.textContent = "¡EMPATE ENTRE AMBOS EQUIPOS!";
-                winnerSubtitle.textContent = `Ambos equipos obtuvieron el mismo puntaje (${scoreA} pts). ¡Excelente competencia!`;
-                badgeA.textContent = "🤝 EMPATE";
-                badgeA.className = "text-sm font-black px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40";
-                badgeB.textContent = "🤝 EMPATE";
-                badgeB.className = "text-sm font-black px-3 py-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/40";
-                statusA.textContent = "Mismo puntaje obtenido";
-                statusB.textContent = "Mismo puntaje obtenido";
-                cardA.className = "p-6 rounded-2xl border-2 border-amber-500/40 bg-amber-950/20 text-left";
-                cardB.className = "p-6 rounded-2xl border-2 border-amber-500/40 bg-amber-950/20 text-left";
-            }
-        }
-
-        function confirmReset() {
-            if (confirm("¿Deseas reiniciar la actividad a la ronda 1 y poner los puntajes en cero?")) {
-                currentRound = 1;
-                isPracticeMode = false;
-                scoreA = 0;
-                scoreB = 0;
-                document.getElementById('scoreA').textContent = 0;
-                document.getElementById('scoreB').textContent = 0;
-                document.getElementById('finalResultsCard').classList.add('hidden');
-                updateRoundUI();
-            }
-        }
-
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.toggle('hidden');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initVoices();
-            updateRoundUI();
-        });
-    </script>
+  <!-- Script interactivo bilingüe -->
+  <script src="js/main.js"></script>
 </body>
 </html>
