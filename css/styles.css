@@ -40,7 +40,7 @@ html {
 body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-deep);
-  background-image: url('https://th.bing.com/th/id/OIP.9mgfT9hgEjoz5-uuYeLpZAHaEX?w=264&h=180&c=7&r=0&o=7&pid=1.7&rm=3');
+  background-image: url('../lamine.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
