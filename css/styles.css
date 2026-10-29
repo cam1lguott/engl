@@ -631,6 +631,242 @@ body {
   line-height: 1.6;
 }
 
+/* =========================================================
+   SECCIÓN DE TOPOLOGÍAS DE REDES
+   ========================================================= */
+
+.topologies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.85rem;
+}
+
+.topology-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.topology-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-indigo), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.topology-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+.topology-card:hover::before {
+  opacity: 1;
+}
+
+.topo-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topo-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.topo-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-cyan);
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Diagrama SVG interactivo y estilizado */
+.topo-diagram-wrap {
+  width: 100%;
+  height: 135px;
+  background: #070b14;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: var(--transition);
+}
+
+.topology-card:hover .topo-diagram-wrap {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.08);
+}
+
+.topo-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 125px;
+}
+
+.topo-line {
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.topo-line-thick {
+  stroke: #38bdf8;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5));
+}
+
+.topo-line-dash {
+  stroke: var(--accent-indigo);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.topo-line-poly {
+  fill: rgba(14, 165, 233, 0.05);
+  stroke: rgba(56, 189, 248, 0.45);
+  stroke-width: 2;
+}
+
+.topo-ring-path {
+  fill: none;
+  stroke: rgba(56, 189, 248, 0.5);
+  stroke-width: 2.5;
+  stroke-dasharray: 3 0;
+}
+
+.topo-node {
+  fill: #0ea5e9;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 5px rgba(14, 165, 233, 0.8));
+  transition: var(--transition);
+}
+
+.topo-node-center {
+  fill: #6366f1;
+  stroke: #38bdf8;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.9));
+}
+
+.topo-node-accent {
+  fill: #10b981;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.8));
+}
+
+.topo-center-label {
+  fill: #ffffff;
+  font-size: 8px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.topo-terminator {
+  fill: #ef4444;
+  stroke: #fca5a5;
+  stroke-width: 1;
+}
+
+.topo-card-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Puntos de ventajas y desventajas */
+.topo-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  background: rgba(11, 15, 25, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.topo-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.topo-point-item.pro {
+  color: #a7f3d0;
+}
+
+.topo-point-item.con {
+  color: #fecdd3;
+}
+
+.topo-point-bullet {
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-top: 0.15rem;
+}
+
+.topo-point-item.pro .topo-point-bullet {
+  color: var(--accent-emerald);
+}
+
+.topo-point-item.con .topo-point-bullet {
+  color: #f43f5e;
+}
+
+/* Tag de uso común */
+.topo-footer-tag {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: auto;
+}
+
+.topo-tag-label {
+  font-weight: 700;
+  color: var(--accent-cyan);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+
 /* Glosario de Redes & Computadores */
 .glossary-grid {
   display: grid;

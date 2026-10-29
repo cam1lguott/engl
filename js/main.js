@@ -1,4 +1,4 @@
-/**
+﻿/**
  * main.js - Manejo de traducción bilingüe (Español / Inglés),
  * menú adaptativo para dispositivos móviles y utilidades interactivas.
  */
@@ -86,6 +86,54 @@ const translations = {
     eth_desc: "Interfaces RJ-45 para cable de par trenzado (Ethernet) e interfaces de radiofrecuencia (Wi-Fi) conectadas mediante el bus PCIe.",
     flow_title: "Flujo de Datos en el Host",
     flow_desc: "Los paquetes viajan desde la memoria RAM, son procesados por la CPU y enviados al controlador NIC para su modulación y transmisión en el medio físico.",
+
+    // Topologías de Redes
+    nav_topologies: "Topologías",
+    topol_title: "Topologías de Redes",
+    topol_desc: "La distribución física y lógica que define cómo se interconectan los nodos, hosts y enlaces de transmisión en una infraestructura de comunicaciones.",
+    lbl_typical_use: "Uso común:",
+
+    star_title: "Topología en Estrella (Star)",
+    star_badge: "Punto Centralizado // Estándar LAN",
+    star_desc: "Cada nodo se conecta independientemente a un conmutador (Switch) o concentrador central. Si un cable o estación falla, el resto de la red sigue operando sin interrupción.",
+    star_pro: "Fácil de diagnosticar y agregar nuevos nodos sin detener la red.",
+    star_con: "Punto único de fallo: si el switch central falla, toda la red cae.",
+    star_use: "Redes Ethernet modernas, oficinas corporativas y routers domésticos Wi-Fi.",
+
+    bus_title: "Topología en Bus",
+    bus_badge: "Canal Compartido // Troncal",
+    bus_desc: "Todos los dispositivos se conectan a un único cable troncal compartido (backbone). Requiere resistencias terminadoras en ambos extremos para absorber las señales y evitar reflexiones.",
+    bus_pro: "Bajo costo de instalación y menor consumo de cableado físico.",
+    bus_con: "Una rotura en el cable troncal deja inoperativa toda la red (alta probabilidad de colisiones).",
+    bus_use: "Redes automotrices (CAN bus), instrumentación industrial y Ethernet histórica 10BASE2.",
+
+    ring_title: "Topología en Anillo (Ring)",
+    ring_badge: "Bucle Cerrado // Paso de Token",
+    ring_desc: "Cada estación se conecta a dos vecinas formando un circuito cerrado. Los datos viajan secuencialmente en un único sentido mediante un testigo o 'token' lógico para evitar colisiones.",
+    ring_pro: "Sin colisiones de paquetes; rendimiento regular y predecible bajo alto tráfico.",
+    ring_con: "La desconexión o fallo de un equipo interrumpe todo el ciclo de transmisión.",
+    ring_use: "Redes metropolitanas de fibra óptica (FDDI, SONET/SDH) e histórica Token Ring.",
+
+    mesh_title: "Topología en Malla (Mesh)",
+    mesh_badge: "Redundancia Total // Alta Disponibilidad",
+    mesh_desc: "Cada nodo cuenta con conexiones directas punto a punto con múltiples o todos los demás nodos de la red. Ofrece múltiples rutas dinámicas para transportar cada paquete de información.",
+    mesh_pro: "Máxima tolerancia a fallos: si un enlace se corta, el tráfico se redirige al instante.",
+    mesh_con: "Elevado coste en cableado, interfaces físicas y complejidad de ruteo.",
+    mesh_use: "Infraestructura troncal de Internet (Backbone Tier-1), centros de datos y redes Wi-Fi Mesh.",
+
+    tree_title: "Topología en Árbol (Tree)",
+    tree_badge: "Estructura Jerárquica // Multinivel",
+    tree_desc: "Organiza los dispositivos en diferentes niveles jerárquicos (Núcleo, Distribución y Acceso). Es una combinación estructurada de múltiples estrellas conectadas a un conmutador principal.",
+    tree_pro: "Gran escalabilidad, facilita el aislamiento de subredes y la gestión por departamentos.",
+    tree_con: "Si el nodo raíz principal falla, las ramas subordinadas pierden conectividad entre sí.",
+    tree_use: "Redes de campus universitarios, edificios corporativos y redes de televisión por cable.",
+
+    hybrid_title: "Topología Híbrida (Mixta)",
+    hybrid_badge: "Combinación Adaptativa // Flexible",
+    hybrid_desc: "Fusión de dos o más topologías distintas (por ejemplo, estrella-anillo o estrella-bus) en una misma red. Permite adaptar la arquitectura física a las necesidades geográficas de cada sector.",
+    hybrid_pro: "Máxima flexibilidad: aprovecha las virtudes de cada topología según cada área de la empresa.",
+    hybrid_con: "Diseño y mantenimiento complejos; requiere dispositivos de interconexión avanzados.",
+    hybrid_use: "Grandes organizaciones multinacionales, redes bancarias y enlaces nube con sedes locales.",
 
     // Glosario
     glos_title: "Glosario Técnico de Redes y Computación",
@@ -185,6 +233,54 @@ const translations = {
     eth_desc: "RJ-45 interfaces for twisted pair Ethernet cables and wireless RF adapters interconnected through the PCIe bus.",
     flow_title: "Host Data Flow Architecture",
     flow_desc: "Data packets stream from RAM buffers, undergo CPU processing, and are dispatched to the NIC controller for physical signal modulation.",
+
+    // Network Topologies
+    nav_topologies: "Topologies",
+    topol_title: "Network Topologies",
+    topol_desc: "The physical and logical layout that defines how nodes, devices, and transmission links are interconnected in a telecommunications infrastructure.",
+    lbl_typical_use: "Common use:",
+
+    star_title: "Star Topology",
+    star_badge: "Centralized Hub // Modern LAN Standard",
+    star_desc: "Every node connects individually to a central switch or hub. If a single cable or host fails, the rest of the network continues operating without interruption.",
+    star_pro: "Easy to troubleshoot and add new nodes without disrupting ongoing network traffic.",
+    star_con: "Single point of failure: if the central switch goes down, the entire network disconnects.",
+    star_use: "Modern Ethernet LANs, corporate office networks, and home Wi-Fi routers.",
+
+    bus_title: "Bus Topology",
+    bus_badge: "Shared Channel // Backbone Line",
+    bus_desc: "All devices connect to a single shared backbone cable. Requires terminating resistors at both ends to absorb electrical signals and eliminate signal reflections.",
+    bus_pro: "Economical setup costs and low physical cabling consumption.",
+    bus_con: "A single break in the main backbone breaks the entire network (prone to packet collisions).",
+    bus_use: "Automotive CAN bus systems, industrial sensors, and legacy 10BASE2 Ethernet.",
+
+    ring_title: "Ring Topology",
+    ring_badge: "Closed Loop // Token Passing",
+    ring_desc: "Each host connects to two adjacent devices, forming a circular pathway. Data travels sequentially in a single direction governed by a logical token to avoid collisions.",
+    ring_pro: "Deterministic traffic flow without collisions; steady performance under heavy loads.",
+    ring_con: "A single workstation failure or break halts the entire ring transmission loop.",
+    ring_use: "Metropolitan fiber optic rings (FDDI, SONET/SDH) and legacy Token Ring networks.",
+
+    mesh_title: "Mesh Topology",
+    mesh_badge: "Full Redundancy // High Availability",
+    mesh_desc: "Each node maintains dedicated point-to-point links to several or all other nodes in the network, providing multiple redundant paths for packet routing.",
+    mesh_pro: "Maximum fault tolerance: dynamic self-healing redirects traffic if a link is severed.",
+    mesh_con: "High cost of physical cabling, multiple NIC ports, and complex routing overhead.",
+    mesh_use: "Internet Tier-1 backbone routers, enterprise data centers, and modern home Wi-Fi mesh.",
+
+    tree_title: "Tree Topology",
+    tree_badge: "Hierarchical Architecture // Multilevel",
+    tree_desc: "Arranges devices in structured hierarchical tiers (Core, Distribution, and Access). It consists of groups of star networks interconnected via a root backbone switch.",
+    tree_pro: "Highly scalable, simplifies subnet segmentation and departmental policy enforcement.",
+    tree_con: "If the root or core switch fails, subordinate branch networks lose inter-communication.",
+    tree_use: "University campus backbones, multi-story office buildings, and cable TV networks.",
+
+    hybrid_title: "Hybrid Topology",
+    hybrid_badge: "Adaptive Combination // Modular Design",
+    hybrid_desc: "Integrates two or more distinct topologies (e.g., star-ring or star-bus) within the same network. Adapts the physical topology to the site's unique architectural constraints.",
+    hybrid_pro: "Maximum flexibility: optimizes reliability and budget across diverse departmental areas.",
+    hybrid_con: "Complex configuration and maintenance; requires high-end managed switches and routers.",
+    hybrid_use: "Multinational corporations, banking networks, and hybrid cloud-to-on-prem architectures.",
 
     // Glossary
     glos_title: "Technical Glossary (Networks & Hardware)",

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -17,6 +17,7 @@
           <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
           <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
           <li><a href="#redes" data-i18n="nav_network">Hardware & Redes</a></li>
+          <li><a href="#topologias" data-i18n="nav_topologies">Topologías</a></li>
           <li><a href="#glosario" data-i18n="nav_glossary">Glosario</a></li>
           <li><a href="#laboratorio" data-i18n="nav_lab">Laboratorio</a></li>
         </ul>
@@ -379,6 +380,302 @@
             Los paquetes viajan desde la memoria RAM, son procesados por la CPU y enviados al controlador NIC para su modulación y transmisión en el medio físico.
           </p>
         </div>
+      </div>
+    </section>
+
+
+    <!-- SECCIÓN: Topologías de Redes -->
+    <section id="topologias" class="container">
+      <h2 class="section-title">
+        🌐 <span data-i18n="topol_title">Topologías de Redes</span>
+      </h2>
+      <p class="section-desc" data-i18n="topol_desc">
+        La distribución física y lógica que define cómo se interconectan los nodos, hosts y enlaces de transmisión en una infraestructura de comunicaciones.
+      </p>
+
+      <div class="topologies-grid">
+        <!-- 1. Topología en Estrella -->
+        <article class="topology-card">
+          <div class="topo-card-header">
+            <span class="card-icon">⭐</span>
+            <div>
+              <h3 class="topo-card-title" data-i18n="star_title">Topología en Estrella (Star)</h3>
+              <span class="topo-badge" data-i18n="star_badge">Punto Centralizado // Estándar LAN</span>
+            </div>
+          </div>
+
+          <div class="topo-diagram-wrap" aria-label="Diagrama Topología en Estrella">
+            <svg class="topo-svg" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+              <line x1="120" y1="65" x2="45" y2="35" class="topo-line" />
+              <line x1="120" y1="65" x2="195" y2="35" class="topo-line" />
+              <line x1="120" y1="65" x2="55" y2="105" class="topo-line" />
+              <line x1="120" y1="65" x2="185" y2="105" class="topo-line" />
+              <line x1="120" y1="65" x2="120" y2="18" class="topo-line" />
+              <circle cx="45" cy="35" r="9" class="topo-node" />
+              <circle cx="195" cy="35" r="9" class="topo-node" />
+              <circle cx="55" cy="105" r="9" class="topo-node" />
+              <circle cx="185" cy="105" r="9" class="topo-node" />
+              <circle cx="120" cy="18" r="9" class="topo-node" />
+              <circle cx="120" cy="65" r="14" class="topo-node-center" />
+              <text x="120" y="69" text-anchor="middle" class="topo-center-label">SW</text>
+            </svg>
+          </div>
+
+          <p class="topo-card-desc" data-i18n="star_desc">
+            Cada nodo se conecta independientemente a un conmutador (Switch) o concentrador central. Si un cable o estación falla, el resto de la red sigue operando sin interrupción.
+          </p>
+
+          <div class="topo-points">
+            <div class="topo-point-item pro">
+              <span class="topo-point-bullet">✓</span>
+              <span data-i18n="star_pro">Fácil de diagnosticar y agregar nuevos nodos sin detener la red.</span>
+            </div>
+            <div class="topo-point-item con">
+              <span class="topo-point-bullet">✗</span>
+              <span data-i18n="star_con">Punto único de fallo: si el switch central falla, toda la red cae.</span>
+            </div>
+          </div>
+
+          <div class="topo-footer-tag">
+            <span class="topo-tag-label" data-i18n="lbl_typical_use">Uso común:</span>
+            <span data-i18n="star_use">Redes Ethernet modernas, oficinas corporativas y routers domésticos Wi-Fi.</span>
+          </div>
+        </article>
+
+        <!-- 2. Topología en Bus -->
+        <article class="topology-card">
+          <div class="topo-card-header">
+            <span class="card-icon">🚌</span>
+            <div>
+              <h3 class="topo-card-title" data-i18n="bus_title">Topología en Bus</h3>
+              <span class="topo-badge" data-i18n="bus_badge">Canal Compartido // Troncal</span>
+            </div>
+          </div>
+
+          <div class="topo-diagram-wrap" aria-label="Diagrama Topología en Bus">
+            <svg class="topo-svg" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+              <rect x="18" y="59" width="8" height="12" class="topo-terminator" />
+              <rect x="214" y="59" width="8" height="12" class="topo-terminator" />
+              <line x1="26" y1="65" x2="214" y2="65" class="topo-line-thick" />
+              <line x1="55" y1="65" x2="55" y2="28" class="topo-line" />
+              <line x1="100" y1="65" x2="100" y2="102" class="topo-line" />
+              <line x1="145" y1="65" x2="145" y2="28" class="topo-line" />
+              <line x1="190" y1="65" x2="190" y2="102" class="topo-line" />
+              <circle cx="55" cy="24" r="9" class="topo-node" />
+              <circle cx="100" cy="106" r="9" class="topo-node" />
+              <circle cx="145" cy="24" r="9" class="topo-node" />
+              <circle cx="190" cy="106" r="9" class="topo-node" />
+            </svg>
+          </div>
+
+          <p class="topo-card-desc" data-i18n="bus_desc">
+            Todos los dispositivos se conectan a un único cable troncal compartido (backbone). Requiere resistencias terminadoras en ambos extremos para absorber las señales y evitar reflexiones.
+          </p>
+
+          <div class="topo-points">
+            <div class="topo-point-item pro">
+              <span class="topo-point-bullet">✓</span>
+              <span data-i18n="bus_pro">Bajo costo de instalación y menor consumo de cableado físico.</span>
+            </div>
+            <div class="topo-point-item con">
+              <span class="topo-point-bullet">✗</span>
+              <span data-i18n="bus_con">Una rotura en el cable troncal deja inoperativa toda la red (alta probabilidad de colisiones).</span>
+            </div>
+          </div>
+
+          <div class="topo-footer-tag">
+            <span class="topo-tag-label" data-i18n="lbl_typical_use">Uso común:</span>
+            <span data-i18n="bus_use">Redes automotrices (CAN bus), instrumentación industrial y Ethernet histórica 10BASE2.</span>
+          </div>
+        </article>
+
+        <!-- 3. Topología en Anillo -->
+        <article class="topology-card">
+          <div class="topo-card-header">
+            <span class="card-icon">🔄</span>
+            <div>
+              <h3 class="topo-card-title" data-i18n="ring_title">Topología en Anillo (Ring)</h3>
+              <span class="topo-badge" data-i18n="ring_badge">Bucle Cerrado // Paso de Token</span>
+            </div>
+          </div>
+
+          <div class="topo-diagram-wrap" aria-label="Diagrama Topología en Anillo">
+            <svg class="topo-svg" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="120" cy="65" rx="65" ry="42" class="topo-ring-path" />
+              <circle cx="120" cy="23" r="9" class="topo-node" />
+              <circle cx="180" cy="46" r="9" class="topo-node" />
+              <circle cx="165" cy="95" r="9" class="topo-node" />
+              <circle cx="75" cy="95" r="9" class="topo-node" />
+              <circle cx="60" cy="46" r="9" class="topo-node" />
+              <polygon points="126,20 134,23 126,26" fill="#38bdf8" />
+            </svg>
+          </div>
+
+          <p class="topo-card-desc" data-i18n="ring_desc">
+            Cada estación se conecta a dos vecinas formando un circuito cerrado. Los datos viajan secuencialmente en un único sentido mediante un testigo o 'token' lógico para evitar colisiones.
+          </p>
+
+          <div class="topo-points">
+            <div class="topo-point-item pro">
+              <span class="topo-point-bullet">✓</span>
+              <span data-i18n="ring_pro">Sin colisiones de paquetes; rendimiento regular y predecible bajo alto tráfico.</span>
+            </div>
+            <div class="topo-point-item con">
+              <span class="topo-point-bullet">✗</span>
+              <span data-i18n="ring_con">La desconexión o fallo de un equipo interrumpe todo el ciclo de transmisión.</span>
+            </div>
+          </div>
+
+          <div class="topo-footer-tag">
+            <span class="topo-tag-label" data-i18n="lbl_typical_use">Uso común:</span>
+            <span data-i18n="ring_use">Redes metropolitanas de fibra óptica (FDDI, SONET/SDH) e histórica Token Ring.</span>
+          </div>
+        </article>
+
+        <!-- 4. Topología en Malla -->
+        <article class="topology-card">
+          <div class="topo-card-header">
+            <span class="card-icon">🕸️</span>
+            <div>
+              <h3 class="topo-card-title" data-i18n="mesh_title">Topología en Malla (Mesh)</h3>
+              <span class="topo-badge" data-i18n="mesh_badge">Redundancia Total // Alta Disponibilidad</span>
+            </div>
+          </div>
+
+          <div class="topo-diagram-wrap" aria-label="Diagrama Topología en Malla">
+            <svg class="topo-svg" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="120,20 185,50 160,110 80,110 55,50" class="topo-line-poly" />
+              <line x1="120" y1="20" x2="160" y2="110" class="topo-line" />
+              <line x1="120" y1="20" x2="80" y2="110" class="topo-line" />
+              <line x1="55" y1="50" x2="185" y2="50" class="topo-line" />
+              <line x1="55" y1="50" x2="160" y2="110" class="topo-line" />
+              <line x1="185" y1="50" x2="80" y2="110" class="topo-line" />
+              <circle cx="120" cy="20" r="9" class="topo-node" />
+              <circle cx="185" cy="50" r="9" class="topo-node" />
+              <circle cx="160" cy="110" r="9" class="topo-node" />
+              <circle cx="80" cy="110" r="9" class="topo-node" />
+              <circle cx="55" cy="50" r="9" class="topo-node" />
+            </svg>
+          </div>
+
+          <p class="topo-card-desc" data-i18n="mesh_desc">
+            Cada nodo cuenta con conexiones directas punto a punto con múltiples o todos los demás nodos de la red. Ofrece múltiples rutas dinámicas para transportar cada paquete de información.
+          </p>
+
+          <div class="topo-points">
+            <div class="topo-point-item pro">
+              <span class="topo-point-bullet">✓</span>
+              <span data-i18n="mesh_pro">Máxima tolerancia a fallos: si un enlace se corta, el tráfico se redirige al instante.</span>
+            </div>
+            <div class="topo-point-item con">
+              <span class="topo-point-bullet">✗</span>
+              <span data-i18n="mesh_con">Elevado coste en cableado, interfaces físicas y complejidad de ruteo.</span>
+            </div>
+          </div>
+
+          <div class="topo-footer-tag">
+            <span class="topo-tag-label" data-i18n="lbl_typical_use">Uso común:</span>
+            <span data-i18n="mesh_use">Infraestructura troncal de Internet (Backbone Tier-1), centros de datos y redes Wi-Fi Mesh.</span>
+          </div>
+        </article>
+
+        <!-- 5. Topología en Árbol -->
+        <article class="topology-card">
+          <div class="topo-card-header">
+            <span class="card-icon">🌳</span>
+            <div>
+              <h3 class="topo-card-title" data-i18n="tree_title">Topología en Árbol (Tree)</h3>
+              <span class="topo-badge" data-i18n="tree_badge">Estructura Jerárquica // Multinivel</span>
+            </div>
+          </div>
+
+          <div class="topo-diagram-wrap" aria-label="Diagrama Topología en Árbol">
+            <svg class="topo-svg" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+              <line x1="120" y1="22" x2="70" y2="65" class="topo-line" />
+              <line x1="120" y1="22" x2="170" y2="65" class="topo-line" />
+              <line x1="70" y1="65" x2="40" y2="108" class="topo-line" />
+              <line x1="70" y1="65" x2="95" y2="108" class="topo-line" />
+              <line x1="170" y1="65" x2="145" y2="108" class="topo-line" />
+              <line x1="170" y1="65" x2="200" y2="108" class="topo-line" />
+              <circle cx="120" cy="22" r="11" class="topo-node-center" />
+              <circle cx="70" cy="65" r="9" class="topo-node-accent" />
+              <circle cx="170" cy="65" r="9" class="topo-node-accent" />
+              <circle cx="40" cy="108" r="7.5" class="topo-node" />
+              <circle cx="95" cy="108" r="7.5" class="topo-node" />
+              <circle cx="145" cy="108" r="7.5" class="topo-node" />
+              <circle cx="200" cy="108" r="7.5" class="topo-node" />
+            </svg>
+          </div>
+
+          <p class="topo-card-desc" data-i18n="tree_desc">
+            Organiza los dispositivos en diferentes niveles jerárquicos (Núcleo, Distribución y Acceso). Es una combinación estructurada de múltiples estrellas conectadas a un conmutador principal.
+          </p>
+
+          <div class="topo-points">
+            <div class="topo-point-item pro">
+              <span class="topo-point-bullet">✓</span>
+              <span data-i18n="tree_pro">Gran escalabilidad, facilita el aislamiento de subredes y la gestión por departamentos.</span>
+            </div>
+            <div class="topo-point-item con">
+              <span class="topo-point-bullet">✗</span>
+              <span data-i18n="tree_con">Si el nodo raíz principal falla, las ramas subordinadas pierden conectividad entre sí.</span>
+            </div>
+          </div>
+
+          <div class="topo-footer-tag">
+            <span class="topo-tag-label" data-i18n="lbl_typical_use">Uso común:</span>
+            <span data-i18n="tree_use">Redes de campus universitarios, edificios corporativos y redes de televisión por cable.</span>
+          </div>
+        </article>
+
+        <!-- 6. Topología Híbrida / Mixta -->
+        <article class="topology-card">
+          <div class="topo-card-header">
+            <span class="card-icon">🔀</span>
+            <div>
+              <h3 class="topo-card-title" data-i18n="hybrid_title">Topología Híbrida (Mixta)</h3>
+              <span class="topo-badge" data-i18n="hybrid_badge">Combinación Adaptativa // Flexible</span>
+            </div>
+          </div>
+
+          <div class="topo-diagram-wrap" aria-label="Diagrama Topología Híbrida">
+            <svg class="topo-svg" viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
+              <line x1="75" y1="65" x2="165" y2="65" class="topo-line-dash" />
+              <line x1="75" y1="65" x2="40" y2="35" class="topo-line" />
+              <line x1="75" y1="65" x2="40" y2="95" class="topo-line" />
+              <line x1="75" y1="65" x2="90" y2="25" class="topo-line" />
+              <circle cx="40" cy="35" r="7.5" class="topo-node" />
+              <circle cx="40" cy="95" r="7.5" class="topo-node" />
+              <circle cx="90" cy="25" r="7.5" class="topo-node" />
+              <circle cx="75" cy="65" r="11" class="topo-node-center" />
+              <ellipse cx="165" cy="65" rx="30" ry="26" class="topo-ring-path" />
+              <circle cx="165" cy="39" r="7" class="topo-node" />
+              <circle cx="195" cy="65" r="7" class="topo-node" />
+              <circle cx="165" cy="91" r="7" class="topo-node" />
+              <circle cx="135" cy="65" r="7.5" class="topo-node-accent" />
+            </svg>
+          </div>
+
+          <p class="topo-card-desc" data-i18n="hybrid_desc">
+            Fusión de dos o más topologías distintas (por ejemplo, estrella-anillo o estrella-bus) en una misma red. Permite adaptar la arquitectura física a las necesidades geográficas de cada sector.
+          </p>
+
+          <div class="topo-points">
+            <div class="topo-point-item pro">
+              <span class="topo-point-bullet">✓</span>
+              <span data-i18n="hybrid_pro">Máxima flexibilidad: aprovecha las virtudes de cada topología según cada área de la empresa.</span>
+            </div>
+            <div class="topo-point-item con">
+              <span class="topo-point-bullet">✗</span>
+              <span data-i18n="hybrid_con">Diseño y mantenimiento complejos; requiere dispositivos de interconexión avanzados.</span>
+            </div>
+          </div>
+
+          <div class="topo-footer-tag">
+            <span class="topo-tag-label" data-i18n="lbl_typical_use">Uso común:</span>
+            <span data-i18n="hybrid_use">Grandes organizaciones multinacionales, redes bancarias y enlaces nube con sedes locales.</span>
+          </div>
+        </article>
       </div>
     </section>
 
