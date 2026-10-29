@@ -17,6 +17,7 @@
           <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
           <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
           <li><a href="#redes" data-i18n="nav_network">Hardware & Redes</a></li>
+          <li><a href="#alcance-redes" data-i18n="nav_scope">Clasificación PAN/LAN/MAN/WAN</a></li>
           <li><a href="#topologias" data-i18n="nav_topologies">Topologías</a></li>
           <li><a href="#simulador-red" data-i18n="nav_simulator">Simulador Ping</a></li>
           <li><a href="#glosario" data-i18n="nav_glossary">Glosario</a></li>
@@ -608,6 +609,138 @@
       </div>
     </section>
 
+
+    <!-- SECCIÓN: Clasificación de Redes según su Alcance Geográfico (PAN, LAN, MAN, WAN) -->
+    <section id="alcance-redes" class="container">
+      <h2 class="section-title">
+        🗺️ <span data-i18n="scope_title">Tipos de Redes según su Cobertura Geográfica</span>
+      </h2>
+      <p class="section-desc" data-i18n="scope_desc">
+        Clasificación estándar de las redes informáticas en función del área física, la distancia de enlace y el propósito de conectividad.
+      </p>
+
+      <div class="network-scope-grid">
+        <!-- 1. PAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80" alt="Personal Area Network PAN Bluetooth" class="scope-img" loading="lazy">
+            <span class="scope-badge pan">Alcance Personal // ~10m</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">⌚</span>
+              <div>
+                <h3 class="scope-name" data-i18n="pan_title">PAN (Personal Area Network)</h3>
+                <span class="scope-sub" data-i18n="pan_sub">Red de Área Personal</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="pan_desc">
+              <strong>Alcance:</strong> Unos pocos metros alrededor de un usuario individual. Conecta periféricos personales de bajo consumo con dispositivos móviles o portátiles.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
+              <p data-i18n="pan_example">Conectar un reloj inteligente (Smartwatch) o unos audífonos inalámbricos Bluetooth a tu celular.</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>Bluetooth 5.3</span>
+              <span>Zigbee</span>
+              <span>NFC</span>
+              <span>USB Wireless</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. LAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Local Area Network LAN Cables and Switch" class="scope-img" loading="lazy">
+            <span class="scope-badge lan">Edificio / Hogar // Hasta 1 km</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">🏠</span>
+              <div>
+                <h3 class="scope-name" data-i18n="lan_title">LAN (Local Area Network)</h3>
+                <span class="scope-sub" data-i18n="lan_sub">Red de Área Local</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="lan_desc">
+              <strong>Alcance:</strong> Conecta dispositivos dentro de un espacio físico confinado, como un edificio corporativo, una oficina o una vivienda particular, ofreciendo altas tasas de transferencia.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
+              <p data-i18n="lan_example">El Wi-Fi de tu hogar o la red interna cableada mediante Switch Ethernet de una empresa u oficina.</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>Ethernet IEEE 802.3</span>
+              <span>Wi-Fi 6 (802.11ax)</span>
+              <span>VLAN</span>
+              <span>UTP Cat6</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. MAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80" alt="Metropolitan Area Network MAN City" class="scope-img" loading="lazy">
+            <span class="scope-badge man">Área Urbana // 10 km a 50 km</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">🏙️</span>
+              <div>
+                <h3 class="scope-name" data-i18n="man_title">MAN (Metropolitan Area Network)</h3>
+                <span class="scope-sub" data-i18n="man_sub">Red de Área Metropolitana</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="man_desc">
+              <strong>Alcance:</strong> Cubre un área geográfica intermedia, como una ciudad completa, municipio o un gran campus universitario interconectado.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
+              <p data-i18n="man_example">La red privada de fibra que conecta todas las sucursales de una alcaldía, cámaras de vigilancia urbanas o un banco dentro de la misma ciudad.</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>Anillos FDDI / SDH</span>
+              <span>Metro Ethernet</span>
+              <span>Fibra Óptica DWDM</span>
+              <span>WiMAX</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. WAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Wide Area Network WAN Global Internet" class="scope-img" loading="lazy">
+            <span class="scope-badge wan">Global // Países y Continentes</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">🌍</span>
+              <div>
+                <h3 class="scope-name" data-i18n="wan_title">WAN (Wide Area Network)</h3>
+                <span class="scope-sub" data-i18n="wan_sub">Red de Área Amplia</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="wan_desc">
+              <strong>Alcance:</strong> Conecta múltiples redes a través de distancias geográficas masivas (regiones, países o continentes). Requiere cables submarinos, satélites y enrutadores de núcleo.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
+              <p data-i18n="wan_example">Internet es la red WAN pública más grande y compleja del mundo, interconectando millones de redes autónomas (BGP).</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>Backbone Tier-1</span>
+              <span>Cables Submarinos</span>
+              <span>MPLS / SD-WAN</span>
+              <span>BGP Routing</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <!-- SECCIÓN INTERACTIVA: Simulador de Ping y Enrutamiento de Paquetes -->
     <section id="simulador-red" class="container">
