@@ -864,3 +864,121 @@ body {
     width: 100%;
   }
 }
+
+/* =========================================================
+   BOTONES Y CUADROS EXPANDIBLES PARA COMPONENTES
+   ========================================================= */
+
+.component-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-component-expand {
+  margin-top: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  color: #0f172a;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+  width: 100%;
+}
+
+.btn-component-expand:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-component-expand .comp-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-component-expand[aria-expanded="true"] .comp-arrow {
+  transform: rotate(180deg);
+}
+
+.component-detail-box {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  animation: fadeInDown 0.3s ease;
+}
+
+.component-scroll-content {
+  /* Cuadro con scroll vertical adaptativo */
+  max-height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+.component-scroll-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.component-scroll-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.component-scroll-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.component-scroll-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.component-img-frame {
+  width: 100%;
+  height: 200px;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.component-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.component-img:hover {
+  transform: scale(1.04);
+}
+
+.component-caption {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  background: #f8fafc;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #0284c7;
+}

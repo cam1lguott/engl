@@ -206,63 +206,141 @@
 
       <div class="components-grid">
         <!-- Tarjeta Madre -->
-        <div class="component-card">
+        <div class="component-card" id="card-mb">
           <span class="card-icon">🖲️</span>
           <h3 class="card-title" data-i18n="mb_title">Placa Madre (Motherboard)</h3>
           <span class="card-detail" data-i18n="mb_sub">Conectividad & Buses</span>
           <p data-i18n="mb_desc">
             El circuito principal que interconecta el procesador, memorias, tarjetas de red y dispositivos de almacenamiento.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-mb" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-mb" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Motherboard_diagram.svg" alt="Motherboard diagram" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_mb">Esquema y distribución de zócalos, ranuras PCIe, chipset y conectores en una placa base moderna.</span>
+            </div>
+          </div>
         </div>
 
         <!-- CPU -->
-        <div class="component-card">
+        <div class="component-card" id="card-cpu">
           <span class="card-icon">🧠</span>
           <h3 class="card-title" data-i18n="cpu_title">Procesador (CPU)</h3>
           <span class="card-detail" data-i18n="cpu_sub">Unidad Central de Procesamiento</span>
           <p data-i18n="cpu_desc">
             El cerebro del sistema encargado de ejecutar instrucciones, realizar cálculos lógicos y coordinar periféricos.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-cpu" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-cpu" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Intel_Core_i7-8700K_top.jpg" alt="Intel Core i7 CPU" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_cpu">Microprocesador multicore de alto rendimiento con cápsula de protección térmica (IHS).</span>
+            </div>
+          </div>
         </div>
 
         <!-- Memoria RAM -->
-        <div class="component-card">
+        <div class="component-card" id="card-ram">
           <span class="card-icon">⚡</span>
           <h3 class="card-title" data-i18n="ram_title">Memoria RAM</h3>
           <span class="card-detail" data-i18n="ram_sub">Memoria de Acceso Aleatorio</span>
           <p data-i18n="ram_desc">
             Almacenamiento de alta velocidad y temporal donde se cargan los programas en ejecución y los búferes de red.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-ram" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-ram" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Swissbit_2GB_PC2-6400_CL6_ECC.jpg" alt="RAM DDR Module" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_ram">Módulo de memoria DIMM con chips DRAM y contactos dorados para conexión al bus de alta velocidad.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Almacenamiento -->
-        <div class="component-card">
+        <div class="component-card" id="card-storage">
           <span class="card-icon">💾</span>
           <h3 class="card-title" data-i18n="storage_title">Almacenamiento (SSD / HDD)</h3>
           <span class="card-detail" data-i18n="storage_sub">Persistencia de Datos</span>
           <p data-i18n="storage_desc">
             Memoria persistente donde se almacena el sistema operativo, controladores, datos y servicios de red.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-storage" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-storage" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/M.2_Solid-State-Drive.jpg" alt="SSD M.2 NVMe" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_storage">Unidad de estado sólido moderna en formato M.2 NVMe conectada directamente por líneas PCIe.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Adaptador de Red (NIC) -->
-        <div class="component-card">
+        <div class="component-card" id="card-nic">
           <span class="card-icon">🌐</span>
           <h3 class="card-title" data-i18n="nic_title">Adaptador de Red (NIC)</h3>
           <span class="card-detail" data-i18n="nic_sub">Interfaz LAN / WLAN</span>
           <p data-i18n="nic_desc">
             Hardware clave en estructura de redes para conectar el host a redes Ethernet LAN o inalámbricas Wi-Fi.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-nic" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-nic" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Intel_Gigabit_Ethernet_Card.jpg" alt="Network Interface Card" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_nic">Tarjeta de interfaz de red (NIC) PCIe con puerto RJ45 Gigabit Ethernet y chip controlador.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Fuente de Poder -->
-        <div class="component-card">
+        <div class="component-card" id="card-psu">
           <span class="card-icon">🔌</span>
           <h3 class="card-title" data-i18n="psu_title">Fuente de Poder (PSU)</h3>
           <span class="card-detail" data-i18n="psu_sub">Distribución Eléctrica</span>
           <p data-i18n="psu_desc">
             Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-psu" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-psu" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/ATX_Power_Supply.jpg" alt="ATX Power Supply Unit" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_psu">Fuente ATX modular con ventilador de refrigeración y conectores de alimentación para placa base y componentes.</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

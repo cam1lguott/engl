@@ -68,6 +68,14 @@ const translations = {
     psu_title: "Fuente de Poder (PSU)",
     psu_desc: "Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.",
     psu_sub: "Distribución Eléctrica",
+    btn_view_component_img: "Ver imagen e info",
+    btn_hide_component_img: "Ocultar imagen",
+    caption_mb: "Esquema y distribución de zócalos, ranuras PCIe, chipset y conectores en una placa base moderna.",
+    caption_cpu: "Microprocesador multicore de alto rendimiento con cápsula de protección térmica (IHS).",
+    caption_ram: "Módulo de memoria DIMM con chips DRAM y contactos dorados para conexión al bus de alta velocidad.",
+    caption_storage: "Unidad de estado sólido moderna en formato M.2 NVMe conectada directamente por líneas PCIe.",
+    caption_nic: "Tarjeta de interfaz de red (NIC) PCIe con puerto RJ45 Gigabit Ethernet y chip controlador.",
+    caption_psu: "Fuente ATX modular con ventilador de refrigeración y conectores de alimentación para placa base y componentes.",
 
     // Hardware y Redes
     net_title: "Del Hardware a la Red",
@@ -276,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCopyButton();
   setupMobileMenu();
   setupHistoryToggle();
+  setupComponentToggles();
   applyLanguage(currentLang);
 });
 
@@ -304,5 +313,31 @@ function setupHistoryToggle() {
     if (nextState) {
       detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
+  });
+}
+
+function setupComponentToggles() {
+  const compButtons = document.querySelectorAll('.btn-component-expand');
+  compButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const targetBox = document.getElementById(targetId);
+      if (!targetBox) return;
+
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const nextState = !isExpanded;
+
+      btn.setAttribute('aria-expanded', String(nextState));
+      targetBox.hidden = !nextState;
+
+      const textSpan = btn.querySelector('.comp-btn-text');
+      if (textSpan) {
+        const key = nextState ? 'btn_hide_component_img' : 'btn_view_component_img';
+        textSpan.setAttribute('data-i18n', key);
+        if (translations[currentLang] && translations[currentLang][key]) {
+          textSpan.textContent = translations[currentLang][key];
+        }
+      }
+    });
   });
 }
