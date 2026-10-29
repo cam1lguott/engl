@@ -40,6 +40,7 @@
   <!-- Hero Section -->
   <header class="hero-section">
     <div class="hero-content">
+      <div class="tag-badge">⚡ <span data-i18n="badge_hero">Estructura de Redes</span></div>
       <h1 class="hero-title" data-i18n="hero_title">Arquitectura y Evolución de los Computadores</h1>
       <p class="hero-subtitle" data-i18n="hero_desc">
         Una base interactiva diseñada para explorar la historia, componentes y funcionamiento del hardware computacional y su impacto en las redes.
@@ -62,19 +63,86 @@
       </p>
 
       <div class="timeline-container">
-        <!-- Item 1: ENIAC -->
-        <article class="timeline-item">
-          <div class="timeline-img-wrap">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Classic_shot_of_the_ENIAC.jpg" alt="ENIAC Computer" class="timeline-img" loading="lazy">
-          </div>
-          <div class="timeline-body">
-            <div class="timeline-header">
-              <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico de Propósito General</h3>
-              <span class="timeline-year">1945</span>
+        <!-- Item 1: ENIAC (Con detalle expandible / acordeón) -->
+        <article class="timeline-item timeline-expandable" id="eniac-card">
+          <div class="timeline-main-view">
+            <div class="timeline-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Classic_shot_of_the_ENIAC.jpg" alt="ENIAC Computer" class="timeline-img" loading="lazy">
             </div>
-            <p data-i18n="eniac_desc">
-              Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
-            </p>
+            <div class="timeline-body">
+              <div class="timeline-header">
+                <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico de Propósito General</h3>
+                <span class="timeline-year">1945</span>
+              </div>
+              <p data-i18n="eniac_desc">
+                Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
+              </p>
+              <div class="timeline-action-wrap">
+                <button type="button" class="btn-expand-history" id="toggle-eniac-btn" aria-expanded="false" aria-controls="eniac-detail-box">
+                  <span class="btn-expand-icon">📖</span>
+                  <span class="btn-expand-text" data-i18n="btn_see_full_history">Ver historia completa y pioneros</span>
+                  <span class="expand-arrow">▼</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadro desplegable con scroll vertical interno adaptativo -->
+          <div class="history-detail-panel" id="eniac-detail-box" hidden>
+            <div class="history-scroll-box">
+              <div class="detail-header-badge">
+                <span class="badge-tag" data-i18n="badge_origin">Hito Histórico Fundacional</span>
+                <span class="detail-time">1943 - 1946</span>
+              </div>
+
+              <h4 class="detail-section-heading" data-i18n="heading_how_created">¿Cómo y por qué nació el ENIAC?</h4>
+              <p class="detail-text" data-i18n="text_eniac_history_1">
+                Durante la Segunda Guerra Mundial, el ejército estadounidense enfrentaba la necesidad crítica de calcular con rapidez y precisión complejas tablas balísticas de tiro para artillería pesada. En 1943, el Laboratorio de Investigación Balística del Ejército financió en secreto el proyecto en la Moore School of Electrical Engineering de la Universidad de Pensilvania bajo el nombre clave <strong>Project PX</strong>.
+              </p>
+              <p class="detail-text" data-i18n="text_eniac_history_2">
+                Concluido formalmente en 1945 y presentado al público en febrero de 1946, el ENIAC (Electronic Numerical Integrator and Computer) pesaba más de 27 toneladas, ocupaba una superficie de 167 m², requería 150 kW de energía y constaba de más de 17.468 tubos de vacío, 7.200 diodos de cristal y 5 millones de uniones soldadas a mano.
+              </p>
+
+              <h4 class="detail-section-heading" data-i18n="heading_pioneers">Pioneros y Creadores Clave</h4>
+              <div class="pioneers-list">
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name">John Mauchly</strong>
+                    <span class="pioneer-role" data-i18n="role_mauchly">Físico y Diseñador Conceptual Principal</span>
+                    <p data-i18n="desc_mauchly">Ideó la arquitectura electrónica básica tras comprender que los circuitos con válvulas podían realizar operaciones aritméticas a velocidades impensables para los relés mecánicos.</p>
+                  </div>
+                </div>
+
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name">J. Presper Eckert</strong>
+                    <span class="pioneer-role" data-i18n="role_eckert">Ingeniero Eléctrico Jefe</span>
+                    <p data-i18n="desc_eckert">El genio detrás del diseño de ingeniería y la fiabilidad del hardware. Diseñó los circuitos que evitaron que los miles de tubos de vacío fallaran constantemente.</p>
+                  </div>
+                </div>
+
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name" data-i18n="pioneers_programmers_title">Las 6 Programadoras Pioneras del ENIAC</strong>
+                    <span class="pioneer-role" data-i18n="role_programmers">Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Wescoff, Ruth Lichterman y Frances Bilas</span>
+                    <p data-i18n="desc_programmers">Programaban el ENIAC sin lenguajes de programación ni sistemas operativos: configuraban a mano cientos de cables, paneles de conmutación y diagramas lógicos para calcular trayectorias balísticas.</p>
+                  </div>
+                </div>
+
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name">John von Neumann</strong>
+                    <span class="pioneer-role" data-i18n="role_von_neumann">Consultor Matemático</span>
+                    <p data-i18n="desc_von_neumann">Se unió como consultor y, a partir del aprendizaje del ENIAC, formuló en 1945 el concepto de programa almacenado (Arquitectura Von Neumann) que hoy rige a casi todas las computadoras modernas.</p>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="detail-section-heading" data-i18n="heading_legacy">Impacto y Legado Tecnológico</h4>
+              <p class="detail-text" data-i18n="text_eniac_legacy">
+                El ENIAC demostró al mundo que el cálculo electrónico a gran escala era viable. Aunque no almacenaba el programa en memoria como hoy (se recableaba manualmente para cada tarea), redujo cálculos de balística de 20 horas a tan solo 30 segundos, abriendo la era digital moderna.
+              </p>
+            </div>
           </div>
         </article>
 
@@ -139,63 +207,141 @@
 
       <div class="components-grid">
         <!-- Tarjeta Madre -->
-        <div class="component-card">
+        <div class="component-card" id="card-mb">
           <span class="card-icon">🖲️</span>
           <h3 class="card-title" data-i18n="mb_title">Placa Madre (Motherboard)</h3>
           <span class="card-detail" data-i18n="mb_sub">Conectividad & Buses</span>
           <p data-i18n="mb_desc">
             El circuito principal que interconecta el procesador, memorias, tarjetas de red y dispositivos de almacenamiento.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-mb" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-mb" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://th.bing.com/th/id/OIP.pos0kN3-I5Oy6bl8r_T-PgHaEn?w=305&h=190&c=7&r=0&o=7&pid=1.7&rm=3" alt="Motherboard circuitry" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_mb">Esquema y pistas de circuito en una placa base para interconectar CPU, ranuras PCIe, RAM y chipset.</span>
+            </div>
+          </div>
         </div>
 
         <!-- CPU -->
-        <div class="component-card">
+        <div class="component-card" id="card-cpu">
           <span class="card-icon">🧠</span>
           <h3 class="card-title" data-i18n="cpu_title">Procesador (CPU)</h3>
           <span class="card-detail" data-i18n="cpu_sub">Unidad Central de Procesamiento</span>
           <p data-i18n="cpu_desc">
             El cerebro del sistema encargado de ejecutar instrucciones, realizar cálculos lógicos y coordinar periféricos.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-cpu" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-cpu" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=800&q=80" alt="CPU Processor" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_cpu">Microprocesador de alto rendimiento montado con pines de contacto para socket de CPU.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Memoria RAM -->
-        <div class="component-card">
+        <div class="component-card" id="card-ram">
           <span class="card-icon">⚡</span>
           <h3 class="card-title" data-i18n="ram_title">Memoria RAM</h3>
           <span class="card-detail" data-i18n="ram_sub">Memoria de Acceso Aleatorio</span>
           <p data-i18n="ram_desc">
             Almacenamiento de alta velocidad y temporal donde se cargan los programas en ejecución y los búferes de red.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-ram" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-ram" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=800&q=80" alt="RAM Memory Module" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_ram">Módulo de memoria DDR para transferencia de datos en tiempo real entre programas y el procesador.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Almacenamiento -->
-        <div class="component-card">
+        <div class="component-card" id="card-storage">
           <span class="card-icon">💾</span>
           <h3 class="card-title" data-i18n="storage_title">Almacenamiento (SSD / HDD)</h3>
           <span class="card-detail" data-i18n="storage_sub">Persistencia de Datos</span>
           <p data-i18n="storage_desc">
             Memoria persistente donde se almacena el sistema operativo, controladores, datos y servicios de red.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-storage" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-storage" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://placaschinas.com/wp-content/uploads/2023/10/almacenamiento-SSD-vs-HD.jpg" alt="Internal Hard Disk Drive" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_storage">Unidad de almacenamiento para retención permanente de archivos del sistema y servicios.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Adaptador de Red (NIC) -->
-        <div class="component-card">
+        <div class="component-card" id="card-nic">
           <span class="card-icon">🌐</span>
           <h3 class="card-title" data-i18n="nic_title">Adaptador de Red (NIC)</h3>
           <span class="card-detail" data-i18n="nic_sub">Interfaz LAN / WLAN</span>
           <p data-i18n="nic_desc">
             Hardware clave en estructura de redes para conectar el host a redes Ethernet LAN o inalámbricas Wi-Fi.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-nic" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-nic" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://images.unsplash.com/photo-1605192020788-24d8eae86e59?auto=format&fit=crop&w=800&q=80" alt="Network Interface Port and RJ45" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_nic">Puerto de red cableada RJ-45 Ethernet conectando la controladora NIC con el medio físico LAN.</span>
+            </div>
+          </div>
         </div>
 
         <!-- Fuente de Poder -->
-        <div class="component-card">
+        <div class="component-card" id="card-psu">
           <span class="card-icon">🔌</span>
           <h3 class="card-title" data-i18n="psu_title">Fuente de Poder (PSU)</h3>
           <span class="card-detail" data-i18n="psu_sub">Distribución Eléctrica</span>
           <p data-i18n="psu_desc">
             Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.
           </p>
+          <button type="button" class="btn-component-expand" data-target="box-psu" aria-expanded="false">
+            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
+            <span class="comp-arrow">▼</span>
+          </button>
+          <div class="component-detail-box" id="box-psu" hidden>
+            <div class="component-scroll-content">
+              <div class="component-img-frame">
+                <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80" alt="Power Supply and PC Hardware" loading="lazy" class="component-img">
+              </div>
+              <span class="component-caption" data-i18n="caption_psu">Unidad de alimentación y refrigeración eléctrica para suministrar energía a los componentes internos.</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -323,7 +469,7 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <p>© 2026</p>
+    <p>© 2026 - <span data-i18n="footer_text">Estructura de Redes</span></p>
   </footer>
 
   <!-- Script interactivo bilingüe y menú móvil -->

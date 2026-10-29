@@ -11,6 +11,24 @@ const translations = {
     hero_desc: "Una base interactiva diseñada para explorar la historia, componentes y funcionamiento del hardware computacional y su impacto en las redes.",
     btn_timeline: "Línea de Tiempo",
     btn_components: "Ver Componentes",
+    btn_see_full_history: "Ver historia completa y pioneros",
+    btn_hide_full_history: "Ocultar historia completa",
+    badge_origin: "Hito Histórico Fundacional",
+    heading_how_created: "¿Cómo y por qué nació el ENIAC?",
+    text_eniac_history_1: "Durante la Segunda Guerra Mundial, el ejército estadounidense enfrentaba la necesidad crítica de calcular con rapidez y precisión complejas tablas balísticas de tiro para artillería pesada. En 1943, el Laboratorio de Investigación Balística del Ejército financió en secreto el proyecto en la Moore School of Electrical Engineering de la Universidad de Pensilvania bajo el nombre clave Project PX.",
+    text_eniac_history_2: "Concluido formalmente en 1945 y presentado al público en febrero de 1946, el ENIAC (Electronic Numerical Integrator and Computer) pesaba más de 27 toneladas, ocupaba una superficie de 167 m², requería 150 kW de energía y constaba de más de 17.468 tubos de vacío, 7.200 diodos de cristal y 5 millones de uniones soldadas a mano.",
+    heading_pioneers: "Pioneros y Creadores Clave",
+    role_mauchly: "Físico y Diseñador Conceptual Principal",
+    desc_mauchly: "Ideó la arquitectura electrónica básica tras comprender que los circuitos con válvulas podían realizar operaciones aritméticas a velocidades impensables para los relés mecánicos.",
+    role_eckert: "Ingeniero Eléctrico Jefe",
+    desc_eckert: "El genio detrás del diseño de ingeniería y la fiabilidad del hardware. Diseñó los circuitos que evitaron que los miles de tubos de vacío fallaran constantemente.",
+    pioneers_programmers_title: "Las 6 Programadoras Pioneras del ENIAC",
+    role_programmers: "Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Wescoff, Ruth Lichterman y Frances Bilas",
+    desc_programmers: "Programaban el ENIAC sin lenguajes de programación ni sistemas operativos: configuraban a mano cientos de cables, paneles de conmutación y diagramas lógicos para calcular trayectorias balísticas.",
+    role_von_neumann: "Consultor Matemático",
+    desc_von_neumann: "Se unió como consultor y, a partir del aprendizaje del ENIAC, formuló en 1945 el concepto de programa almacenado (Arquitectura Von Neumann) que hoy rige a casi todas las computadoras modernas.",
+    heading_legacy: "Impacto y Legado Tecnológico",
+    text_eniac_legacy: "El ENIAC demostró al mundo que el cálculo electrónico a gran escala era viable. Aunque no almacenaba el programa en memoria como hoy (se recableaba manualmente para cada tarea), redujo cálculos de balística de 20 horas a tan solo 30 segundos, abriendo la era digital moderna.",
     nav_history: "Historia",
     nav_components: "Componentes",
     nav_network: "Hardware & Redes",
@@ -50,6 +68,14 @@ const translations = {
     psu_title: "Fuente de Poder (PSU)",
     psu_desc: "Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.",
     psu_sub: "Distribución Eléctrica",
+    btn_view_component_img: "Ver imagen e info",
+    btn_hide_component_img: "Ocultar imagen",
+    caption_mb: "Esquema y distribución de zócalos, ranuras PCIe, chipset y conectores en una placa base moderna.",
+    caption_cpu: "Microprocesador multicore de alto rendimiento con cápsula de protección térmica (IHS).",
+    caption_ram: "Módulo de memoria DIMM con chips DRAM y contactos dorados para conexión al bus de alta velocidad.",
+    caption_storage: "Unidad de estado sólido moderna en formato M.2 NVMe conectada directamente por líneas PCIe.",
+    caption_nic: "Tarjeta de interfaz de red (NIC) PCIe con puerto RJ45 Gigabit Ethernet y chip controlador.",
+    caption_psu: "Fuente ATX modular con ventilador de refrigeración y conectores de alimentación para placa base y componentes.",
 
     // Hardware y Redes
     net_title: "Del Hardware a la Red",
@@ -92,6 +118,24 @@ const translations = {
     hero_desc: "An interactive baseline designed to explore the history, hardware components, and networking foundation of computers.",
     btn_timeline: "Timeline",
     btn_components: "View Components",
+    btn_see_full_history: "View full history and pioneers",
+    btn_hide_full_history: "Hide full history",
+    badge_origin: "Foundational Historic Milestone",
+    heading_how_created: "How and why was ENIAC born?",
+    text_eniac_history_1: "During World War II, the U.S. Army faced a critical need to quickly and accurately calculate complex ballistic firing tables for heavy artillery. In 1943, the Army Ballistic Research Laboratory secretly funded the project at the Moore School of Electrical Engineering at the University of Pennsylvania under the code name Project PX.",
+    text_eniac_history_2: "Formally completed in 1945 and revealed to the public in February 1946, ENIAC (Electronic Numerical Integrator and Computer) weighed over 27 tons, occupied 167 m², consumed 150 kW of power, and featured more than 17,468 vacuum tubes, 7,200 crystal diodes, and 5 million hand-soldered joints.",
+    heading_pioneers: "Key Pioneers and Creators",
+    role_mauchly: "Physicist and Principal Conceptual Designer",
+    desc_mauchly: "Conceived the core electronic architecture, realizing that vacuum tube circuits could perform arithmetic operations at speeds inconceivable for mechanical relays.",
+    role_eckert: "Chief Electrical Engineer",
+    desc_eckert: "The engineering mastermind behind hardware reliability. He designed circuits that prevented thousands of vacuum tubes from failing constantly.",
+    pioneers_programmers_title: "The 6 Pioneer Programmers of ENIAC",
+    role_programmers: "Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Wescoff, Ruth Lichterman, and Frances Bilas",
+    desc_programmers: "They programmed ENIAC without programming languages or operating systems: routing patch cables, configuring switches, and crafting logic diagrams by hand.",
+    role_von_neumann: "Mathematical Consultant",
+    desc_von_neumann: "Joined as a consultant and, drawing from ENIAC insights, formalized in 1945 the stored-program concept (Von Neumann Architecture) underlying modern computers.",
+    heading_legacy: "Technological Impact and Legacy",
+    text_eniac_legacy: "ENIAC proved to the world that high-speed electronic calculation was viable. While programs were configured with manual patch cords, it slashed ballistic calculation times from 20 hours to just 30 seconds, launching the modern digital age.",
     nav_history: "History",
     nav_components: "Components",
     nav_network: "Hardware & Networks",
@@ -239,5 +283,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setupCopyButton();
   setupMobileMenu();
+  setupHistoryToggle();
+  setupComponentToggles();
   applyLanguage(currentLang);
 });
+
+
+function setupHistoryToggle() {
+  const toggleBtn = document.getElementById('toggle-eniac-btn');
+  const detailPanel = document.getElementById('eniac-detail-box');
+  if (!toggleBtn || !detailPanel) return;
+
+  toggleBtn.addEventListener('click', () => {
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    const nextState = !isExpanded;
+
+    toggleBtn.setAttribute('aria-expanded', String(nextState));
+    detailPanel.hidden = !nextState;
+
+    const textSpan = toggleBtn.querySelector('.btn-expand-text');
+    if (textSpan) {
+      const key = nextState ? 'btn_hide_full_history' : 'btn_see_full_history';
+      textSpan.setAttribute('data-i18n', key);
+      if (translations[currentLang] && translations[currentLang][key]) {
+        textSpan.textContent = translations[currentLang][key];
+      }
+    }
+
+    if (nextState) {
+      detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+}
+
+function setupComponentToggles() {
+  const compButtons = document.querySelectorAll('.btn-component-expand');
+  compButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const targetBox = document.getElementById(targetId);
+      if (!targetBox) return;
+
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const nextState = !isExpanded;
+
+      btn.setAttribute('aria-expanded', String(nextState));
+      targetBox.hidden = !nextState;
+
+      const textSpan = btn.querySelector('.comp-btn-text');
+      if (textSpan) {
+        const key = nextState ? 'btn_hide_component_img' : 'btn_view_component_img';
+        textSpan.setAttribute('data-i18n', key);
+        if (translations[currentLang] && translations[currentLang][key]) {
+          textSpan.textContent = translations[currentLang][key];
+        }
+      }
+    });
+  });
+}
