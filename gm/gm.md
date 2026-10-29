@@ -12,19 +12,23 @@
 ## Edición de Archivos en CLI (Windows / CRLF)
 - En el entorno de la terminal de windows, si se quiere evitar errores de incompatibilidad de saltos de linea con edit_file, utiliza prioritario write_file para actualizar archivos completos de manera directa.
 
-## Configuración y Autenticación de GitHub CLI en PCs Nuevas
-- En entornos o computadoras nuevas donde `gh` no esté disponible o autenticado:
-  1. Asegurar la instalación de GitHub CLI ejecutando:
+## Configuración y Autenticación de GitHub CLI en Nuevas PCs
+- En nuevas computadoras o entornos donde no esté configurado o instalado GitHub CLI (`gh`):
+  1. **Instalación obligatoria**: Asegurarse de que esté instalado; si no lo está, ejecutar:
      ```powershell
      winget install github.cli
      ```
-  2. Ejecutar la autenticación:
+  2. **Inicio de sesión**: Ejecutar el comando para iniciar sesión:
      ```powershell
      gh auth login
      ```
-  3. La IA debe proporcionar directamente al usuario la URL y el código generado para autorizar e iniciar sesión rápidamente en el navegador.
+  3. **Entrega de código y enlace**: La IA debe capturar y proporcionar directamente en la respuesta la URL (enlace) y el código de un solo uso generado por GitHub CLI para que el usuario pueda iniciar sesión en el navegador, asegurándose de que la herramienta quede correctamente instalada y autenticada.
 
 ## Repositorios y Automatización de Git
+- **Sincronización y Actualización Local**: Los cambios remotos en GitHub no se descargan automáticamente en la carpeta local. Para actualizar la carpeta local con los cambios de otros colaboradores se debe ejecutar:
+  ```powershell
+  git pull origin main
+  ```
 - **Git Push Automático**: Al terminar modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main`.
 - El mensaje del commit siempre debe ser únicamente `"n"`.
 - No le pidas al usuario confirmaciones para hacer push ni le indiques usar GitHub Desktop.
