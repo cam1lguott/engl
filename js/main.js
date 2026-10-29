@@ -84,6 +84,10 @@ const translations = {
     gpu_desc: "Circuito dedicado de alto rendimiento para el renderizado 3D acelerado, modelado por computadora, inteligencia artificial y cálculo intensivo.",
     gpu_sub: "Procesamiento Gráfico & Paralelo",
     caption_gpu: "Tarjeta de video dedicada para ranura PCIe con disipador masivo, ventiladores axiales y memoria VRAM de alta velocidad para aceleración por hardware.",
+    optical_title: "Unidad de Disco Óptico (ODD)",
+    optical_desc: "Dispositivo de almacenamiento que utiliza diodos láser de luz infrarroja o azul para leer y escribir datos en discos compactos CD, DVD y Blu-ray.",
+    optical_sub: "Medio Extraíble & Láser Óptico",
+    caption_optical: "Lector y grabador de discos ópticos SATA con bandeja de carga frontal, lente láser óptico y motor de giro para almacenamiento físico extraíble.",
 
     // Hardware y Redes
     net_title: "Del Hardware a la Red",
@@ -254,6 +258,10 @@ const translations = {
     gpu_desc: "Dedicated high-performance processing hardware engineered for hardware-accelerated 3D rendering, machine learning, and parallel visual computation.",
     gpu_sub: "Parallel Graphics Processing",
     caption_gpu: "Dedicated PCIe graphics card featuring a robust heatsink assembly, axial fans, and ultra-fast dedicated VRAM for visual workloads.",
+    optical_title: "Optical Disc Drive (ODD)",
+    optical_desc: "Removable storage device utilizing infrared or blue laser diodes to read and record data onto compact discs, DVDs, and Blu-ray media.",
+    optical_sub: "Removable Media & Optical Laser",
+    caption_optical: "SATA optical disc drive featuring a front-loading motorized tray, laser lens assembly, and spindle motor for physical offline media.",
 
     // Hardware & Networks
     net_title: "From Hardware to Network",
