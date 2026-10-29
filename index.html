@@ -610,21 +610,109 @@
     </section>
 
 
-    <!-- SECCIÓN: Clasificación de Redes según su Alcance Geográfico (PAN, LAN, MAN, WAN) -->
+    <!-- SECCIÓN: Clasificación Completa de Redes según su Cobertura Geográfica (BAN, PAN, LAN/WLAN, CAN, MAN, WAN, GAN) -->
     <section id="alcance-redes" class="container">
       <h2 class="section-title">
         🗺️ <span data-i18n="scope_title">Tipos de Redes según su Cobertura Geográfica</span>
       </h2>
       <p class="section-desc" data-i18n="scope_desc">
-        Clasificación estándar de las redes informáticas en función del área física, la distancia de enlace y el propósito de conectividad.
+        Clasificación completa de redes informáticas en orden ascendente según su escala espacial, distancia de transmisión y aplicaciones reales.
       </p>
 
+      <!-- Tabla Comparativa Rápida -->
+      <div class="scope-table-wrap">
+        <table class="scope-summary-table">
+          <thead>
+            <tr>
+              <th data-i18n="th_sigla">Sigla</th>
+              <th data-i18n="th_fullname">Nombre Completo</th>
+              <th data-i18n="th_coverage">Cobertura Típica</th>
+              <th data-i18n="th_usecase">Caso de Uso Común</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="table-tag ban">BAN</span></td>
+              <td data-i18n="tbl_ban_name">Body Area Network</td>
+              <td data-i18n="tbl_ban_cov">&lt; 1 metro</td>
+              <td data-i18n="tbl_ban_use">Sensores médicos y dispositivos en el cuerpo</td>
+            </tr>
+            <tr>
+              <td><span class="table-tag pan">PAN</span></td>
+              <td data-i18n="tbl_pan_name">Personal Area Network</td>
+              <td data-i18n="tbl_pan_cov">~1 a 10 metros</td>
+              <td data-i18n="tbl_pan_use">Bluetooth entre móvil, reloj y auriculares</td>
+            </tr>
+            <tr>
+              <td><span class="table-tag lan">LAN / WLAN</span></td>
+              <td data-i18n="tbl_lan_name">Local / Wireless LAN</td>
+              <td data-i18n="tbl_lan_cov">Edificio, hogar (~100 m)</td>
+              <td data-i18n="tbl_lan_use">Red doméstica Wi-Fi o red de oficina</td>
+            </tr>
+            <tr>
+              <td><span class="table-tag can">CAN</span></td>
+              <td data-i18n="tbl_can_name">Campus Area Network</td>
+              <td data-i18n="tbl_can_cov">Conjunto de edificios (1 a 5 km)</td>
+              <td data-i18n="tbl_can_use">Universidad, hospital o parque industrial</td>
+            </tr>
+            <tr>
+              <td><span class="table-tag man">MAN</span></td>
+              <td data-i18n="tbl_man_name">Metropolitan Area Network</td>
+              <td data-i18n="tbl_man_cov">Ciudad o municipio (hasta 50 km)</td>
+              <td data-i18n="tbl_man_use">Red municipal de fibra óptica o TV por cable</td>
+            </tr>
+            <tr>
+              <td><span class="table-tag wan">WAN</span></td>
+              <td data-i18n="tbl_wan_name">Wide Area Network</td>
+              <td data-i18n="tbl_wan_cov">País, continente o global</td>
+              <td data-i18n="tbl_wan_use">Interconexión de sucursales bancarias; Internet</td>
+            </tr>
+            <tr>
+              <td><span class="table-tag gan">GAN</span></td>
+              <td data-i18n="tbl_gan_name">Global Area Network</td>
+              <td data-i18n="tbl_gan_cov">Planetario</td>
+              <td data-i18n="tbl_gan_use">Redes satelitales (Starlink) y cables submarinos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tarjetas Visuales con Imágenes y Detalles -->
       <div class="network-scope-grid">
-        <!-- 1. PAN -->
+        <!-- 1. BAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Body Area Network BAN Medical Sensors" class="scope-img" loading="lazy">
+            <span class="scope-badge ban">Cuerpo Humano // &lt; 1 m</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">🩺</span>
+              <div>
+                <h3 class="scope-name" data-i18n="ban_title">BAN (Body Area Network)</h3>
+                <span class="scope-sub" data-i18n="ban_sub">Red de Área Corporal</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="ban_desc">
+              <strong>Cobertura:</strong> Menos de 1 metro en torno al cuerpo humano. Comunica biosensores implantables o llevables con monitores de salud.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="ban_example">Sensores médicos inalámbricos, marcapasos inteligentes y monitores continuos de glucosa o ritmo cardíaco.</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>IEEE 802.15.6</span>
+              <span>Bluetooth LE</span>
+              <span>Bio-sensores</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. PAN -->
         <article class="scope-card">
           <div class="scope-img-wrap">
             <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80" alt="Personal Area Network PAN Bluetooth" class="scope-img" loading="lazy">
-            <span class="scope-badge pan">Alcance Personal // ~10m</span>
+            <span class="scope-badge pan">Personal // ~1 a 10 m</span>
           </div>
           <div class="scope-body">
             <div class="scope-header">
@@ -635,56 +723,83 @@
               </div>
             </div>
             <p class="scope-text" data-i18n="pan_desc">
-              <strong>Alcance:</strong> Unos pocos metros alrededor de un usuario individual. Conecta periféricos personales de bajo consumo con dispositivos móviles o portátiles.
+              <strong>Cobertura:</strong> Alrededor de 1 a 10 metros del usuario. Enlaza dispositivos personales directos de bajo consumo eléctrico.
             </p>
             <div class="scope-example-box">
-              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
-              <p data-i18n="pan_example">Conectar un reloj inteligente (Smartwatch) o unos audífonos inalámbricos Bluetooth a tu celular.</p>
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="pan_example">Bluetooth entre móvil, reloj inteligente y auriculares inalámbricos.</p>
             </div>
             <div class="scope-tech-tags">
               <span>Bluetooth 5.3</span>
-              <span>Zigbee</span>
               <span>NFC</span>
-              <span>USB Wireless</span>
+              <span>Zigbee</span>
             </div>
           </div>
         </article>
 
-        <!-- 2. LAN -->
+        <!-- 3. LAN / WLAN -->
         <article class="scope-card">
           <div class="scope-img-wrap">
             <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Local Area Network LAN Cables and Switch" class="scope-img" loading="lazy">
-            <span class="scope-badge lan">Edificio / Hogar // Hasta 1 km</span>
+            <span class="scope-badge lan">Hogar / Edificio // ~100 m</span>
           </div>
           <div class="scope-body">
             <div class="scope-header">
               <span class="scope-icon">🏠</span>
               <div>
-                <h3 class="scope-name" data-i18n="lan_title">LAN (Local Area Network)</h3>
-                <span class="scope-sub" data-i18n="lan_sub">Red de Área Local</span>
+                <h3 class="scope-name" data-i18n="lan_title">LAN / WLAN (Local Area Network)</h3>
+                <span class="scope-sub" data-i18n="lan_sub">Red de Área Local Cableada / Inalámbrica</span>
               </div>
             </div>
             <p class="scope-text" data-i18n="lan_desc">
-              <strong>Alcance:</strong> Conecta dispositivos dentro de un espacio físico confinado, como un edificio corporativo, una oficina o una vivienda particular, ofreciendo altas tasas de transferencia.
+              <strong>Cobertura:</strong> Espacio delimitado como una casa, laboratorio u oficina (hasta 100 m por segmento de cable).
             </p>
             <div class="scope-example-box">
-              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
-              <p data-i18n="lan_example">El Wi-Fi de tu hogar o la red interna cableada mediante Switch Ethernet de una empresa u oficina.</p>
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="lan_example">Red doméstica Wi-Fi o red interna conmutada de oficina para compartir impresoras e Internet.</p>
             </div>
             <div class="scope-tech-tags">
-              <span>Ethernet IEEE 802.3</span>
+              <span>Ethernet 802.3</span>
               <span>Wi-Fi 6 (802.11ax)</span>
-              <span>VLAN</span>
-              <span>UTP Cat6</span>
+              <span>Switching L2</span>
             </div>
           </div>
         </article>
 
-        <!-- 3. MAN -->
+        <!-- 4. CAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" alt="Campus Area Network CAN University" class="scope-img" loading="lazy">
+            <span class="scope-badge can">Campus // 1 a 5 km</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">🎓</span>
+              <div>
+                <h3 class="scope-name" data-i18n="can_title">CAN (Campus Area Network)</h3>
+                <span class="scope-sub" data-i18n="can_sub">Red de Área de Campus</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="can_desc">
+              <strong>Cobertura:</strong> Conjunto contiguo de edificios dentro de un radio de 1 a 5 km, interconectados mediante troncales de alta velocidad.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="can_example">Universidad, complejo hospitalario o parque industrial con múltiples facultades y laboratorios enlazados.</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>Fibra Óptica OM4</span>
+              <span>Backbone 10GbE</span>
+              <span>VLAN Trunking</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. MAN -->
         <article class="scope-card">
           <div class="scope-img-wrap">
             <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80" alt="Metropolitan Area Network MAN City" class="scope-img" loading="lazy">
-            <span class="scope-badge man">Área Urbana // 10 km a 50 km</span>
+            <span class="scope-badge man">Metropolitana // Hasta 50 km</span>
           </div>
           <div class="scope-body">
             <div class="scope-header">
@@ -695,52 +810,80 @@
               </div>
             </div>
             <p class="scope-text" data-i18n="man_desc">
-              <strong>Alcance:</strong> Cubre un área geográfica intermedia, como una ciudad completa, municipio o un gran campus universitario interconectado.
+              <strong>Cobertura:</strong> Una ciudad, municipio o área metropolitana completa (hasta 50 km) mediante anillos ópticos.
             </p>
             <div class="scope-example-box">
-              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
-              <p data-i18n="man_example">La red privada de fibra que conecta todas las sucursales de una alcaldía, cámaras de vigilancia urbanas o un banco dentro de la misma ciudad.</p>
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="man_example">Red municipal de fibra óptica, sistemas de cámaras de seguridad urbana o televisión por cable.</p>
             </div>
             <div class="scope-tech-tags">
-              <span>Anillos FDDI / SDH</span>
               <span>Metro Ethernet</span>
-              <span>Fibra Óptica DWDM</span>
-              <span>WiMAX</span>
+              <span>Anillos SDH / SONET</span>
+              <span>DWDM</span>
             </div>
           </div>
         </article>
 
-        <!-- 4. WAN -->
+        <!-- 6. WAN -->
         <article class="scope-card">
           <div class="scope-img-wrap">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Wide Area Network WAN Global Internet" class="scope-img" loading="lazy">
-            <span class="scope-badge wan">Global // Países y Continentes</span>
+            <span class="scope-badge wan">País / Continente // Extensa</span>
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🌍</span>
+              <span class="scope-icon">🌐</span>
               <div>
                 <h3 class="scope-name" data-i18n="wan_title">WAN (Wide Area Network)</h3>
                 <span class="scope-sub" data-i18n="wan_sub">Red de Área Amplia</span>
               </div>
             </div>
             <p class="scope-text" data-i18n="wan_desc">
-              <strong>Alcance:</strong> Conecta múltiples redes a través de distancias geográficas masivas (regiones, países o continentes). Requiere cables submarinos, satélites y enrutadores de núcleo.
+              <strong>Cobertura:</strong> Cobertura masiva a nivel de países o continentes mediante telecomunicaciones públicas y privadas.
             </p>
             <div class="scope-example-box">
-              <span class="scope-example-label" data-i18n="lbl_example">Ejemplo real:</span>
-              <p data-i18n="wan_example">Internet es la red WAN pública más grande y compleja del mundo, interconectando millones de redes autónomas (BGP).</p>
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="wan_example">Interconexión de sucursales bancarias nacionales, corporaciones multinacionales y la red Internet.</p>
             </div>
             <div class="scope-tech-tags">
-              <span>Backbone Tier-1</span>
+              <span>MPLS</span>
+              <span>SD-WAN</span>
+              <span>Enrutamiento BGP</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. GAN -->
+        <article class="scope-card">
+          <div class="scope-img-wrap">
+            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80" alt="Global Area Network GAN Earth from Orbit Satellite" class="scope-img" loading="lazy">
+            <span class="scope-badge gan">Planetario // Global Total</span>
+          </div>
+          <div class="scope-body">
+            <div class="scope-header">
+              <span class="scope-icon">🛰️</span>
+              <div>
+                <h3 class="scope-name" data-i18n="gan_title">GAN (Global Area Network)</h3>
+                <span class="scope-sub" data-i18n="gan_sub">Red de Área Global</span>
+              </div>
+            </div>
+            <p class="scope-text" data-i18n="gan_desc">
+              <strong>Cobertura:</strong> Escala planetaria completa. Red global sin límites fronterizos que une todas las redes terrestres y espaciales.
+            </p>
+            <div class="scope-example-box">
+              <span class="scope-example-label" data-i18n="lbl_example">Caso de uso común:</span>
+              <p data-i18n="gan_example">Redes de constelaciones satelitales en órbita baja (Starlink, OneWeb), GPS y cables submarinos transoceánicos.</p>
+            </div>
+            <div class="scope-tech-tags">
+              <span>Satélites LEO</span>
               <span>Cables Submarinos</span>
-              <span>MPLS / SD-WAN</span>
-              <span>BGP Routing</span>
+              <span>Laser Inter-satelital</span>
             </div>
           </div>
         </article>
       </div>
     </section>
+
 
     <!-- SECCIÓN INTERACTIVA: Simulador de Ping y Enrutamiento de Paquetes -->
     <section id="simulador-red" class="container">
