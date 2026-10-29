@@ -25,10 +25,12 @@
   3. **Entrega de código y enlace**: La IA debe capturar y proporcionar directamente en la respuesta la URL (enlace) y el código de un solo uso generado por GitHub CLI para que el usuario pueda iniciar sesión en el navegador, asegurándose de que la herramienta quede correctamente instalada y autenticada.
 
 ## Repositorios y Automatización de Git
-- **Sincronización y Actualización Local**: Los cambios remotos en GitHub no se descargan automáticamente en la carpeta local. Para actualizar la carpeta local con los cambios de otros colaboradores se debe ejecutar:
+- **Sincronización Previa Obligatoria (Git Pull Siempre ANTES)**:
+  - Siempre, antes de realizar cualquier cambio o modificación de código en la PC local, es **obligatorio** ejecutar un `git pull` para descargar primero los cambios de los demás colaboradores y evitar conflictos:
   ```powershell
   git pull origin main
   ```
-- **Git Push Automático**: Al terminar modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main`.
-- El mensaje del commit siempre debe ser únicamente `"n"`.
-- No le pidas al usuario confirmaciones para hacer push ni le indiques usar GitHub Desktop.
+- **Git Push Automático**:
+  - Al terminar las modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main`.
+  - El mensaje del commit siempre debe ser únicamente `"n"`.
+  - No le pidas al usuario confirmaciones para hacer push ni le indiques usar GitHub Desktop.
