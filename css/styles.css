@@ -652,3 +652,215 @@ body {
   color: var(--text-muted);
   font-size: 0.9rem;
 }
+
+/* =========================================================
+   PANEL EXPANDIBLE DE HISTORIA COMPLETA (ENIAC Y PIONEROS)
+   ========================================================= */
+
+.timeline-expandable {
+  flex-direction: column !important;
+}
+
+.timeline-main-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .timeline-main-view {
+    flex-direction: row;
+  }
+}
+
+.timeline-action-wrap {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.btn-expand-history {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #f1f5f9;
+  border: 1px solid var(--border-subtle);
+  color: #0f172a;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+
+.btn-expand-history:hover {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-expand-history .expand-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-expand-history[aria-expanded="true"] .expand-arrow {
+  transform: rotate(180deg);
+}
+
+/* Panel desplegable con caja de 25rem de alto y desplazamiento vertical */
+.history-detail-panel {
+  border-top: 1px solid var(--border-subtle);
+  background: #f8fafc;
+  animation: fadeInDown 0.35s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.history-scroll-box {
+  /* Cuadro de scroll con altura controlada (25rem ~ 400px o max-height responsivo) */
+  max-height: 25rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+/* Scrollbar estilizado en navegadores basados en Webkit */
+.history-scroll-box::-webkit-scrollbar {
+  width: 7px;
+}
+
+.history-scroll-box::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.history-scroll-box::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+.history-scroll-box::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.detail-header-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge-tag {
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.detail-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.detail-section-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.detail-text {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.pioneers-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .pioneers-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pioneer-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.pioneer-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.pioneer-name {
+  display: block;
+  font-size: 1rem;
+  color: #0f172a;
+  margin-bottom: 0.2rem;
+}
+
+.pioneer-role {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0284c7;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pioneer-info p {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .history-scroll-box {
+    max-height: 22rem;
+    padding: 1.15rem;
+  }
+  .btn-expand-history {
+    width: 100%;
+  }
+}

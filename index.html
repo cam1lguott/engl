@@ -62,19 +62,86 @@
       </p>
 
       <div class="timeline-container">
-        <!-- Item 1: ENIAC -->
-        <article class="timeline-item">
-          <div class="timeline-img-wrap">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Classic_shot_of_the_ENIAC.jpg" alt="ENIAC Computer" class="timeline-img" loading="lazy">
-          </div>
-          <div class="timeline-body">
-            <div class="timeline-header">
-              <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico de Propósito General</h3>
-              <span class="timeline-year">1945</span>
+        <!-- Item 1: ENIAC (Con detalle expandible / acordeón) -->
+        <article class="timeline-item timeline-expandable" id="eniac-card">
+          <div class="timeline-main-view">
+            <div class="timeline-img-wrap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Classic_shot_of_the_ENIAC.jpg" alt="ENIAC Computer" class="timeline-img" loading="lazy">
             </div>
-            <p data-i18n="eniac_desc">
-              Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
-            </p>
+            <div class="timeline-body">
+              <div class="timeline-header">
+                <h3 data-i18n="eniac_title">ENIAC - Primer Computador Electrónico de Propósito General</h3>
+                <span class="timeline-year">1945</span>
+              </div>
+              <p data-i18n="eniac_desc">
+                Ocupaba una habitación entera y empleaba más de 17.000 válvulas de vacío. Fue crucial para el cálculo balístico y científico.
+              </p>
+              <div class="timeline-action-wrap">
+                <button type="button" class="btn-expand-history" id="toggle-eniac-btn" aria-expanded="false" aria-controls="eniac-detail-box">
+                  <span class="btn-expand-icon">📖</span>
+                  <span class="btn-expand-text" data-i18n="btn_see_full_history">Ver historia completa y pioneros</span>
+                  <span class="expand-arrow">▼</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadro desplegable con scroll vertical interno adaptativo -->
+          <div class="history-detail-panel" id="eniac-detail-box" hidden>
+            <div class="history-scroll-box">
+              <div class="detail-header-badge">
+                <span class="badge-tag" data-i18n="badge_origin">Hito Histórico Fundacional</span>
+                <span class="detail-time">1943 - 1946</span>
+              </div>
+
+              <h4 class="detail-section-heading" data-i18n="heading_how_created">¿Cómo y por qué nació el ENIAC?</h4>
+              <p class="detail-text" data-i18n="text_eniac_history_1">
+                Durante la Segunda Guerra Mundial, el ejército estadounidense enfrentaba la necesidad crítica de calcular con rapidez y precisión complejas tablas balísticas de tiro para artillería pesada. En 1943, el Laboratorio de Investigación Balística del Ejército financió en secreto el proyecto en la Moore School of Electrical Engineering de la Universidad de Pensilvania bajo el nombre clave <strong>Project PX</strong>.
+              </p>
+              <p class="detail-text" data-i18n="text_eniac_history_2">
+                Concluido formalmente en 1945 y presentado al público en febrero de 1946, el ENIAC (Electronic Numerical Integrator and Computer) pesaba más de 27 toneladas, ocupaba una superficie de 167 m², requería 150 kW de energía y constaba de más de 17.468 tubos de vacío, 7.200 diodos de cristal y 5 millones de uniones soldadas a mano.
+              </p>
+
+              <h4 class="detail-section-heading" data-i18n="heading_pioneers">Pioneros y Creadores Clave</h4>
+              <div class="pioneers-list">
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name">John Mauchly</strong>
+                    <span class="pioneer-role" data-i18n="role_mauchly">Físico y Diseñador Conceptual Principal</span>
+                    <p data-i18n="desc_mauchly">Ideó la arquitectura electrónica básica tras comprender que los circuitos con válvulas podían realizar operaciones aritméticas a velocidades impensables para los relés mecánicos.</p>
+                  </div>
+                </div>
+
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name">J. Presper Eckert</strong>
+                    <span class="pioneer-role" data-i18n="role_eckert">Ingeniero Eléctrico Jefe</span>
+                    <p data-i18n="desc_eckert">El genio detrás del diseño de ingeniería y la fiabilidad del hardware. Diseñó los circuitos que evitaron que los miles de tubos de vacío fallaran constantemente.</p>
+                  </div>
+                </div>
+
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name" data-i18n="pioneers_programmers_title">Las 6 Programadoras Pioneras del ENIAC</strong>
+                    <span class="pioneer-role" data-i18n="role_programmers">Kay McNulty, Betty Jennings, Betty Snyder, Marlyn Wescoff, Ruth Lichterman y Frances Bilas</span>
+                    <p data-i18n="desc_programmers">Programaban el ENIAC sin lenguajes de programación ni sistemas operativos: configuraban a mano cientos de cables, paneles de conmutación y diagramas lógicos para calcular trayectorias balísticas.</p>
+                  </div>
+                </div>
+
+                <div class="pioneer-card">
+                  <div class="pioneer-info">
+                    <strong class="pioneer-name">John von Neumann</strong>
+                    <span class="pioneer-role" data-i18n="role_von_neumann">Consultor Matemático</span>
+                    <p data-i18n="desc_von_neumann">Se unió como consultor y, a partir del aprendizaje del ENIAC, formuló en 1945 el concepto de programa almacenado (Arquitectura Von Neumann) que hoy rige a casi todas las computadoras modernas.</p>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="detail-section-heading" data-i18n="heading_legacy">Impacto y Legado Tecnológico</h4>
+              <p class="detail-text" data-i18n="text_eniac_legacy">
+                El ENIAC demostró al mundo que el cálculo electrónico a gran escala era viable. Aunque no almacenaba el programa en memoria como hoy (se recableaba manualmente para cada tarea), redujo cálculos de balística de 20 horas a tan solo 30 segundos, abriendo la era digital moderna.
+              </p>
+            </div>
           </div>
         </article>
 
