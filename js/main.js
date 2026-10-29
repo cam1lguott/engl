@@ -158,6 +158,21 @@ const translations = {
     copy_code: "Copiar",
     copied_code: "¡Copiado!",
 
+    // Simulador Ping
+    nav_simulator: "Simulador Ping",
+    sim_title: "Simulador Interactivo de Ping & Tránsito de Paquetes",
+    sim_desc: "Visualiza en tiempo real cómo viaja un paquete ICMP (Echo Request & Reply) a través de los componentes físicos: desde la tarjeta NIC del host, pasando por el Switch (Capa 2) y Router (Capa 3), hasta el servidor de destino.",
+    sim_lbl_source: "Host de Origen:",
+    sim_lbl_target: "Destino:",
+    sim_btn_ping: "Enviar Ping ICMP",
+    sim_btn_reset: "Reiniciar",
+    sim_l2_badge: "Capa 2 (MAC Table)",
+    sim_l3_badge: "Capa 3 (Routing Table)",
+    sim_term_title: "Monitor de Tráfico de Red (Wireshark / CLI Ping Log)",
+    sim_status_ready: "LISTO",
+    insp_l2_title: "Capa 2 - Trama Ethernet (MAC)",
+    insp_l3_title: "Capa 3 - Paquete IP (Protocolo 1 ICMP)",
+    insp_stat_title: "Métricas de Conectividad",
     footer_text: "Estructura de Redes"
   },
   en: {
@@ -305,6 +320,21 @@ const translations = {
     copy_code: "Copy",
     copied_code: "Copied!",
 
+    // Simulator Ping
+    nav_simulator: "Ping Simulator",
+    sim_title: "Interactive Ping & Packet Routing Simulator",
+    sim_desc: "Real-time visual tracer of ICMP packets (Echo Request & Reply) flowing across physical networking gear: from host NICs, traversing Layer-2 Switches and Layer-3 Routers, to target cloud servers.",
+    sim_lbl_source: "Source Host:",
+    sim_lbl_target: "Destination:",
+    sim_btn_ping: "Send ICMP Ping",
+    sim_btn_reset: "Reset",
+    sim_l2_badge: "Layer 2 (MAC Table)",
+    sim_l3_badge: "Layer 3 (Routing Table)",
+    sim_term_title: "Network Traffic Monitor (Wireshark / Ping CLI)",
+    sim_status_ready: "READY",
+    insp_l2_title: "Layer 2 - Ethernet Frame (MAC)",
+    insp_l3_title: "Layer 3 - IP Packet (Protocol 1 ICMP)",
+    insp_stat_title: "Connectivity Metrics",
     footer_text: "Network Structure"
   }
 };
@@ -381,6 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   setupHistoryToggle();
   setupComponentToggles();
+  setupNetworkSimulator();
   applyLanguage(currentLang);
 });
 
@@ -442,5 +473,222 @@ function setupComponentToggles() {
         }
       }
     });
+  });
+}
+
+/* =========================================================
+   LÓGICA DEL SIMULADOR INTERACTIVO DE PING & TRÁNSITO ICMP
+   ========================================================= */
+
+function setupNetworkSimulator() {
+  const startBtn = document.getElementById('sim-start-btn');
+  const resetBtn = document.getElementById('sim-reset-btn');
+  const sourceSelect = document.getElementById('sim-source-select');
+  const targetSelect = document.getElementById('sim-target-select');
+  const packet = document.getElementById('sim-packet');
+  const packetText = document.getElementById('packet-type-text');
+  const consoleBody = document.getElementById('sim-console');
+  const statusTag = document.getElementById('sim-status-tag');
+  const inspL2 = document.getElementById('insp-l2-info');
+  const inspL3 = document.getElementById('insp-l3-info');
+  const inspStat = document.getElementById('insp-stat-info');
+  const stage = document.getElementById('sim-stage');
+
+  if (!startBtn || !stage) return;
+
+  const devices = {
+    pc1: { id: 'node-pc1', ip: '192.168.1.10', mac: '00:1A:2B:3C:4D:01', name: 'PC 1' },
+    pc2: { id: 'node-pc2', ip: '192.168.1.20', mac: '00:1A:2B:3C:4D:02', name: 'PC 2' },
+    switch: { id: 'node-switch', ip: 'L2 Switch', mac: 'CAM Table', name: 'Switch LAN' },
+    router: { id: 'node-router', ip: '192.168.1.1', mac: '00:00:5E:00:53:01', name: 'Gateway Router' },
+    server: { id: 'node-server', ip: '10.0.0.80', mac: 'AA:BB:CC:DD:EE:80', name: 'Web Server' }
+  };
+
+  let isRunning = false;
+
+  function log(msg, type = 'info') {
+    if (!consoleBody) return;
+    const p = document.createElement('p');
+    p.className = `console-line ${type}`;
+    p.textContent = msg;
+    consoleBody.appendChild(p);
+    consoleBody.scrollTop = consoleBody.scrollHeight;
+  }
+
+  function getDeviceCenter(devKey) {
+    const el = document.getElementById(devices[devKey].id);
+    if (!el || !stage) return { x: 50, y: 50 };
+    const stageRect = stage.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const x = elRect.left - stageRect.left + elRect.width / 2;
+    const y = elRect.top - stageRect.top + elRect.height / 2;
+    return { x, y };
+  }
+
+  function movePacketTo(devKey, callback, duration = 750) {
+    const coords = getDeviceCenter(devKey);
+    packet.style.transform = `translate(${coords.x - 30}px, ${coords.y - 18}px)`;
+    setTimeout(callback, duration);
+  }
+
+  function highlightDevice(devKey) {
+    document.querySelectorAll('.sim-device').forEach(d => d.classList.remove('processing-packet'));
+    const el = document.getElementById(devices[devKey].id);
+    if (el) el.classList.add('processing-packet');
+  }
+
+  function updateSelectionsUI() {
+    document.querySelectorAll('.sim-device').forEach(d => {
+      d.classList.remove('active-source', 'active-target');
+    });
+    const srcEl = document.getElementById(devices[sourceSelect.value]?.id);
+    const dstEl = document.getElementById(devices[targetSelect.value]?.id);
+    if (srcEl) srcEl.classList.add('active-source');
+    if (dstEl) dstEl.classList.add('active-target');
+  }
+
+  sourceSelect.addEventListener('change', updateSelectionsUI);
+  targetSelect.addEventListener('change', updateSelectionsUI);
+  updateSelectionsUI();
+
+  resetBtn.addEventListener('click', () => {
+    isRunning = false;
+    startBtn.disabled = false;
+    packet.hidden = true;
+    document.querySelectorAll('.sim-device').forEach(d => {
+      d.classList.remove('processing-packet');
+    });
+    consoleBody.innerHTML = '<p class="console-line info">[SISTEMA] Simulador reiniciado. Listo para nueva prueba.</p>';
+    statusTag.textContent = translations[currentLang]?.sim_status_ready || 'LISTO';
+    statusTag.className = 'sim-status-idle';
+    inspL2.textContent = 'Origen: -- | Destino: --';
+    inspL3.textContent = 'IP Src: -- | IP Dst: -- | TTL: --';
+    inspStat.textContent = 'RTT: -- ms | Pérdida: 0% | Estado: Esperando';
+    updateSelectionsUI();
+  });
+
+  startBtn.addEventListener('click', () => {
+    const src = sourceSelect.value;
+    const dst = targetSelect.value;
+
+    if (src === dst) {
+      log('[ERROR] El host de origen y el de destino no pueden ser el mismo.', 'info');
+      return;
+    }
+
+    if (isRunning) return;
+    isRunning = true;
+    startBtn.disabled = true;
+    statusTag.textContent = 'TRANSMITIENDO...';
+    statusTag.className = 'sim-status-running';
+    consoleBody.innerHTML = '';
+
+    const srcDev = devices[src];
+    const dstDev = devices[dst];
+
+    log(`[ICMP INICIO] Iniciando ping desde ${srcDev.name} (${srcDev.ip}) hacia ${dstDev.name} (${dstDev.ip})...`, 'req');
+
+    // Posición inicial del paquete
+    const initPos = getDeviceCenter(src);
+    packet.hidden = false;
+    packet.className = 'packet-traveler';
+    packetText.textContent = 'ICMP Echo Req';
+    packet.style.transform = `translate(${initPos.x - 30}px, ${initPos.y - 18}px)`;
+
+    inspL2.textContent = `Trama: ${srcDev.mac} -> ${srcDev.ip.startsWith('192.168.1') && dstDev.ip.startsWith('10.0.0') ? devices.router.mac : dstDev.mac}`;
+    inspL3.textContent = `IP Src: ${srcDev.ip} -> IP Dst: ${dstDev.ip} | Protocol: 1 (ICMP) | TTL: 64`;
+    inspStat.textContent = 'Calculando latencia...';
+
+    // RUTA DE IDA
+    const isSameSubnet = dst === 'pc2';
+
+    // Paso 1: Salida del Host a Switch
+    setTimeout(() => {
+      log(`[HOST NIC] ${srcDev.name} encapsula paquete IP en trama 802.3 Ethernet y lo envía por par trenzado al Switch LAN.`, 'l2');
+      highlightDevice(src);
+      movePacketTo('switch', () => {
+        highlightDevice('switch');
+        log(`[SWITCH] Lee encabezado Capa 2: Puerto asociado a MAC destino detectado en CAM Table.`, 'l2');
+
+        if (isSameSubnet) {
+          // Destino local: Switch entrega directo a PC2
+          setTimeout(() => {
+            movePacketTo(dst, () => {
+              highlightDevice(dst);
+              log(`[DESTINO] ${dstDev.name} recibe trama, verifica IP coincidente y procesa ICMP Echo Request.`, 'rep');
+              startReturnTrip(srcDev, dstDev, true);
+            });
+          }, 600);
+        } else {
+          // Destino WAN: Switch entrega al Router Gateway
+          setTimeout(() => {
+            log(`[SWITCH] Destino está fuera de la subred local (192.168.1.0/24). Reenvía trama a la MAC de la Gateway (Router).`, 'l2');
+            movePacketTo('router', () => {
+              highlightDevice('router');
+              log(`[ROUTER L3] Desencapsula trama L2. Consulta tabla de rutas: IP 10.0.0.80 está en la interfaz WAN. Decrementa TTL a 63.`, 'l3');
+              inspL3.textContent = `IP Src: ${srcDev.ip} -> IP Dst: ${dstDev.ip} | Protocol: 1 (ICMP) | TTL: 63`;
+
+              // Router a Servidor
+              setTimeout(() => {
+                log(`[ROUTER -> WAN] Transmite paquete a través de enlace punto a punto hacia ${dstDev.name}.`, 'l3');
+                movePacketTo('server', () => {
+                  highlightDevice('server');
+                  log(`[WEB SERVER] Servidor recibe solicitud ICMP Echo Request exitosamente. Genera Echo Reply.`, 'rep');
+                  startReturnTrip(srcDev, dstDev, false);
+                });
+              }, 650);
+            });
+          }, 650);
+        }
+      });
+    }, 400);
+
+    function startReturnTrip(srcD, dstD, isLocal) {
+      setTimeout(() => {
+        packet.classList.add('reply');
+        packetText.textContent = 'ICMP Echo Reply';
+        log(`[ICMP RESPUESTA] Enviando respuesta desde ${dstD.ip} de vuelta a ${srcD.ip}...`, 'rep');
+        inspL2.textContent = `Trama: ${dstD.mac} -> ${srcD.mac}`;
+
+        if (isLocal) {
+          movePacketTo('switch', () => {
+            highlightDevice('switch');
+            log(`[SWITCH] Conmuta respuesta directamente al puerto de ${srcD.name}.`, 'l2');
+            setTimeout(() => {
+              movePacketTo(src, () => finishPing(true));
+            }, 600);
+          });
+        } else {
+          movePacketTo('router', () => {
+            highlightDevice('router');
+            log(`[ROUTER] Enruta respuesta WAN de vuelta a subred LAN 192.168.1.0/24 hacia Switch.`, 'l3');
+            setTimeout(() => {
+              movePacketTo('switch', () => {
+                highlightDevice('switch');
+                log(`[SWITCH] Entrega Echo Reply final al puerto de ${srcD.name}.`, 'l2');
+                setTimeout(() => {
+                  movePacketTo(src, () => finishPing(false));
+                }, 600);
+              });
+            }, 600);
+          });
+        }
+      }, 700);
+    }
+
+    function finishPing(isLocal) {
+      highlightDevice(src);
+      const rtt = isLocal ? (Math.random() * 2 + 1).toFixed(2) : (Math.random() * 8 + 24).toFixed(2);
+      log(`[ÉXITO] 64 bytes desde ${dstDev.ip}: icmp_seq=1 ttl=${isLocal ? 64 : 63} tiempo=${rtt} ms`, 'rep');
+      log(`[RESUMEN] 1 paquetes transmitidos, 1 recibidos, 0% packet loss. Enlace verificado.`, 'info');
+      inspStat.textContent = `RTT: ${rtt} ms | Pérdida: 0% | Estado: Conectado (OK)`;
+      statusTag.textContent = 'COMPLETADO (100%)';
+      statusTag.className = 'sim-status-idle';
+      startBtn.disabled = false;
+      isRunning = false;
+      setTimeout(() => {
+        document.querySelectorAll('.sim-device').forEach(d => d.classList.remove('processing-packet'));
+      }, 1000);
+    }
   });
 }

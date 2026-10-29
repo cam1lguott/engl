@@ -18,6 +18,7 @@
           <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
           <li><a href="#redes" data-i18n="nav_network">Hardware & Redes</a></li>
           <li><a href="#topologias" data-i18n="nav_topologies">Topologías</a></li>
+          <li><a href="#simulador-red" data-i18n="nav_simulator">Simulador Ping</a></li>
           <li><a href="#glosario" data-i18n="nav_glossary">Glosario</a></li>
           <li><a href="#laboratorio" data-i18n="nav_lab">Laboratorio</a></li>
         </ul>
@@ -538,6 +539,145 @@
       </div>
     </section>
 
+
+    <!-- SECCIÓN INTERACTIVA: Simulador de Ping y Enrutamiento de Paquetes -->
+    <section id="simulador-red" class="container">
+      <h2 class="section-title">
+        📡 <span data-i18n="sim_title">Simulador Interactivo de Ping & Tránsito de Paquetes</span>
+      </h2>
+      <p class="section-desc" data-i18n="sim_desc">
+        Visualiza en tiempo real cómo viaja un paquete ICMP (Echo Request & Reply) a través de los componentes físicos: desde la tarjeta NIC del host, pasando por el Switch (Capa 2) y Router (Capa 3), hasta el servidor de destino.
+      </p>
+
+      <div class="simulator-wrapper">
+        <!-- Panel de control de simulación -->
+        <div class="sim-control-bar">
+          <div class="sim-control-group">
+            <label for="sim-source-select" class="sim-label" data-i18n="sim_lbl_source">Host de Origen:</label>
+            <select id="sim-source-select" class="sim-select">
+              <option value="pc1">PC 1 (192.168.1.10 - LAN A)</option>
+              <option value="pc2">PC 2 (192.168.1.20 - LAN A)</option>
+            </select>
+          </div>
+
+          <div class="sim-control-group">
+            <label for="sim-target-select" class="sim-label" data-i18n="sim_lbl_target">Destino:</label>
+            <select id="sim-target-select" class="sim-select">
+              <option value="server">Servidor Web (10.0.0.80 - WAN / Cloud)</option>
+              <option value="pc2">PC 2 (192.168.1.20 - Misma LAN)</option>
+            </select>
+          </div>
+
+          <button id="sim-start-btn" class="sim-btn-run" type="button">
+            <span class="btn-icon">⚡</span>
+            <span data-i18n="sim_btn_ping">Enviar Ping ICMP</span>
+          </button>
+
+          <button id="sim-reset-btn" class="sim-btn-reset" type="button" title="Reiniciar visualizador">
+            ↺ <span data-i18n="sim_btn_reset">Reiniciar</span>
+          </button>
+        </div>
+
+        <!-- Escenario de red interactivo -->
+        <div class="sim-stage" id="sim-stage">
+          <!-- Dispositivos de Red (Nodos) -->
+          <div class="sim-nodes-row">
+            <!-- Host PC 1 -->
+            <div class="sim-device" id="node-pc1">
+              <div class="device-icon-wrap">💻</div>
+              <strong class="device-name">PC 1 (Host A)</strong>
+              <span class="device-ip">192.168.1.10</span>
+              <span class="device-mac">MAC: 00:1A:2B:3C:4D:01</span>
+            </div>
+
+            <!-- Host PC 2 -->
+            <div class="sim-device" id="node-pc2">
+              <div class="device-icon-wrap">💻</div>
+              <strong class="device-name">PC 2 (Host B)</strong>
+              <span class="device-ip">192.168.1.20</span>
+              <span class="device-mac">MAC: 00:1A:2B:3C:4D:02</span>
+            </div>
+
+            <!-- Switch Capa 2 -->
+            <div class="sim-device central" id="node-switch">
+              <div class="device-icon-wrap switch-icon">🔀</div>
+              <strong class="device-name">Switch LAN</strong>
+              <span class="device-ip" data-i18n="sim_l2_badge">Capa 2 (MAC Table)</span>
+              <span class="device-mac">VLAN 10 Default</span>
+            </div>
+
+            <!-- Router Gateway Capa 3 -->
+            <div class="sim-device router" id="node-router">
+              <div class="device-icon-wrap router-icon">🧭</div>
+              <strong class="device-name">Router Gateway</strong>
+              <span class="device-ip">192.168.1.1 / 10.0.0.1</span>
+              <span class="device-mac" data-i18n="sim_l3_badge">Capa 3 (Routing Table)</span>
+            </div>
+
+            <!-- Servidor Web Remoto -->
+            <div class="sim-device server" id="node-server">
+              <div class="device-icon-wrap server-icon">🗄️</div>
+              <strong class="device-name">Web Server</strong>
+              <span class="device-ip">10.0.0.80 (HTTP / DNS)</span>
+              <span class="device-mac">MAC: AA:BB:CC:DD:EE:80</span>
+            </div>
+          </div>
+
+          <!-- Pista visual de cables de interconexión física con luces -->
+          <div class="sim-links-svg-wrap">
+            <svg class="sim-links-svg" viewBox="0 0 1000 70" preserveAspectRatio="none">
+              <!-- Enlaces PC1 a Switch, PC2 a Switch, Switch a Router, Router a Server -->
+              <line x1="100" y1="35" x2="500" y2="35" class="sim-wire-back" />
+              <line x1="300" y1="35" x2="500" y2="35" class="sim-wire-back" />
+              <line x1="500" y1="35" x2="700" y2="35" class="sim-wire-back" />
+              <line x1="700" y1="35" x2="900" y2="35" class="sim-wire-back" />
+              
+              <line id="wire-active-pc1" x1="100" y1="35" x2="500" y2="35" class="sim-wire-glow" />
+              <line id="wire-active-pc2" x1="300" y1="35" x2="500" y2="35" class="sim-wire-glow" />
+              <line id="wire-active-sr" x1="500" y1="35" x2="700" y2="35" class="sim-wire-glow" />
+              <line id="wire-active-dest" x1="700" y1="35" x2="900" y2="35" class="sim-wire-glow" />
+            </svg>
+          </div>
+
+          <!-- Indicador de paquete viajero animado -->
+          <div class="packet-traveler" id="sim-packet" hidden>
+            <span class="packet-badge" id="packet-type-text">ICMP Request</span>
+            <span class="packet-arrow">📦</span>
+          </div>
+        </div>
+
+        <!-- Consola de inspección del paquete en tiempo real -->
+        <div class="sim-terminal-wrap">
+          <div class="sim-terminal-header">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title" data-i18n="sim_term_title">Monitor de Tráfico de Red (Wireshark / CLI Ping Log)</span>
+            <span id="sim-status-tag" class="sim-status-idle" data-i18n="sim_status_ready">LISTO</span>
+          </div>
+
+          <div class="sim-console-body" id="sim-console">
+            <p class="console-line info">[SISTEMA] Simulador inicializado. Selecciona host origen y destino, luego pulsa 'Enviar Ping ICMP'.</p>
+          </div>
+
+          <!-- Inspección del encabezado de trama / paquete -->
+          <div class="packet-inspector-grid">
+            <div class="inspector-box">
+              <span class="insp-title" data-i18n="insp_l2_title">Capa 2 - Trama Ethernet (MAC)</span>
+              <p id="insp-l2-info">Origen: -- &nbsp;|&nbsp; Destino: --</p>
+            </div>
+            <div class="inspector-box">
+              <span class="insp-title" data-i18n="insp_l3_title">Capa 3 - Paquete IP (Protocolo 1 ICMP)</span>
+              <p id="insp-l3-info">IP Src: -- &nbsp;|&nbsp; IP Dst: -- &nbsp;|&nbsp; TTL: --</p>
+            </div>
+            <div class="inspector-box">
+              <span class="insp-title" data-i18n="insp_stat_title">Métricas de Conectividad</span>
+              <p id="insp-stat-info">RTT: -- ms &nbsp;|&nbsp; Pérdida: 0% &nbsp;|&nbsp; Estado: Esperando</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SECCIÓN: Topologías de Redes -->
     <section id="topologias" class="container">
