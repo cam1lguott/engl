@@ -385,30 +385,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 function setupHistoryToggle() {
-  const toggleBtn = document.getElementById('toggle-eniac-btn');
-  const detailPanel = document.getElementById('eniac-detail-box');
-  if (!toggleBtn || !detailPanel) return;
-
-  toggleBtn.addEventListener('click', () => {
-    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    const nextState = !isExpanded;
-
-    toggleBtn.setAttribute('aria-expanded', String(nextState));
-    detailPanel.hidden = !nextState;
-
-    const textSpan = toggleBtn.querySelector('.btn-expand-text');
-    if (textSpan) {
-      const key = nextState ? 'btn_hide_full_history' : 'btn_see_full_history';
-      textSpan.setAttribute('data-i18n', key);
-      if (translations[currentLang] && translations[currentLang][key]) {
-        textSpan.textContent = translations[currentLang][key];
+  const historyButtons = document.querySelectorAll('.btn-expand-history');
+  historyButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      let targetId = btn.getAttribute('data-target');
+      if (!targetId && btn.id === 'toggle-eniac-btn') {
+        targetId = 'eniac-detail-box';
       }
-    }
+      const detailPanel = document.getElementById(targetId);
+      if (!detailPanel) return;
 
-    if (nextState) {
-      detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const nextState = !isExpanded;
+
+      btn.setAttribute('aria-expanded', String(nextState));
+      detailPanel.hidden = !nextState;
+
+      const textSpan = btn.querySelector('.btn-expand-text');
+      if (textSpan) {
+        const key = nextState ? 'btn_hide_full_history' : 'btn_see_full_history';
+        textSpan.setAttribute('data-i18n', key);
+        if (translations[currentLang] && translations[currentLang][key]) {
+          textSpan.textContent = translations[currentLang][key];
+        }
+      }
+
+      if (nextState) {
+        detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
   });
 }
 
