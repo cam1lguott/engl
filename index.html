@@ -29,11 +29,11 @@
       <div class="header-actions">
         <!-- Boton Modo Claro / Oscuro -->
         <button id="theme-toggle" class="theme-switch-btn" title="Modo Claro / Oscuro" aria-label="Cambiar tema">
-          <span id="theme-icon">🌙</span>
+          <span id="theme-icon" class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
         </button>
         <!-- Selector bilingüe Español / Inglés -->
         <button id="lang-toggle" class="lang-switch-btn" title="Cambiar idioma / Switch language">
-          🌐 <span id="lang-label">ES</span>
+          <span class="mono-icon" style="margin-right:0.35rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span id="lang-label">ES</span>
         </button>
 
         <!-- Botón de tres rayitas (Hamburguesa) para celulares -->
@@ -47,7 +47,7 @@
   <!-- Hero Section -->
   <header class="hero-section">
     <div class="hero-content">
-      <div class="tag-badge">⚡ <span data-i18n="badge_hero">Estructura de Redes</span></div>
+      <div class="tag-badge"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span> <span data-i18n="badge_hero">Estructura de Redes</span></div>
       <h1 class="hero-title" data-i18n="hero_title">Arquitectura y Evolución de los Computadores</h1>
       <p class="hero-subtitle" data-i18n="hero_desc">
         Una base interactiva diseñada para explorar la historia, componentes y funcionamiento del hardware computacional y su impacto en las redes.
@@ -63,7 +63,7 @@
     <!-- SECCIÓN 1: Computadores Antiguos (Antes de 1980) con Imágenes Históricas Reales -->
     <section id="historia" class="container">
       <h2 class="section-title">
-        ⏳ <span data-i18n="hist_title">Computadores Históricos (Antes de 1980)</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span> <span data-i18n="hist_title">Computadores Históricos (Antes de 1980)</span>
       </h2>
       <p class="section-desc" data-i18n="hist_desc">
         Los primeros hitos de la computación que sentaron las bases para las redes y la microcomputación moderna.
@@ -86,7 +86,7 @@
               </p>
               <div class="timeline-action-wrap">
                 <button type="button" class="btn-expand-history" id="toggle-eniac-btn" aria-expanded="false" aria-controls="eniac-detail-box">
-                  <span class="btn-expand-icon">📖</span>
+                  <span class="btn-expand-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span></span>
                   <span class="btn-expand-text" data-i18n="btn_see_full_history">Ver historia completa y pioneros</span>
                   <span class="expand-arrow">▼</span>
                 </button>
@@ -169,7 +169,7 @@
               </p>
               <div class="timeline-action-wrap">
                 <button type="button" class="btn-expand-history" data-target="ibm7090-detail-box" aria-expanded="false" aria-controls="ibm7090-detail-box">
-                  <span class="btn-expand-icon">📖</span>
+                  <span class="btn-expand-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span></span>
                   <span class="btn-expand-text" data-i18n="btn_see_full_history">Ver historia completa y pioneros</span>
                   <span class="expand-arrow">▼</span>
                 </button>
@@ -237,7 +237,7 @@
               </p>
               <div class="timeline-action-wrap">
                 <button type="button" class="btn-expand-history" data-target="altair-detail-box" aria-expanded="false" aria-controls="altair-detail-box">
-                  <span class="btn-expand-icon">📖</span>
+                  <span class="btn-expand-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span></span>
                   <span class="btn-expand-text" data-i18n="btn_see_full_history">Ver historia completa y pioneros</span>
                   <span class="expand-arrow">▼</span>
                 </button>
@@ -305,7 +305,7 @@
               </p>
               <div class="timeline-action-wrap">
                 <button type="button" class="btn-expand-history" data-target="apple2-detail-box" aria-expanded="false" aria-controls="apple2-detail-box">
-                  <span class="btn-expand-icon">📖</span>
+                  <span class="btn-expand-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></span></span>
                   <span class="btn-expand-text" data-i18n="btn_see_full_history">Ver historia completa y pioneros</span>
                   <span class="expand-arrow">▼</span>
                 </button>
@@ -361,7 +361,7 @@
     <!-- SECCIÓN 2: Componentes del Computador -->
     <section id="componentes" class="container">
       <h2 class="section-title">
-        ⚙️ <span data-i18n="comp_title">Componentes de un Computador</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span> <span data-i18n="comp_title">Componentes de un Computador</span>
       </h2>
       <p class="section-desc" data-i18n="comp_desc">
         Los pilares del hardware que permiten procesar datos, ejecutar programas y comunicarse en red.
@@ -370,14 +370,14 @@
       <div class="components-grid">
         <!-- Tarjeta Madre -->
         <div class="component-card" id="card-mb">
-          <span class="card-icon">🖲️</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="2"></rect><rect x="6" y="6" width="4" height="4"></rect><path d="M14 6h4M14 10h4M6 14h4M6 18h4M14 14h4v4h-4z"></path></svg></span>
           <h3 class="card-title" data-i18n="mb_title">Placa Madre (Motherboard)</h3>
           <span class="card-detail" data-i18n="mb_sub">Conectividad & Buses</span>
           <p data-i18n="mb_desc">
             El circuito principal que interconecta el procesador, memorias, tarjetas de red y dispositivos de almacenamiento.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-mb" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -393,14 +393,14 @@
 
         <!-- CPU -->
         <div class="component-card" id="card-cpu">
-          <span class="card-icon">🧠</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg></span>
           <h3 class="card-title" data-i18n="cpu_title">Procesador (CPU)</h3>
           <span class="card-detail" data-i18n="cpu_sub">Unidad Central de Procesamiento</span>
           <p data-i18n="cpu_desc">
             El cerebro del sistema encargado de ejecutar instrucciones, realizar cálculos lógicos y coordinar periféricos.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-cpu" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -416,14 +416,14 @@
 
         <!-- Memoria RAM -->
         <div class="component-card" id="card-ram">
-          <span class="card-icon">⚡</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="10" rx="1"></rect><line x1="6" y1="17" x2="6" y2="20"></line><line x1="10" y1="17" x2="10" y2="20"></line><line x1="14" y1="17" x2="14" y2="20"></line><line x1="18" y1="17" x2="18" y2="20"></line><rect x="5" y="10" width="3" height="4"></rect><rect x="10" y="10" width="3" height="4"></rect><rect x="15" y="10" width="3" height="4"></rect></svg></span>
           <h3 class="card-title" data-i18n="ram_title">Memoria RAM</h3>
           <span class="card-detail" data-i18n="ram_sub">Memoria de Acceso Aleatorio</span>
           <p data-i18n="ram_desc">
             Almacenamiento de alta velocidad y temporal donde se cargan los programas en ejecución y los búferes de red.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-ram" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -439,14 +439,14 @@
 
         <!-- Almacenamiento -->
         <div class="component-card" id="card-storage">
-          <span class="card-icon">💾</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="12" x2="2" y2="12"></line><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path><line x1="6" y1="16" x2="6.01" y2="16"></line><line x1="10" y1="16" x2="10.01" y2="16"></line></svg></span>
           <h3 class="card-title" data-i18n="storage_title">Almacenamiento (SSD / HDD)</h3>
           <span class="card-detail" data-i18n="storage_sub">Persistencia de Datos</span>
           <p data-i18n="storage_desc">
             Memoria persistente donde se almacena el sistema operativo, controladores, datos y servicios de red.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-storage" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -462,14 +462,14 @@
 
         <!-- Adaptador de Red (NIC) -->
         <div class="component-card" id="card-nic">
-          <span class="card-icon">🌐</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="6" cy="12" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle><line x1="16" y1="10" x2="18" y2="10"></line><line x1="16" y1="14" x2="18" y2="14"></line></svg></span>
           <h3 class="card-title" data-i18n="nic_title">Adaptador de Red (NIC)</h3>
           <span class="card-detail" data-i18n="nic_sub">Interfaz LAN / WLAN</span>
           <p data-i18n="nic_desc">
             Hardware clave en estructura de redes para conectar el host a redes Ethernet LAN o inalámbricas Wi-Fi.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-nic" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -485,14 +485,14 @@
 
         <!-- Fuente de Poder -->
         <div class="component-card" id="card-psu">
-          <span class="card-icon">🔌</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="8" x2="12" y2="12"></line></svg></span>
           <h3 class="card-title" data-i18n="psu_title">Fuente de Poder (PSU)</h3>
           <span class="card-detail" data-i18n="psu_sub">Distribución Eléctrica</span>
           <p data-i18n="psu_desc">
             Convierte la corriente alterna en los voltajes continuos que alimentan con estabilidad a cada circuito del equipo.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-psu" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -508,14 +508,14 @@
 
         <!-- Refrigeración Líquida (AIO Cooler) -->
         <div class="component-card" id="card-cooling">
-          <span class="card-icon">❄️</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path></svg></span>
           <h3 class="card-title" data-i18n="cooling_title">Refrigeración Líquida (AIO Liquid Cooler)</h3>
           <span class="card-detail" data-i18n="cooling_sub">Disipación Térmica & Control de Temperatura</span>
           <p data-i18n="cooling_desc">
             Disipa el calor extremo generado por el procesador (CPU) mediante un circuito cerrado de líquido refrigerante, radiador y ventiladores de alta presión estática.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-cooling" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -531,14 +531,14 @@
 
         <!-- Tarjeta Gráfica Dedicada (GPU) -->
         <div class="component-card" id="card-gpu">
-          <span class="card-icon">🎮</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"></rect><circle cx="8" cy="12" r="3"></circle><circle cx="16" cy="12" r="3"></circle><path d="M2 9h20M2 15h20"></path></svg></span>
           <h3 class="card-title" data-i18n="gpu_title">Tarjeta Gráfica (GPU)</h3>
           <span class="card-detail" data-i18n="gpu_sub">Procesamiento Gráfico & Paralelo</span>
           <p data-i18n="gpu_desc">
             Circuito dedicado de alto rendimiento para el renderizado 3D acelerado, modelado por computadora, inteligencia artificial y cálculo intensivo.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-gpu" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -554,14 +554,14 @@
 
         <!-- Unidad Óptica (CD / DVD / Blu-ray) -->
         <div class="component-card" id="card-optical">
-          <span class="card-icon">💿</span>
+          <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg></span>
           <h3 class="card-title" data-i18n="optical_title">Unidad de Disco Óptico (ODD)</h3>
           <span class="card-detail" data-i18n="optical_sub">Medio Extraíble & Láser Óptico</span>
           <p data-i18n="optical_desc">
             Dispositivo de almacenamiento que utiliza diodos láser de luz infrarroja o azul para leer y escribir datos en discos compactos CD, DVD y Blu-ray.
           </p>
           <button type="button" class="btn-component-expand" data-target="box-optical" aria-expanded="false">
-            <span class="comp-btn-icon">📷</span>
+            <span class="comp-btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></span></span>
             <span class="comp-btn-text" data-i18n="btn_view_component_img">Ver imagen e info</span>
             <span class="comp-arrow">▼</span>
           </button>
@@ -580,7 +580,7 @@
     <!-- SECCIÓN 3: Del Hardware a la Red (Enfoque directo para Estructura de Redes) -->
     <section id="redes" class="container">
       <h2 class="section-title">
-        🔗 <span data-i18n="net_title">Del Hardware a la Red</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span> <span data-i18n="net_title">Del Hardware a la Red</span>
       </h2>
       <p class="section-desc" data-i18n="net_desc">
         Cómo el equipo físico se enlaza e interactúa en una infraestructura de red local (LAN).
@@ -617,7 +617,7 @@
     <!-- SECCIÓN: Clasificación Completa de Redes según su Cobertura Geográfica (BAN, PAN, LAN/WLAN, CAN, MAN, WAN, GAN) -->
     <section id="alcance-redes" class="container">
       <h2 class="section-title">
-        🗺️ <span data-i18n="scope_title">Tipos de Redes según su Cobertura Geográfica</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span> <span data-i18n="scope_title">Tipos de Redes según su Cobertura Geográfica</span>
       </h2>
       <p class="section-desc" data-i18n="scope_desc">
         Clasificación completa de redes informáticas en orden ascendente según su escala espacial, distancia de transmisión y aplicaciones reales.
@@ -633,7 +633,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🩺</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 12.5l3.5 3.5 11.5-11.5M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="ban_title">BAN (Body Area Network)</h3>
                 <span class="scope-sub" data-i18n="ban_sub">Red de Área Corporal</span>
@@ -662,7 +662,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">⌚</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="7" width="12" height="10" rx="2"></rect><path d="M9 1v6M15 1v6M9 17v6M15 17v6"></path></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="pan_title">PAN (Personal Area Network)</h3>
                 <span class="scope-sub" data-i18n="pan_sub">Red de Área Personal</span>
@@ -691,7 +691,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🏠</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="lan_title">LAN / WLAN (Local Area Network)</h3>
                 <span class="scope-sub" data-i18n="lan_sub">Red de Área Local Cableada / Inalámbrica</span>
@@ -720,7 +720,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🎓</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="can_title">CAN (Campus Area Network)</h3>
                 <span class="scope-sub" data-i18n="can_sub">Red de Área de Campus</span>
@@ -749,7 +749,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🏙️</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="8" height="14" rx="1"></rect><rect x="13" y="3" width="8" height="19" rx="1"></rect><line x1="7" y1="12" x2="7.01" y2="12"></line><line x1="7" y1="16" x2="7.01" y2="16"></line><line x1="17" y1="7" x2="17.01" y2="7"></line><line x1="17" y1="11" x2="17.01" y2="11"></line><line x1="17" y1="15" x2="17.01" y2="15"></line></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="man_title">MAN (Metropolitan Area Network)</h3>
                 <span class="scope-sub" data-i18n="man_sub">Red de Área Metropolitana</span>
@@ -778,7 +778,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🌐</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="wan_title">WAN (Wide Area Network)</h3>
                 <span class="scope-sub" data-i18n="wan_sub">Red de Área Amplia</span>
@@ -807,7 +807,7 @@
           </div>
           <div class="scope-body">
             <div class="scope-header">
-              <span class="scope-icon">🛰️</span>
+              <span class="scope-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><line x1="12" y1="2" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="22"></line><line x1="2" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="22" y2="12"></line><path d="M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg></span>
               <div>
                 <h3 class="scope-name" data-i18n="gan_title">GAN (Global Area Network)</h3>
                 <span class="scope-sub" data-i18n="gan_sub">Red de Área Global</span>
@@ -834,7 +834,7 @@
     <!-- SECCIÓN INTERACTIVA: Simulador de Ping y Enrutamiento de Paquetes -->
     <section id="simulador-red" class="container">
       <h2 class="section-title">
-        📡 <span data-i18n="sim_title">Simulador Interactivo de Ping & Tránsito de Paquetes</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.93 19.07a10 10 0 0 1 0-14.14M7.76 16.24a6 6 0 0 1 0-8.48M12 12h.01"></path></svg></span> <span data-i18n="sim_title">Simulador Interactivo de Ping & Tránsito de Paquetes</span>
       </h2>
       <p class="section-desc" data-i18n="sim_desc">
         Visualiza en tiempo real cómo viaja un paquete ICMP (Echo Request & Reply) a través de los componentes físicos: desde la tarjeta NIC del host, pasando por el Switch (Capa 2) y Router (Capa 3), hasta el servidor de destino.
@@ -860,7 +860,7 @@
           </div>
 
           <button id="sim-start-btn" class="sim-btn-run" type="button">
-            <span class="btn-icon">⚡</span>
+            <span class="btn-icon"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span></span>
             <span data-i18n="sim_btn_ping">Enviar Ping ICMP</span>
           </button>
 
@@ -875,7 +875,7 @@
           <div class="sim-nodes-row">
             <!-- Host PC 1 -->
             <div class="sim-device" id="node-pc1">
-              <div class="device-icon-wrap">💻</div>
+              <div class="device-icon-wrap mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
               <strong class="device-name">PC 1 (Host A)</strong>
               <span class="device-ip">192.168.1.10</span>
               <span class="device-mac">MAC: 00:1A:2B:3C:4D:01</span>
@@ -883,7 +883,7 @@
 
             <!-- Host PC 2 -->
             <div class="sim-device" id="node-pc2">
-              <div class="device-icon-wrap">💻</div>
+              <div class="device-icon-wrap mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
               <strong class="device-name">PC 2 (Host B)</strong>
               <span class="device-ip">192.168.1.20</span>
               <span class="device-mac">MAC: 00:1A:2B:3C:4D:02</span>
@@ -891,7 +891,7 @@
 
             <!-- Switch Capa 2 -->
             <div class="sim-device central" id="node-switch">
-              <div class="device-icon-wrap switch-icon">🔀</div>
+              <div class="device-icon-wrap switch-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"></rect><circle cx="6" cy="12" r="1.5"></circle><circle cx="10" cy="12" r="1.5"></circle><circle cx="14" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg></div>
               <strong class="device-name">Switch LAN</strong>
               <span class="device-ip" data-i18n="sim_l2_badge">Capa 2 (MAC Table)</span>
               <span class="device-mac">VLAN 10 Default</span>
@@ -899,7 +899,7 @@
 
             <!-- Router Gateway Capa 3 -->
             <div class="sim-device router" id="node-router">
-              <div class="device-icon-wrap router-icon">🧭</div>
+              <div class="device-icon-wrap router-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><polygon points="12 6 15 12 12 18 9 12"></polygon></svg></div>
               <strong class="device-name">Router Gateway</strong>
               <span class="device-ip">192.168.1.1 / 10.0.0.1</span>
               <span class="device-mac" data-i18n="sim_l3_badge">Capa 3 (Routing Table)</span>
@@ -907,7 +907,7 @@
 
             <!-- Servidor Web Remoto -->
             <div class="sim-device server" id="node-server">
-              <div class="device-icon-wrap server-icon">🗄️</div>
+              <div class="device-icon-wrap server-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="5" rx="1"></rect><rect x="2" y="10" width="20" height="5" rx="1"></rect><rect x="2" y="17" width="20" height="5" rx="1"></rect><line x1="6" y1="5.5" x2="6.01" y2="5.5"></line><line x1="6" y1="12.5" x2="6.01" y2="12.5"></line><line x1="6" y1="19.5" x2="6.01" y2="19.5"></line></svg></div>
               <strong class="device-name">Web Server</strong>
               <span class="device-ip">10.0.0.80 (HTTP / DNS)</span>
               <span class="device-mac">MAC: AA:BB:CC:DD:EE:80</span>
@@ -933,7 +933,7 @@
           <!-- Indicador de paquete viajero animado -->
           <div class="packet-traveler" id="sim-packet" hidden>
             <span class="packet-badge" id="packet-type-text">ICMP Request</span>
-            <span class="packet-arrow">📦</span>
+            <span class="packet-arrow"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg></span></span>
           </div>
         </div>
 
@@ -973,7 +973,7 @@
     <!-- SECCIÓN: Topologías de Redes -->
     <section id="topologias" class="container">
       <h2 class="section-title">
-        🌐 <span data-i18n="topol_title">Topologías de Redes</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></span> <span data-i18n="topol_title">Topologías de Redes</span>
       </h2>
       <p class="section-desc" data-i18n="topol_desc">
         La distribución física y lógica que define cómo se interconectan los nodos, hosts y enlaces de transmisión en una infraestructura de comunicaciones.
@@ -983,7 +983,7 @@
         <!-- 1. Topología en Estrella -->
         <article class="topology-card">
           <div class="topo-card-header">
-            <span class="card-icon">⭐</span>
+            <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="3" r="2"></circle><circle cx="21" cy="12" r="2"></circle><circle cx="12" cy="21" r="2"></circle><circle cx="3" cy="12" r="2"></circle><line x1="12" y1="5" x2="12" y2="9"></line><line x1="19" y1="12" x2="15" y2="12"></line><line x1="12" y1="19" x2="12" y2="15"></line><line x1="5" y1="12" x2="9" y2="12"></line></svg></span>
             <div>
               <h3 class="topo-card-title" data-i18n="star_title">Topología en Estrella (Star)</h3>
               <span class="topo-badge" data-i18n="star_badge">Punto Centralizado // Estándar LAN</span>
@@ -1031,7 +1031,7 @@
         <!-- 2. Topología en Bus -->
         <article class="topology-card">
           <div class="topo-card-header">
-            <span class="card-icon">🚌</span>
+            <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="2" y1="12" x2="22" y2="12" stroke-width="3"></line><circle cx="5" cy="6" r="2"></circle><circle cx="12" cy="6" r="2"></circle><circle cx="19" cy="6" r="2"></circle><line x1="5" y1="8" x2="5" y2="12"></line><line x1="12" y1="8" x2="12" y2="12"></line><line x1="19" y1="8" x2="19" y2="12"></line></svg></span>
             <div>
               <h3 class="topo-card-title" data-i18n="bus_title">Topología en Bus</h3>
               <span class="topo-badge" data-i18n="bus_badge">Canal Compartido // Troncal</span>
@@ -1078,7 +1078,7 @@
         <!-- 3. Topología en Anillo -->
         <article class="topology-card">
           <div class="topo-card-header">
-            <span class="card-icon">🔄</span>
+            <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8" stroke-dasharray="6 3"></circle><circle cx="12" cy="4" r="2"></circle><circle cx="20" cy="12" r="2"></circle><circle cx="12" cy="20" r="2"></circle><circle cx="4" cy="12" r="2"></circle></svg></span>
             <div>
               <h3 class="topo-card-title" data-i18n="ring_title">Topología en Anillo (Ring)</h3>
               <span class="topo-badge" data-i18n="ring_badge">Bucle Cerrado // Paso de Token</span>
@@ -1121,7 +1121,7 @@
         <!-- 4. Topología en Malla -->
         <article class="topology-card">
           <div class="topo-card-header">
-            <span class="card-icon">🕸️</span>
+            <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"></polygon><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="8.5" x2="22" y2="15.5"></line><line x1="2" y1="15.5" x2="22" y2="8.5"></line></svg></span>
             <div>
               <h3 class="topo-card-title" data-i18n="mesh_title">Topología en Malla (Mesh)</h3>
               <span class="topo-badge" data-i18n="mesh_badge">Redundancia Total // Alta Disponibilidad</span>
@@ -1168,7 +1168,7 @@
         <!-- 5. Topología en Árbol -->
         <article class="topology-card">
           <div class="topo-card-header">
-            <span class="card-icon">🌳</span>
+            <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="4" r="2"></circle><circle cx="6" cy="12" r="2"></circle><circle cx="18" cy="12" r="2"></circle><circle cx="3" cy="20" r="2"></circle><circle cx="9" cy="20" r="2"></circle><line x1="12" y1="6" x2="6" y2="10"></line><line x1="12" y1="6" x2="18" y2="10"></line><line x1="6" y1="14" x2="3" y2="18"></line><line x1="6" y1="14" x2="9" y2="18"></line></svg></span>
             <div>
               <h3 class="topo-card-title" data-i18n="tree_title">Topología en Árbol (Tree)</h3>
               <span class="topo-badge" data-i18n="tree_badge">Estructura Jerárquica // Multinivel</span>
@@ -1217,7 +1217,7 @@
         <!-- 6. Topología Híbrida / Mixta -->
         <article class="topology-card">
           <div class="topo-card-header">
-            <span class="card-icon">🔀</span>
+            <span class="card-icon mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg></span>
             <div>
               <h3 class="topo-card-title" data-i18n="hybrid_title">Topología Híbrida (Mixta)</h3>
               <span class="topo-badge" data-i18n="hybrid_badge">Combinación Adaptativa // Flexible</span>
@@ -1268,7 +1268,7 @@
     <!-- SECCIÓN 4: Glosario Técnico (Para la clase de Inglés) -->
     <section id="glosario" class="container">
       <h2 class="section-title">
-        📖 <span data-i18n="glos_title">Glosario Técnico de Redes y Computación</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span> <span data-i18n="glos_title">Glosario Técnico de Redes y Computación</span>
       </h2>
       <p class="section-desc" data-i18n="glos_desc">
         Conceptos esenciales en inglés técnico para la comunicación en redes y arquitectura de sistemas.
@@ -1308,7 +1308,7 @@
     <!-- SECCIÓN 5: Laboratorio de Innovación (Opciones avanzadas con botón de copiar código) -->
     <section id="laboratorio" class="container">
       <h2 class="section-title">
-        🔬 <span data-i18n="lab_title">Área de Innovación & Expansiones</span>
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31M14 2v7.31M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"></path></svg></span> <span data-i18n="lab_title">Área de Innovación & Expansiones</span>
       </h2>
       <p class="section-desc" data-i18n="lab_desc">
         Módulos experimentales preparados para futuras entregas del equipo.
@@ -1323,7 +1323,7 @@
             Espacio reservado para integrar Three.js o un visor 3D interactivo que permita rotar y desarmar una torre de PC virtual.
           </p>
           <div class="model-3d-placeholder">
-            <span style="font-size: 2rem;">🧊</span>
+            <span class="mono-icon" style="width:2.5rem; height:2.5rem; margin:0 auto 0.5rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
             <span data-i18n="model3d_wait">Modelo 3D en desarrollo (Three.js / WebGL)</span>
           </div>
         </div>
