@@ -12,6 +12,13 @@
 ## Edición de Archivos en CLI (Windows / CRLF)
 - En el entorno de la terminal de windows, si se quiere evitar errores de incompatibilidad de saltos de linea con edit_file, utiliza prioritario write_file para actualizar archivos completos de manera directa.
 
+## Autenticación de GitHub CLI (Al Iniciar Cada Chat)
+- Cada vez que comience una nueva conversación o sesión de chat, la IA debe consultar y verificar el token activo de GitHub CLI ejecutando:
+  ```powershell
+  gh auth token
+  ```
+- Usa este token para cualquier operación de `git push` o autenticación con repositorios remotos y así evitar bloqueos por falta de credenciales.
+
 ## Configuración y Autenticación de GitHub CLI en Nuevas PCs
 - En nuevas computadoras o entornos donde no esté configurado o instalado GitHub CLI (`gh`):
   1. **Instalación obligatoria**: Asegurarse de que esté instalado; si no lo está, ejecutar:
@@ -31,6 +38,6 @@
   git pull origin main
   ```
 - **Git Push Automático**:
-  - Al terminar las modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main`.
+  - Al terminar las modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main` (usando el token de autenticación si es necesario).
   - El mensaje del commit siempre debe ser únicamente `"n"`.
   - No le pidas al usuario confirmaciones para hacer push ni le indiques usar GitHub Desktop.
