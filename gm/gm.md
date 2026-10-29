@@ -12,6 +12,18 @@
 ## Edición de Archivos en CLI (Windows / CRLF)
 - En el entorno de la terminal de windows, si se quiere evitar errores de incompatibilidad de saltos de linea con edit_file, utiliza prioritario write_file para actualizar archivos completos de manera directa.
 
+## Configuración y Autenticación de GitHub CLI en PCs Nuevas
+- En entornos o computadoras nuevas donde `gh` no esté disponible o autenticado:
+  1. Asegurar la instalación de GitHub CLI ejecutando:
+     ```powershell
+     winget install github.cli
+     ```
+  2. Ejecutar la autenticación:
+     ```powershell
+     gh auth login
+     ```
+  3. La IA debe proporcionar directamente al usuario la URL y el código generado para autorizar e iniciar sesión rápidamente en el navegador.
+
 ## Repositorios y Automatización de Git
 - **Git Push Automático**: Al terminar modificaciones en el repositorio actual de trabajo (como `edunv`, `engl` o cualquier otro repositorio Git en el que se esté trabajando), realiza automáticamente `git add .`, `git commit -m "n"` y `git push origin main`.
 - El mensaje del commit siempre debe ser únicamente `"n"`.
