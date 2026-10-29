@@ -544,7 +544,39 @@ function setupMobileMenu() {
   });
 }
 
+function setupThemeToggle() {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  
+  const savedTheme = localStorage.getItem('user_theme');
+  const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'dark');
+  
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeIcon) {
+      themeIcon.textContent = theme === 'light' ? '☀️' : '🌙';
+    }
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute('title', theme === 'light' ? 'Cambiar a modo oscuro / Switch to dark mode' : 'Cambiar a modo claro / Switch to light mode');
+      themeToggleBtn.setAttribute('aria-label', theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+    }
+  }
+
+  applyTheme(currentTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const nextTheme = activeTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('user_theme', nextTheme);
+      applyTheme(nextTheme);
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  setupThemeToggle();
   const langToggleBtn = document.getElementById('lang-toggle');
   if (langToggleBtn) {
     langToggleBtn.addEventListener('click', toggleLanguage);
