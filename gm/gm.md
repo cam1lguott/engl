@@ -27,7 +27,10 @@
 
 ## Lectura y Edición de Archivos Estilo Editor (Regla Estricta de Lectura en Lotes)
 - **Lectura directa tipo VS Code**: Prohibido usar comandos de consola para leer o inspeccionar código (nada de `Get-Content`, `Select-String`, `type` o scripts). Usa exclusivamente la herramienta nativa `read_file` para leer el archivo tal cual como en un editor.
-- **Lectura en lotes grandes (Mínimo 700 líneas)**: Para inspeccionar o preparar una edición con `edit_file`, lee siempre en lotes grandes de mínimo 700 líneas a la vez (por ejemplo de 700 a 800 líneas por lote: `StartLine: 1, EndLine: 750`, `StartLine: 751, EndLine: 1500`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
+- **Lectura en lotes de mínimo 700 líneas (Regla Estricta)**:
+  - Nunca leas en bloques menores a 700 líneas si el archivo lo permite. Está estrictamente prohibido leer fragmentos pequeños de 20, 50 o 100 líneas.
+  - Si el archivo tiene menos de 700 líneas (por ejemplo, 100, 300 o 400 líneas), debes leerlo **completamente de principio a fin** en una sola llamada a `read_file`.
+  - Si el archivo supera las 700 líneas, lee siempre en lotes grandes de mínimo 700 líneas a la vez (por ejemplo de 700 a 800 líneas: `StartLine: 1, EndLine: 750`, `StartLine: 751, EndLine: 1500`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
 - **Edición precisa con `edit_file`**: Al editar como en un editor de código (VS Code), copia el bloque exacto obtenido de la lectura de lotes grandes en el `Target` (incluyendo su sangría y saltos de línea exactos) y proporciona el `Replacement` de forma limpia y directa.
 
 ## Autenticación de GitHub CLI (Al Iniciar Cada Chat)
