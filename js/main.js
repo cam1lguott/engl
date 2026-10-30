@@ -615,22 +615,47 @@ function setupMobileMenu() {
 }
 
 function setupSectionNavigation() {
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  const cleanUrl = () => window.location.pathname + window.location.search;
+
+  const scrollToSection = (targetId) => {
+    const target = document.getElementById(targetId);
+    if (!target) return false;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.history.replaceState(null, '', cleanUrl());
+    return true;
+  };
+
+  const pendingTarget = sessionStorage.getItem('nvision_pending_section');
+  if (pendingTarget) {
+    sessionStorage.removeItem('nvision_pending_section');
+    window.requestAnimationFrame(() => scrollToSection(pendingTarget));
+  }
+
+  document.querySelectorAll('a[href*="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
-      const targetId = link.getAttribute('href')?.slice(1);
+      const href = link.getAttribute('href');
+      if (!href) return;
+
+      const destination = new URL(href, window.location.href);
+      if (destination.origin !== window.location.origin) return;
+
+      const targetId = destination.hash.slice(1);
       if (!targetId) {
+        if (destination.pathname !== window.location.pathname) return;
         event.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        window.history.replaceState(null, '', cleanUrl());
         return;
       }
 
-      const target = document.getElementById(targetId);
-      if (!target) return;
+      if (destination.pathname === window.location.pathname) {
+        if (scrollToSection(targetId)) event.preventDefault();
+        return;
+      }
 
       event.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      sessionStorage.setItem('nvision_pending_section', targetId);
+      window.location.assign(destination.pathname + destination.search);
     });
   });
 }

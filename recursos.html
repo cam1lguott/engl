@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVISION - Recursos de Aprendizaje</title>
+  <!-- Hojas de estilo modular -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Encabezado y Barra de Navegación Adaptativa -->
+  <header class="site-header">
+    <div class="header-container">
+      <!-- Marca / Nombre de la página -->
+      <a href="index.html" class="brand-logo" aria-label="NVISION Home">
+        <span class="brand-text">NVISION</span>
+      </a>
+
+      <nav id="nav-menu" class="nav-menu">
+        <ul class="nav-links">
+          <!-- Menú 1: Hardware & Computadores -->
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              <span data-i18n="nav_grp_hardware">Hardware</span>
+              <span class="nav-arrow mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </button>
+            <ul class="nav-submenu">
+              <li class="nav-mobile-back"><button type="button"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span><span data-i18n="nav_back">Volver</span></button></li>
+              <li><a href="hardware.html#historia" data-i18n="nav_history">Historia & Evolución</a></li>
+              <li><a href="hardware.html#componentes" data-i18n="nav_components">Componentes de PC</a></li>
+              <li><a href="redes.html#redes" data-i18n="nav_network">Del Hardware a la Red</a></li>
+            </ul>
+          </li>
+
+          <!-- Menú 2: Redes & Topologías -->
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              <span data-i18n="nav_grp_networks">Redes</span>
+              <span class="nav-arrow mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </button>
+            <ul class="nav-submenu">
+              <li class="nav-mobile-back"><button type="button"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span><span data-i18n="nav_back">Volver</span></button></li>
+              <li><a href="redes.html#alcance-redes" data-i18n="nav_scope">Clasificación PAN/LAN/WAN</a></li>
+              <li><a href="redes.html#topologias" data-i18n="nav_topologies">Topologías de Red</a></li>
+              <li><a href="redes.html#simulador-red" data-i18n="nav_simulator">Simulador Ping & Tránsito</a></li>
+            </ul>
+          </li>
+
+          <!-- Menú 3: Recursos & Práctica -->
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+              <span data-i18n="nav_grp_resources">Recursos</span>
+              <span class="nav-arrow mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </button>
+            <ul class="nav-submenu">
+              <li class="nav-mobile-back"><button type="button"><span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></span><span data-i18n="nav_back">Volver</span></button></li>
+              <li><a href="recursos.html#glosario" data-i18n="nav_glossary">Glosario Técnico</a></li>
+              <li><a href="recursos.html#laboratorio" data-i18n="nav_lab">Laboratorio & PowerShell</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Botones de acción: Idioma y Menú Hamburguesa en móvil -->
+      <div class="header-actions">
+        <!-- Boton Modo Claro / Oscuro -->
+        <button id="theme-toggle" class="theme-switch-btn" title="Modo Claro / Oscuro" aria-label="Cambiar tema">
+          <span id="theme-icon" class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+        </button>
+        <!-- Selector desplegable bilingüe de Idioma (Español / Inglés) -->
+        <div class="lang-dropdown-wrapper" id="lang-dropdown-wrapper">
+          <button id="lang-toggle" class="lang-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Seleccionar idioma / Select language">
+            <span class="mono-icon globe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
+            <span id="lang-label" class="lang-label-text">ES</span>
+            <span class="lang-chevron mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="lang-dropdown-menu" id="lang-dropdown-menu" role="menu">
+            <div class="lang-dropdown-header" data-i18n="lang_select_title">Seleccionar Idioma</div>
+            <button type="button" class="lang-dropdown-item active" data-lang="es" role="menuitem">
+              <span class="item-code">ES</span>
+              <div class="item-info">
+                <span class="item-name">Español</span>
+                <span class="item-native">Spanish</span>
+              </div>
+              <span class="item-check mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            </button>
+            <button type="button" class="lang-dropdown-item" data-lang="en" role="menuitem">
+              <span class="item-code">EN</span>
+              <div class="item-info">
+                <span class="item-name">English</span>
+                <span class="item-native">Inglés</span>
+              </div>
+              <span class="item-check mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón de tres rayitas (Hamburguesa) para celulares -->
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Abrir menú" aria-expanded="false">
+          <span class="menu-icon-inner mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+<section id="glosario" class="container">
+      <h2 class="section-title">
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span> <span data-i18n="glos_title">Glosario Técnico de Redes y Computación</span>
+      </h2>
+      <p class="section-desc" data-i18n="glos_desc">
+        Conceptos esenciales en inglés técnico para la comunicación en redes y arquitectura de sistemas.
+      </p>
+
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_throughput">Throughput</h4>
+          <p class="glossary-desc" data-i18n="desc_throughput">
+            Volumen real de datos transferidos con éxito entre dos puntos de la red en un intervalo de tiempo.
+          </p>
+        </div>
+
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_bandwidth">Bandwidth</h4>
+          <p class="glossary-desc" data-i18n="desc_bandwidth">
+            Capacidad máxima teórica de transmisión de un canal o medio de red medido en bps (bits por segundo).
+          </p>
+        </div>
+
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_nic">NIC</h4>
+          <p class="glossary-desc" data-i18n="desc_nic">
+            Circuito integrado que proporciona el puente físico y lógico entre el bus interno del computador y el cable de red.
+          </p>
+        </div>
+
+        <div class="glossary-card">
+          <h4 class="glossary-term" data-i18n="term_packet">Packet</h4>
+          <p class="glossary-desc" data-i18n="desc_packet">
+            Unidad de datos formateada con encabezados de origen, destino y carga útil que viaja por la red.
+          </p>
+        </div>
+      </div>
+    </section>
+<section id="laboratorio" class="container">
+      <h2 class="section-title">
+        <span class="mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31M14 2v7.31M8.5 2h7M14 9.3a6.5 6.5 0 1 1-4 0"></path></svg></span> <span data-i18n="lab_title">Área de Innovación & Expansiones</span>
+      </h2>
+      <p class="section-desc" data-i18n="lab_desc">
+        Módulos experimentales preparados para futuras entregas del equipo.
+      </p>
+
+      <div class="lab-grid">
+        <!-- Módulo 3D opcional -->
+        <div class="lab-card">
+          <span class="lab-status">Módulo Opcional</span>
+          <h3 data-i18n="model3d_title">Simulación de Torre 3D</h3>
+          <p data-i18n="model3d_desc">
+            Espacio reservado para integrar Three.js o un visor 3D interactivo que permita rotar y desarmar una torre de PC virtual.
+          </p>
+          <div class="model-3d-placeholder">
+            <span class="mono-icon" style="width:2.5rem; height:2.5rem; margin:0 auto 0.5rem;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+            <span data-i18n="model3d_wait">Modelo 3D en desarrollo (Three.js / WebGL)</span>
+          </div>
+        </div>
+
+        <!-- Módulo PowerShell con botón de copiar -->
+        <div class="lab-card">
+          <span class="lab-status">Módulo Opcional</span>
+          <h3 data-i18n="ps_title">Diagnóstico de Hardware (PowerShell)</h3>
+          <p data-i18n="ps_desc">
+            Código nativo en Windows para consultar los componentes reales del equipo en el que se ejecuta la práctica de laboratorio:
+          </p>
+
+          <div>
+            <div class="code-header">
+              <span class="code-title">powershell</span>
+              <button id="copy-code-btn" class="copy-btn" data-i18n="copy_code">Copiar</button>
+            </div>
+            <div class="powershell-box">
+              <code id="ps-code">Get-ComputerInfo | Select-Object CsManufacturer, CsModel, CsProcessors, CsTotalPhysicalMemory</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2026 - <span data-i18n="footer_text">NVISION</span></p>
+  </footer>
+
+  <!-- Script interactivo bilingüe y menú móvil -->
+  <script src="js/main.js"></script>
+</body>
+</html>
