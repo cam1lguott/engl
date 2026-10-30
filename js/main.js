@@ -618,6 +618,12 @@ function setupNavigationDropdowns() {
     if (!trigger) return;
 
     trigger.addEventListener('click', () => {
+      if (window.matchMedia('(min-width: 821px)').matches) {
+        dropdown.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        return;
+      }
+
       const willOpen = !dropdown.classList.contains('is-open');
       dropdowns.forEach((item) => {
         item.classList.remove('is-open');
