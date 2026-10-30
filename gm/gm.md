@@ -11,7 +11,7 @@
 
 ## Lectura y Edición de Archivos Estilo Editor (Regla Estricta de Lectura en Lotes)
 - **Lectura directa tipo VS Code**: Prohibido usar comandos de consola para leer o inspeccionar código (nada de `Get-Content`, `Select-String`, `type` o scripts). Usa exclusivamente la herramienta nativa `read_file` para leer el archivo tal cual como en un editor.
-- **Lectura en lotes grandes (Mínimo 300 líneas)**: Para inspeccionar o preparar una edición con `edit_file`, lee siempre en lotes grandes de mínimo 300 líneas a la vez (por ejemplo de 300 a 800 líneas por lote: `StartLine: 1, EndLine: 500`, `StartLine: 501, EndLine: 1000`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
+- **Lectura en lotes grandes (Mínimo 700 líneas)**: Para inspeccionar o preparar una edición con `edit_file`, lee siempre en lotes grandes de mínimo 700 líneas a la vez (por ejemplo de 700 a 800 líneas por lote: `StartLine: 1, EndLine: 750`, `StartLine: 751, EndLine: 1500`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
 - **Edición precisa con `edit_file`**: Al editar como en un editor de código (VS Code), copia el bloque exacto obtenido de la lectura de lotes grandes en el `Target` (incluyendo su sangría y saltos de línea exactos) y proporciona el `Replacement` de forma limpia y directa.
 
 ## Edición de Archivos en CLI (Windows / CRLF)
