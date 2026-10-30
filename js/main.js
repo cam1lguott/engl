@@ -1,4 +1,4 @@
-﻿/**
+/**
  * main.js - Manejo de traducción bilingüe (Español / Inglés),
  * menú adaptativo para dispositivos móviles y utilidades interactivas.
  */
@@ -244,6 +244,7 @@ const translations = {
     insp_l2_title: "Capa 2 - Trama Ethernet (MAC)",
     insp_l3_title: "Capa 3 - Paquete IP (Protocolo 1 ICMP)",
     insp_stat_title: "Métricas de Conectividad",
+    lang_select_title: "Seleccionar Idioma",
     footer_text: "Estructura de Redes"
   },
   en: {
@@ -477,16 +478,19 @@ const translations = {
     insp_l2_title: "Layer 2 - Ethernet Frame (MAC)",
     insp_l3_title: "Layer 3 - IP Packet (Protocol 1 ICMP)",
     insp_stat_title: "Connectivity Metrics",
+    lang_select_title: "Select Language",
     footer_text: "Network Structure"
   }
 };
 
 let currentLang = localStorage.getItem('user_lang') || 'es';
 
-function toggleLanguage() {
-  currentLang = currentLang === 'es' ? 'en' : 'es';
+function setLanguage(lang) {
+  if (lang !== 'es' && lang !== 'en') return;
+  currentLang = lang;
   localStorage.setItem('user_lang', currentLang);
   applyLanguage(currentLang);
+  closeLangDropdown();
 }
 
 function applyLanguage(lang) {
@@ -502,7 +506,68 @@ function applyLanguage(lang) {
   if (langLabel) {
     langLabel.textContent = lang.toUpperCase();
   }
+
+  const langFlag = document.getElementById('lang-flag');
+  if (langFlag) {
+    langFlag.textContent = lang === 'es' ? '🇪🇸' : '🇺🇸';
+  }
+
+  // Actualizar estado activo en el menú desplegable
+  const dropdownItems = document.querySelectorAll('.lang-dropdown-item');
+  dropdownItems.forEach((item) => {
+    if (item.getAttribute('data-lang') === lang) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+
   document.documentElement.lang = lang;
+}
+
+function closeLangDropdown() {
+  const wrapper = document.getElementById('lang-dropdown-wrapper');
+  const toggleBtn = document.getElementById('lang-toggle');
+  if (wrapper) wrapper.classList.remove('open');
+  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+}
+
+function setupLanguageDropdown() {
+  const wrapper = document.getElementById('lang-dropdown-wrapper');
+  const toggleBtn = document.getElementById('lang-toggle');
+  const menu = document.getElementById('lang-dropdown-menu');
+  if (!wrapper || !toggleBtn || !menu) return;
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = wrapper.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  const items = menu.querySelectorAll('.lang-dropdown-item');
+  items.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const selected = item.getAttribute('data-lang');
+      if (selected) {
+        setLanguage(selected);
+      }
+    });
+  });
+
+  // Cerrar al hacer clic fuera del dropdown
+  document.addEventListener('click', (e) => {
+    if (!wrapper.contains(e.target)) {
+      closeLangDropdown();
+    }
+  });
+
+  // Cerrar al presionar la tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLangDropdown();
+    }
+  });
 }
 
 function setupCopyButton() {
@@ -579,10 +644,7 @@ function setupThemeToggle() {
 
 document.addEventListener('DOMContentLoaded', () => {
   setupThemeToggle();
-  const langToggleBtn = document.getElementById('lang-toggle');
-  if (langToggleBtn) {
-    langToggleBtn.addEventListener('click', toggleLanguage);
-  }
+  setupLanguageDropdown();
   setupCopyButton();
   setupMobileMenu();
   setupHistoryToggle();
