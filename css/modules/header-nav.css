@@ -522,8 +522,9 @@
 
   .nav-submenu {
     position: static;
-    opacity: 0;
-    visibility: hidden;
+    display: none;
+    opacity: 1;
+    visibility: visible;
     transform: none;
     pointer-events: none;
     background: linear-gradient(160deg, rgba(14, 23, 42, 0.96), rgba(17, 24, 39, 0.94));
@@ -562,14 +563,14 @@
   }
 
   .nav-item-dropdown.is-open .nav-submenu {
+    display: flex;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
 
   .nav-item-dropdown:hover:not(.is-open) .nav-submenu {
-    opacity: 0;
-    visibility: hidden;
+    display: none;
     pointer-events: none;
   }
 
