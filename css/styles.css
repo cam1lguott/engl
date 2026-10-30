@@ -181,6 +181,7 @@ body {
   display: flex;
   gap: 1.85rem;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links a {
@@ -190,7 +191,10 @@ body {
   font-weight: 600;
   transition: var(--transition);
   position: relative;
-  padding: 0.3rem 0;
+  padding: 0.35rem 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .nav-links a:hover {
@@ -212,6 +216,102 @@ body {
 
 .nav-links a:hover::after {
   width: 100%;
+}
+
+/* =========================================================
+   SUBMENÚ DESPLEGABLE AL PASAR EL MOUSE (3 SECCIONES)
+   ========================================================= */
+.nav-item-dropdown {
+  position: relative;
+  list-style: none;
+}
+
+.nav-dropdown-trigger {
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-dropdown-trigger .nav-arrow {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+  color: var(--text-muted);
+}
+
+.nav-item-dropdown:hover .nav-dropdown-trigger .nav-arrow {
+  transform: rotate(180deg);
+  color: var(--accent-cyan);
+}
+
+.nav-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 230px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  list-style: none;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.96);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  pointer-events: none;
+}
+
+/* Puente invisible para que el cursor no pierda el hover */
+.nav-submenu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.nav-item-dropdown:hover .nav-submenu,
+.nav-item-dropdown:focus-within .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(4px) scale(1);
+  pointer-events: auto;
+}
+
+.nav-submenu li {
+  list-style: none;
+  width: 100%;
+}
+
+.nav-submenu a {
+  display: block;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-submenu a::after {
+  display: none;
+}
+
+.nav-submenu a:hover {
+  background: rgba(56, 189, 248, 0.14);
+  color: var(--accent-cyan);
+  transform: translateX(3px);
 }
 
 .theme-switch-btn {
@@ -465,6 +565,31 @@ body {
   .nav-links {
     flex-direction: column;
     gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .nav-item-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-trigger {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    background: rgba(11, 15, 25, 0.4);
+    box-shadow: none;
+    border: none;
+    border-left: 2px solid rgba(56, 189, 248, 0.25);
+    border-radius: 0;
+    padding: 0.25rem 0 0.25rem 0.85rem;
+    margin: 0.35rem 0 0.35rem 0.5rem;
   }
 
   .nav-links a {
@@ -2916,13 +3041,7 @@ body {
 }
 
 
-/* Emoji purple filter */
-.emoji, [data-emoji], .icon-emoji {
-  filter: hue-rotate(310deg) saturate(2) drop-shadow(0 0 1px #ff69b4);
-}
-span:has(> svg), .lucide, i.fa {
-  color: #ec4899 !important;
-}
+
 
 
 /* Boton tema: icono negro en modo claro, blanco en modo oscuro */

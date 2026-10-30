@@ -14,14 +14,43 @@
     <div class="header-container">
       <nav id="nav-menu" class="nav-menu">
         <ul class="nav-links">
-          <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
-          <li><a href="#componentes" data-i18n="nav_components">Componentes</a></li>
-          <li><a href="#redes" data-i18n="nav_network">Hardware & Redes</a></li>
-          <li><a href="#alcance-redes" data-i18n="nav_scope">Clasificación PAN/LAN/MAN/WAN</a></li>
-          <li><a href="#topologias" data-i18n="nav_topologies">Topologías</a></li>
-          <li><a href="#simulador-red" data-i18n="nav_simulator">Simulador Ping</a></li>
-          <li><a href="#glosario" data-i18n="nav_glossary">Glosario</a></li>
-          <li><a href="#laboratorio" data-i18n="nav_lab">Laboratorio</a></li>
+          <!-- Menú 1: Hardware & Computadores -->
+          <li class="nav-item-dropdown">
+            <a href="#componentes" class="nav-dropdown-trigger">
+              <span data-i18n="nav_grp_hardware">Hardware</span>
+              <span class="nav-arrow mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="#historia" data-i18n="nav_history">Historia & Evolución</a></li>
+              <li><a href="#componentes" data-i18n="nav_components">Componentes de PC</a></li>
+              <li><a href="#redes" data-i18n="nav_network">Del Hardware a la Red</a></li>
+            </ul>
+          </li>
+
+          <!-- Menú 2: Redes & Topologías -->
+          <li class="nav-item-dropdown">
+            <a href="#topologias" class="nav-dropdown-trigger">
+              <span data-i18n="nav_grp_networks">Redes</span>
+              <span class="nav-arrow mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="#alcance-redes" data-i18n="nav_scope">Clasificación PAN/LAN/WAN</a></li>
+              <li><a href="#topologias" data-i18n="nav_topologies">Topologías de Red</a></li>
+              <li><a href="#simulador-red" data-i18n="nav_simulator">Simulador Ping & Tránsito</a></li>
+            </ul>
+          </li>
+
+          <!-- Menú 3: Recursos & Práctica -->
+          <li class="nav-item-dropdown">
+            <a href="#laboratorio" class="nav-dropdown-trigger">
+              <span data-i18n="nav_grp_resources">Recursos</span>
+              <span class="nav-arrow mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="#glosario" data-i18n="nav_glossary">Glosario Técnico</a></li>
+              <li><a href="#laboratorio" data-i18n="nav_lab">Laboratorio & PowerShell</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
 
@@ -35,25 +64,24 @@
         <div class="lang-dropdown-wrapper" id="lang-dropdown-wrapper">
           <button id="lang-toggle" class="lang-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Seleccionar idioma / Select language">
             <span class="mono-icon globe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
-            <span id="lang-flag" class="lang-flag">🇪🇸</span>
             <span id="lang-label" class="lang-label-text">ES</span>
             <span class="lang-chevron mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="lang-dropdown-menu" id="lang-dropdown-menu" role="menu">
             <div class="lang-dropdown-header" data-i18n="lang_select_title">Seleccionar Idioma</div>
             <button type="button" class="lang-dropdown-item active" data-lang="es" role="menuitem">
-              <span class="item-flag">🇪🇸</span>
+              <span class="item-code">ES</span>
               <div class="item-info">
                 <span class="item-name">Español</span>
-                <span class="item-native">Spanish (ES)</span>
+                <span class="item-native">Spanish</span>
               </div>
               <span class="item-check mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             </button>
             <button type="button" class="lang-dropdown-item" data-lang="en" role="menuitem">
-              <span class="item-flag">🇺🇸</span>
+              <span class="item-code">EN</span>
               <div class="item-info">
                 <span class="item-name">English</span>
-                <span class="item-native">Inglés (EN)</span>
+                <span class="item-native">Inglés</span>
               </div>
               <span class="item-check mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             </button>

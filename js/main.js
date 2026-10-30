@@ -34,6 +34,9 @@ const translations = {
     nav_network: "Hardware & Redes",
     nav_glossary: "Glosario",
     nav_lab: "Laboratorio",
+    nav_grp_hardware: "Hardware",
+    nav_grp_networks: "Redes",
+    nav_grp_resources: "Recursos",
     
     // Historia
     hist_title: "Computadores Históricos (Antes de 1980)",
@@ -276,6 +279,9 @@ const translations = {
     nav_network: "Hardware & Networks",
     nav_glossary: "Glossary",
     nav_lab: "Lab",
+    nav_grp_hardware: "Hardware",
+    nav_grp_networks: "Networks",
+    nav_grp_resources: "Resources",
 
     // History
     hist_title: "Historical Computers (Pre-1980s)",
@@ -505,11 +511,6 @@ function applyLanguage(lang) {
   const langLabel = document.getElementById('lang-label');
   if (langLabel) {
     langLabel.textContent = lang.toUpperCase();
-  }
-
-  const langFlag = document.getElementById('lang-flag');
-  if (langFlag) {
-    langFlag.textContent = lang === 'es' ? '🇪🇸' : '🇺🇸';
   }
 
   // Actualizar estado activo en el menú desplegable
