@@ -744,6 +744,7 @@ function setupNetworkSimulator() {
   };
 
   let isRunning = false;
+  let currentDevice = null;
 
   function log(msg, type = 'info') {
     if (!consoleBody) return;
@@ -766,8 +767,23 @@ function setupNetworkSimulator() {
 
   function movePacketTo(devKey, callback, duration = 750) {
     const coords = getDeviceCenter(devKey);
+    setActiveRoute(currentDevice, devKey);
     packet.style.transform = `translate(${coords.x - 30}px, ${coords.y - 18}px)`;
+    currentDevice = devKey;
     setTimeout(callback, duration);
+  }
+
+  function setActiveRoute(fromKey, toKey) {
+    document.querySelectorAll('.sim-wire-glow').forEach(wire => wire.classList.remove('pulse'));
+    const route = [fromKey, toKey].sort().join('-');
+    const wireByRoute = {
+      'pc1-switch': 'wire-active-pc1',
+      'pc2-switch': 'wire-active-pc2',
+      'router-switch': 'wire-active-sr',
+      'router-server': 'wire-active-dest'
+    };
+    const wire = document.getElementById(wireByRoute[route]);
+    if (wire) wire.classList.add('pulse');
   }
 
   function highlightDevice(devKey) {
@@ -794,6 +810,8 @@ function setupNetworkSimulator() {
     isRunning = false;
     startBtn.disabled = false;
     packet.hidden = true;
+    currentDevice = null;
+    setActiveRoute(null, null);
     document.querySelectorAll('.sim-device').forEach(d => {
       d.classList.remove('processing-packet');
     });
@@ -831,6 +849,8 @@ function setupNetworkSimulator() {
     const initPos = getDeviceCenter(src);
     packet.hidden = false;
     packet.className = 'packet-traveler';
+    currentDevice = src;
+    setActiveRoute(null, null);
     packetText.textContent = 'ICMP Echo Req';
     packet.style.transform = `translate(${initPos.x - 30}px, ${initPos.y - 18}px)`;
 
