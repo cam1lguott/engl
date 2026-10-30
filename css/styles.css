@@ -2741,3 +2741,12 @@ body {
 [data-theme="light"] .comp-arrow.mono-icon {
   color: var(--accent-blue);
 }
+
+
+/* Emoji purple filter */
+.emoji, [data-emoji], .icon-emoji {
+  filter: hue-rotate(270deg) saturate(1.8) drop-shadow(0 0 1px #8a2be2);
+}
+span:has(> svg), .lucide, i.fa {
+  color: #9333ea !important;
+}
