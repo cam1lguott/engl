@@ -3,13 +3,32 @@
 - Idioma principal: Comunícate, explica y responde en español.
 - Documentación y mensajes: Redacta explicaciones, resúmenes, mensajes de estado y comentarios en español a menos que se indique explícitamente lo contrario.
 
+## Normalización Universal de Saltos de Línea (Solución Definitiva a "Target not found")
+- **Problema de Windows (CRLF vs LF)**: En Windows, los archivos suelen guardarse con saltos `\r\n` (CRLF), lo cual causa fallos constantes en `edit_file` con el mensaje: `Error: target content not found in the file; the Target must exactly match existing file text, including whitespace`.
+- **Regla de configuración obligatoria en toda PC nueva o clonada**:
+  1. Configurar Git para no convertir a CRLF:
+     ```powershell
+     git config --global core.autocrlf false
+     git config core.autocrlf false
+     ```
+  2. Mantener siempre el archivo `.gitattributes` en la raíz del repositorio con:
+     ```gitattributes
+     * text=auto eol=lf
+     *.html text eol=lf
+     *.css text eol=lf
+     *.js text eol=lf
+     *.md text eol=lf
+     ```
+  3. Si un archivo presenta discrepancia de líneas, ejecutar:
+     ```powershell
+     git add --renormalize .
+     ```
+- **Prioridad en Edición**: Si a pesar de esto `edit_file` no coincide por caracteres invisibles residuales en Windows, usa prioritario `write_file` para actualizar el archivo limpiamente sin detenerse.
+
 ## Lectura y Edición de Archivos Estilo Editor (Regla Estricta de Lectura en Lotes)
 - **Lectura directa tipo VS Code**: Prohibido usar comandos de consola para leer o inspeccionar código (nada de `Get-Content`, `Select-String`, `type` o scripts). Usa exclusivamente la herramienta nativa `read_file` para leer el archivo tal cual como en un editor.
 - **Lectura en lotes grandes (Mínimo 700 líneas)**: Para inspeccionar o preparar una edición con `edit_file`, lee siempre en lotes grandes de mínimo 700 líneas a la vez (por ejemplo de 700 a 800 líneas por lote: `StartLine: 1, EndLine: 750`, `StartLine: 751, EndLine: 1500`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
 - **Edición precisa con `edit_file`**: Al editar como en un editor de código (VS Code), copia el bloque exacto obtenido de la lectura de lotes grandes en el `Target` (incluyendo su sangría y saltos de línea exactos) y proporciona el `Replacement` de forma limpia y directa.
-
-## Edición de Archivos en CLI (Windows / CRLF)
-- En el entorno de la terminal de windows, para evitar errores de incompatibilidad de saltos de linea con `edit_file`, utiliza prioritario `write_file` para actualizar archivos completos de manera directa y rápida cuando proceda.
 
 ## Autenticación de GitHub CLI (Al Iniciar Cada Chat)
 - Cada vez que comience una nueva conversación o sesión de chat, la IA debe consultar y verificar el token activo de GitHub CLI ejecutando:
