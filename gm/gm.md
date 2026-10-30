@@ -3,12 +3,6 @@
 - Idioma principal: Comunícate, explica y responde en español.
 - Documentación y mensajes: Redacta explicaciones, resúmenes, mensajes de estado y comentarios en español a menos que se indique explícitamente lo contrario.
 
-## Notificación Sonora al Finalizar
-- Al completar una tarea o respuesta, ejecuta el siguiente código corto para emitir un sonido de que finalizó la tarea:
-  ```powershell
-  [console]::beep(1000, 250)
-  ```
-
 ## Lectura y Edición de Archivos Estilo Editor (Regla Estricta de Lectura en Lotes)
 - **Lectura directa tipo VS Code**: Prohibido usar comandos de consola para leer o inspeccionar código (nada de `Get-Content`, `Select-String`, `type` o scripts). Usa exclusivamente la herramienta nativa `read_file` para leer el archivo tal cual como en un editor.
 - **Lectura en lotes grandes (Mínimo 700 líneas)**: Para inspeccionar o preparar una edición con `edit_file`, lee siempre en lotes grandes de mínimo 700 líneas a la vez (por ejemplo de 700 a 800 líneas por lote: `StartLine: 1, EndLine: 750`, `StartLine: 751, EndLine: 1500`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
