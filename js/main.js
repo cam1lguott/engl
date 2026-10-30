@@ -768,9 +768,19 @@ function setupNetworkSimulator() {
   function movePacketTo(devKey, callback, duration = 750) {
     const coords = getDeviceCenter(devKey);
     setActiveRoute(currentDevice, devKey);
-    packet.style.transform = `translate(${coords.x - 30}px, ${coords.y - 18}px)`;
+    highlightDevice(devKey);
+    positionPacket(coords);
     currentDevice = devKey;
     setTimeout(callback, duration);
+  }
+
+  function positionPacket(coords) {
+    const packetWidth = packet.offsetWidth;
+    const packetHeight = packet.offsetHeight;
+    const maxX = Math.max(4, stage.clientWidth - packetWidth - 4);
+    const x = Math.min(Math.max(4, coords.x - packetWidth / 2), maxX);
+    const y = Math.max(4, coords.y - packetHeight - 8);
+    packet.style.transform = `translate(${x}px, ${y}px)`;
   }
 
   function setActiveRoute(fromKey, toKey) {
@@ -858,7 +868,7 @@ function setupNetworkSimulator() {
     currentDevice = src;
     setActiveRoute(null, null);
     packetText.textContent = 'Enviando datos';
-    packet.style.transform = `translate(${initPos.x - 30}px, ${initPos.y - 18}px)`;
+    positionPacket(initPos);
 
     inspL2.textContent = `Trama: ${srcDev.mac} -> ${srcDev.ip.startsWith('192.168.1') && dstDev.ip.startsWith('10.0.0') ? devices.router.mac : dstDev.mac}`;
     inspL3.textContent = `IP Src: ${srcDev.ip} -> IP Dst: ${dstDev.ip} | Protocol: 1 (ICMP) | TTL: 64`;
