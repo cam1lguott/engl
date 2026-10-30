@@ -2750,3 +2750,12 @@ body {
 span:has(> svg), .lucide, i.fa {
   color: #ec4899 !important;
 }
+
+/* Theme toggle emoji colors */
+#theme-toggle, .theme-toggle, [data-theme-toggle], #themeToggle, button:has(#theme-icon) {
+  filter: grayscale(100%) brightness(0) !important;
+}
+body.dark #theme-toggle, body.dark-theme #theme-toggle, [data-theme="dark"] #theme-toggle,
+body.dark .theme-toggle, body.dark-theme .theme-toggle, [data-theme="dark"] .theme-toggle {
+  filter: grayscale(100%) brightness(10) !important;
+}
