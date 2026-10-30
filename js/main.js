@@ -775,6 +775,7 @@ function setupNetworkSimulator() {
 
   function setActiveRoute(fromKey, toKey) {
     document.querySelectorAll('.sim-wire-glow').forEach(wire => wire.classList.remove('pulse'));
+    stage.classList.toggle('reply-mode', packet.classList.contains('reply'));
     const route = [fromKey, toKey].sort().join('-');
     const wireByRoute = {
       'pc1-switch': 'wire-active-pc1',
@@ -787,9 +788,13 @@ function setupNetworkSimulator() {
   }
 
   function highlightDevice(devKey) {
-    document.querySelectorAll('.sim-device').forEach(d => d.classList.remove('processing-packet'));
+    document.querySelectorAll('.sim-device').forEach(d => {
+      d.classList.remove('processing-packet', 'processing-reply');
+    });
     const el = document.getElementById(devices[devKey].id);
-    if (el) el.classList.add('processing-packet');
+    if (el) {
+      el.classList.add(packet.classList.contains('reply') ? 'processing-reply' : 'processing-packet');
+    }
   }
 
   function updateSelectionsUI() {
@@ -810,10 +815,11 @@ function setupNetworkSimulator() {
     isRunning = false;
     startBtn.disabled = false;
     packet.hidden = true;
+    packet.className = 'packet-traveler';
     currentDevice = null;
     setActiveRoute(null, null);
     document.querySelectorAll('.sim-device').forEach(d => {
-      d.classList.remove('processing-packet');
+      d.classList.remove('processing-packet', 'processing-reply');
     });
     consoleBody.innerHTML = '<p class="console-line info">[SISTEMA] Simulador reiniciado. Listo para nueva prueba.</p>';
     statusTag.textContent = translations[currentLang]?.sim_status_ready || 'LISTO';
@@ -851,7 +857,7 @@ function setupNetworkSimulator() {
     packet.className = 'packet-traveler';
     currentDevice = src;
     setActiveRoute(null, null);
-    packetText.textContent = 'ICMP Echo Req';
+    packetText.textContent = 'Enviando datos';
     packet.style.transform = `translate(${initPos.x - 30}px, ${initPos.y - 18}px)`;
 
     inspL2.textContent = `Trama: ${srcDev.mac} -> ${srcDev.ip.startsWith('192.168.1') && dstDev.ip.startsWith('10.0.0') ? devices.router.mac : dstDev.mac}`;
@@ -905,7 +911,7 @@ function setupNetworkSimulator() {
     function startReturnTrip(srcD, dstD, isLocal) {
       setTimeout(() => {
         packet.classList.add('reply');
-        packetText.textContent = 'ICMP Echo Reply';
+        packetText.textContent = 'Datos recibidos';
         log(`[ICMP RESPUESTA] Enviando respuesta desde ${dstD.ip} de vuelta a ${srcD.ip}...`, 'rep');
         inspL2.textContent = `Trama: ${dstD.mac} -> ${srcD.mac}`;
 
@@ -946,7 +952,9 @@ function setupNetworkSimulator() {
       startBtn.disabled = false;
       isRunning = false;
       setTimeout(() => {
-        document.querySelectorAll('.sim-device').forEach(d => d.classList.remove('processing-packet'));
+        document.querySelectorAll('.sim-device').forEach(d => {
+          d.classList.remove('processing-packet', 'processing-reply');
+        });
       }, 1000);
     }
   });

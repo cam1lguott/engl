@@ -418,8 +418,14 @@
 }
 
 .sim-device.processing-packet {
-  border-color: var(--accent-amber);
-  box-shadow: 0 0 18px rgba(251, 191, 36, 0.6);
+  border-color: #22d3ee;
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.75);
+  animation: pulseDevice 0.6s infinite alternate;
+}
+
+.sim-device.processing-reply {
+  border-color: #a78bfa;
+  box-shadow: 0 0 18px rgba(167, 139, 250, 0.75);
   animation: pulseDevice 0.6s infinite alternate;
 }
 
@@ -487,6 +493,11 @@
 .sim-wire-glow.pulse {
   opacity: 0.95;
   animation: dashAnimation 0.65s linear infinite;
+}
+
+.sim-stage.reply-mode .sim-wire-glow {
+  stroke: #a78bfa;
+  filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.95));
 }
 
 @keyframes dashAnimation {
