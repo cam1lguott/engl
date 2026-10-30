@@ -9,17 +9,13 @@
   [console]::beep(1000, 250)
   ```
 
-## Lectura de Archivos sin Consola (Regla Estricta de Lectura por Lotes)
-- **Prohibido usar comandos de consola para leer o buscar texto** (nada de `Select-String`, `grep`, `Get-Content`, `type` o scripts de PowerShell para inspeccionar código).
-- Utiliza **exclusivamente la herramienta nativa `read_file`** de forma directa.
-- Para archivos extensos de más de 800 líneas, lee el archivo por lotes consecutivos usando los parámetros de rango de líneas:
-  - Primer lote: `StartLine: 1`, `EndLine: 800`
-  - Segundo lote: `StartLine: 801`, `EndLine: 1600`
-  - Tercer lote: `StartLine: 1601`, `EndLine: 2400`
-  - Y así sucesivamente hasta cubrir la sección requerida.
+## Lectura y Edición de Archivos Estilo Editor (Regla Estricta de Lectura en Lotes)
+- **Lectura directa tipo VS Code**: Prohibido usar comandos de consola para leer o inspeccionar código (nada de `Get-Content`, `Select-String`, `type` o scripts). Usa exclusivamente la herramienta nativa `read_file` para leer el archivo tal cual como en un editor.
+- **Lectura en lotes grandes (Mínimo 300 líneas)**: Para inspeccionar o preparar una edición con `edit_file`, lee siempre en lotes grandes de mínimo 300 líneas a la vez (por ejemplo de 300 a 800 líneas por lote: `StartLine: 1, EndLine: 500`, `StartLine: 501, EndLine: 1000`, etc.) para obtener el contexto completo y exacto de las líneas antes de editar.
+- **Edición precisa con `edit_file`**: Al editar como en un editor de código (VS Code), copia el bloque exacto obtenido de la lectura de lotes grandes en el `Target` (incluyendo su sangría y saltos de línea exactos) y proporciona el `Replacement` de forma limpia y directa.
 
 ## Edición de Archivos en CLI (Windows / CRLF)
-- En el entorno de la terminal de windows, para evitar errores de incompatibilidad de saltos de linea con `edit_file`, utiliza prioritario `write_file` para actualizar archivos completos de manera directa y rápida.
+- En el entorno de la terminal de windows, para evitar errores de incompatibilidad de saltos de linea con `edit_file`, utiliza prioritario `write_file` para actualizar archivos completos de manera directa y rápida cuando proceda.
 
 ## Autenticación de GitHub CLI (Al Iniciar Cada Chat)
 - Cada vez que comience una nueva conversación o sesión de chat, la IA debe consultar y verificar el token activo de GitHub CLI ejecutando:
