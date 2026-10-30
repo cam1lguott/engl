@@ -1,5 +1,5 @@
 /* =========================================================
-   ICONOS SVG MONOCROMÁTICOS Y PALETA DE COLORES TEMÁTICOS
+   SISTEMA DE ICONOGRAFÍA VECTORIAL TÉCNICA (ESTILO NVIDIA / HARDWARE PRO)
    ========================================================= */
 
 .mono-icon {
@@ -9,10 +9,10 @@
   width: 1.15em;
   height: 1.15em;
   vertical-align: middle;
-  color: var(--accent-cyan);
+  color: var(--text-secondary);
   fill: currentColor;
   flex-shrink: 0;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .mono-icon svg {
@@ -22,61 +22,54 @@
   stroke: currentColor;
 }
 
-/* Modificadores de tamaño y contenedor */
+/* Modificadores de tamaño */
 .section-title .mono-icon {
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--accent-cyan);
 }
 
 .tag-badge .mono-icon {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 1rem;
+  height: 1rem;
   color: var(--accent-cyan);
-}
-
-.btn-icon .mono-icon {
-  width: 1.1rem;
-  height: 1.1rem;
-  color: #ffffff;
 }
 
 .btn-expand-icon .mono-icon,
 .comp-btn-icon .mono-icon {
-  width: 1.05rem;
-  height: 1.05rem;
-  color: var(--accent-cyan);
+  width: 1rem;
+  height: 1rem;
+  color: inherit;
 }
 
 .theme-switch-btn .mono-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  color: var(--accent-cyan);
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
-.lang-switch-btn .mono-icon {
-  width: 1.1rem;
-  height: 1.1rem;
-  color: var(--accent-cyan);
+.lang-dropdown-btn .mono-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--text-muted);
 }
 
 .card-icon.mono-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
   color: var(--accent-cyan);
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.5rem;
 }
 
 .scope-icon.mono-icon {
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 1.8rem;
+  height: 1.8rem;
   color: var(--accent-cyan);
 }
 
 .device-icon-wrap.mono-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--accent-cyan);
+  width: 2.2rem;
+  height: 2.2rem;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,150 +77,97 @@
 }
 
 .packet-arrow .mono-icon {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1rem;
+  height: 1rem;
   color: #ffffff;
 }
 
-/* Colores en Modo Claro */
+/* Modo Claro: Iconos en tonos neutros tecnológicos de alto contraste */
 [data-theme="light"] .mono-icon {
-  color: var(--accent-blue);
+  color: #475569;
 }
 
-[data-theme="light"] .btn-expand-icon .mono-icon,
-[data-theme="light"] .comp-btn-icon .mono-icon {
-  color: var(--accent-blue);
+[data-theme="light"] .section-title .mono-icon {
+  color: #0284c7;
+}
+
+[data-theme="light"] .card-icon.mono-icon,
+[data-theme="light"] .scope-icon.mono-icon {
+  color: #0284c7;
+}
+
+[data-theme="light"] .device-icon-wrap.mono-icon {
+  color: #0f172a;
 }
 
 /* =========================================================
-   PALETA MULTICOLOR VIBRANTE PARA ICONOS TECNOLÓGICOS
+   ACENTOS TÉCNICOS SUTILES POR HARDWARE (SIN EMOJIS NI SATURACIÓN INFANTIL)
    ========================================================= */
-.mono-icon {
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), filter 0.25s ease !important;
-}
 
-.mono-icon:hover {
-  transform: scale(1.18) rotate(2deg);
-  filter: drop-shadow(0 4px 14px currentColor);
-}
-
-/* Títulos de sección con gradientes temáticos */
-#historia .section-title .mono-icon { color: #f59e0b !important; } /* Ámbar histórico */
-#hardware .section-title .mono-icon { color: #06b6d4 !important; } /* Cyan hardware */
-#puente-red .section-title .mono-icon { color: #3b82f6 !important; } /* Azul enlace */
-#cobertura .section-title .mono-icon { color: #8b5cf6 !important; } /* Púrpura cobertura */
-#simulador .section-title .mono-icon { color: #10b981 !important; } /* Esmeralda tráfico */
-#topologias .section-title .mono-icon { color: #ec4899 !important; } /* Rosa topologías */
-#glosario .section-title .mono-icon { color: #f97316 !important; } /* Naranja libro */
-#innovacion .section-title .mono-icon { color: #14b8a6 !important; } /* Teal laboratorio */
-
-/* Header & Botones */
-#theme-icon.mono-icon { color: #fbbf24 !important; } /* Amarillo luna/sol */
-.lang-switch-btn .mono-icon { color: #38bdf8 !important; } /* Celeste mundo */
-.tag-badge .mono-icon { color: #facc15 !important; } /* Amarillo rayo */
-.btn-expand-icon .mono-icon { color: #a78bfa !important; } /* Violeta lectura */
-
-/* Componentes de Hardware - Cada uno con identidad visual propia */
-.card:nth-of-type(1) .card-icon.mono-icon { color: #10b981 !important; } /* Motherboard: Verde placa PCB */
-.card:nth-of-type(2) .card-icon.mono-icon { color: #06b6d4 !important; } /* CPU: Cyan silicio */
-.card:nth-of-type(3) .card-icon.mono-icon { color: #8b5cf6 !important; } /* RAM: Púrpura bus rápido */
-.card:nth-of-type(4) .card-icon.mono-icon { color: #f59e0b !important; } /* SSD: Ámbar memoria flash */
-.card:nth-of-type(5) .card-icon.mono-icon { color: #3b82f6 !important; } /* NIC: Azul ethernet */
-.card:nth-of-type(6) .card-icon.mono-icon { color: #ef4444 !important; } /* PSU: Rojo energía */
-.card:nth-of-type(7) .card-icon.mono-icon { color: #0284c7 !important; } /* Cooling: Azul agua/refrigeración */
-.card:nth-of-type(8) .card-icon.mono-icon { color: #ec4899 !important; } /* GPU: Neón gamer */
-.card:nth-of-type(9) .card-icon.mono-icon { color: #a855f7 !important; } /* ODD: Violeta láser */
-
-/* Cobertura de Redes (PAN, LAN, CAN, MAN, WAN, SAN, WLAN) */
-.scope-card:nth-child(1) .scope-icon.mono-icon { color: #06b6d4 !important; } /* PAN: Turquesa */
-.scope-card:nth-child(2) .scope-icon.mono-icon { color: #10b981 !important; } /* LAN: Verde red local */
-.scope-card:nth-child(3) .scope-icon.mono-icon { color: #f59e0b !important; } /* CAN: Ámbar campus */
-.scope-card:nth-child(4) .scope-icon.mono-icon { color: #f97316 !important; } /* MAN: Naranja metropolitana */
-.scope-card:nth-child(5) .scope-icon.mono-icon { color: #3b82f6 !important; } /* WAN: Azul global */
-.scope-card:nth-child(6) .scope-icon.mono-icon { color: #8b5cf6 !important; } /* SAN: Púrpura almacenamiento */
-.scope-card:nth-child(7) .scope-icon.mono-icon { color: #ec4899 !important; } /* WLAN: Magenta WiFi */
+/* Componentes de Hardware */
+#card-mb .card-icon.mono-icon { color: #10b981; }    /* Motherboard PCB */
+#card-cpu .card-icon.mono-icon { color: #0ea5e9; }   /* CPU Silicio */
+#card-ram .card-icon.mono-icon { color: #8b5cf6; }   /* RAM Bus */
+#card-storage .card-icon.mono-icon { color: #f59e0b; }/* SSD Almacenamiento */
+#card-nic .card-icon.mono-icon { color: #3b82f6; }   /* NIC Ethernet */
+#card-psu .card-icon.mono-icon { color: #ef4444; }   /* PSU Fuente */
+#card-cooling .card-icon.mono-icon { color: #06b6d4; }/* Refrigeración Líquida */
 
 /* Dispositivos del Simulador */
-.device-icon-wrap:not(.switch-icon):not(.router-icon):not(.server-icon).mono-icon { color: #38bdf8 !important; } /* PCs */
-.device-icon-wrap.switch-icon.mono-icon { color: #10b981 !important; } /* Switch: Verde */
-.device-icon-wrap.router-icon.mono-icon { color: #f59e0b !important; } /* Router: Ámbar */
-.device-icon-wrap.server-icon.mono-icon { color: #8b5cf6 !important; } /* Server: Púrpura */
+.switch-icon.mono-icon { color: #10b981; }
+.router-icon.mono-icon { color: #f59e0b; }
+.server-icon.mono-icon { color: #8b5cf6; }
 
-/* Topologías de Red */
-.topo-card:nth-of-type(1) .card-icon.mono-icon { color: #f59e0b !important; } /* Estrella: Amarillo */
-.topo-card:nth-of-type(2) .card-icon.mono-icon { color: #3b82f6 !important; } /* Bus: Azul */
-.topo-card:nth-of-type(3) .card-icon.mono-icon { color: #10b981 !important; } /* Anillo: Verde */
-.topo-card:nth-of-type(4) .card-icon.mono-icon { color: #8b5cf6 !important; } /* Malla: Púrpura */
-.topo-card:nth-of-type(5) .card-icon.mono-icon { color: #06b6d4 !important; } /* Árbol: Cyan */
-.topo-card:nth-of-type(6) .card-icon.mono-icon { color: #ec4899 !important; } /* Híbrida: Rosa */
-
-/* =========================================================
-   ICONOS SVG PERSONALIZADOS PARA CONTROLES E INTERACCIÓN
-   ========================================================= */
-.menu-icon-inner.mono-icon {
-  width: 1.35rem;
-  height: 1.35rem;
-  color: var(--accent-cyan);
-}
-
+/* Indicadores de pros y contras */
 .topo-point-bullet.mono-icon {
-  width: 1.15rem;
-  height: 1.15rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
-
-.topo-point-item.pro .topo-point-bullet.mono-icon {
-  color: #10b981 !important;
-  filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.4));
-}
-
-.topo-point-item.con .topo-point-bullet.mono-icon {
-  color: #f43f5e !important;
-  filter: drop-shadow(0 2px 6px rgba(244, 63, 94, 0.4));
-}
-
-.expand-arrow.mono-icon,
-.comp-arrow.mono-icon {
   width: 1rem;
   height: 1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease;
-  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.topo-point-item.pro .topo-point-bullet.mono-icon {
+  color: #10b981;
+}
+
+.topo-point-item.con .topo-point-bullet.mono-icon {
+  color: #ef4444;
+}
+
+/* Flechas de desplegables */
+.expand-arrow.mono-icon,
+.comp-arrow.mono-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+  color: inherit;
 }
 
 .btn-expand-history[aria-expanded="true"] .expand-arrow.mono-icon,
 .btn-component-expand[aria-expanded="true"] .comp-arrow.mono-icon {
   transform: rotate(180deg);
-  color: #38bdf8;
 }
 
-[data-theme="light"] .menu-icon-inner.mono-icon,
-[data-theme="light"] .expand-arrow.mono-icon,
-[data-theme="light"] .comp-arrow.mono-icon {
-  color: var(--accent-blue);
-}
-
-/* Boton tema: icono negro en modo claro, blanco en modo oscuro */
+/* Botón cambio de tema */
 #theme-toggle {
   background: transparent !important;
   filter: none !important;
 }
 
 #theme-toggle svg {
-  color: #000000 !important;
-  stroke: #000000 !important;
+  color: #0f172a !important;
+  stroke: #0f172a !important;
 }
 
 body.dark #theme-toggle svg,
 [data-theme="dark"] #theme-toggle svg,
 html.dark #theme-toggle svg {
-  color: #ffffff !important;
-  stroke: #ffffff !important;
+  color: #f8fafc !important;
+  stroke: #f8fafc !important;
 }
