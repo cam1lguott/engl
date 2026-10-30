@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
   /* Paleta Modo Oscuro Informática / Cyber-Slate */
@@ -2688,3 +2688,56 @@ body {
 .topo-card:nth-of-type(4) .card-icon.mono-icon { color: #8b5cf6 !important; } /* Malla: Púrpura */
 .topo-card:nth-of-type(5) .card-icon.mono-icon { color: #06b6d4 !important; } /* Árbol: Cyan */
 .topo-card:nth-of-type(6) .card-icon.mono-icon { color: #ec4899 !important; } /* Híbrida: Rosa */
+
+
+/* =========================================================
+   ICONOS SVG PERSONALIZADOS PARA CONTROLES E INTERACCIÓN
+   ========================================================= */
+.menu-icon-inner.mono-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--accent-cyan);
+}
+
+.topo-point-bullet.mono-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.topo-point-item.pro .topo-point-bullet.mono-icon {
+  color: #10b981 !important;
+  filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.4));
+}
+
+.topo-point-item.con .topo-point-bullet.mono-icon {
+  color: #f43f5e !important;
+  filter: drop-shadow(0 2px 6px rgba(244, 63, 94, 0.4));
+}
+
+.expand-arrow.mono-icon,
+.comp-arrow.mono-icon {
+  width: 1rem;
+  height: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease;
+  color: var(--accent-cyan);
+}
+
+.btn-expand-history[aria-expanded="true"] .expand-arrow.mono-icon,
+.btn-component-expand[aria-expanded="true"] .comp-arrow.mono-icon {
+  transform: rotate(180deg);
+  color: #38bdf8;
+}
+
+[data-theme="light"] .menu-icon-inner.mono-icon,
+[data-theme="light"] .expand-arrow.mono-icon,
+[data-theme="light"] .comp-arrow.mono-icon {
+  color: var(--accent-blue);
+}

@@ -529,7 +529,7 @@ function setupMobileMenu() {
   menuBtn.addEventListener('click', () => {
     const isActive = navMenu.classList.toggle('is-active');
     menuBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-    menuBtn.textContent = isActive ? '✕' : '☰';
+    menuBtn.innerHTML = isActive ? '<span class="menu-icon-inner mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>' : '<span class="menu-icon-inner mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span>';
   });
 
   const links = navMenu.querySelectorAll('a');
@@ -538,7 +538,7 @@ function setupMobileMenu() {
       if (navMenu.classList.contains('is-active')) {
         navMenu.classList.remove('is-active');
         menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.textContent = '☰';
+        menuBtn.innerHTML = '<span class="menu-icon-inner mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span>';
       }
     });
   });
