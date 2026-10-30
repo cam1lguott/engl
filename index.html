@@ -960,12 +960,19 @@
             <!-- Router Gateway Capa 3 -->
             <div class="sim-device router" id="node-router">
               <div class="device-icon-wrap router-icon mono-icon">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="4" y="7" width="24" height="18" rx="4"></rect>
-                  <path d="M9 12h6l-2.5-2.5M15 12l-2.5 2.5"></path>
-                  <path d="M23 20h-6l2.5-2.5M17 20l2.5 2.5"></path>
-                  <circle cx="8" cy="20" r="1" fill="currentColor" stroke="none"></circle>
-                  <circle cx="24" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+                <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="router-face-gradient" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#c4b5fd"></stop>
+                      <stop offset="1" stop-color="#6366f1"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 16.5 24 8l17 8.5v15L24 40 7 31.5v-15Z" fill="url(#router-face-gradient)" fill-opacity=".16" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                  <path d="m7 16.5 17 9 17-9M24 25.5V40" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                  <path d="m16 20.5 4 2.1M28 27.4l4-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                  <path d="m17.5 18.5 2.5 4.1-4.7-.5M30.5 29.5 28 25.4l4.7.5" fill="currentColor"></path>
+                  <circle cx="24" cy="31" r="1.5" fill="#67e8f9"></circle>
+                  <circle cx="29" cy="28.5" r="1.5" fill="#a7f3d0"></circle>
                 </svg>
               </div>
               <strong class="device-name">Router Gateway</strong>
