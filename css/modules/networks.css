@@ -758,15 +758,16 @@
   }
 
   .sim-stage {
-    min-height: 500px;
-    padding: 1.25rem 0.75rem;
+    min-height: 0;
+    padding: 1.5rem 0.75rem;
     overflow: hidden;
   }
 
   .sim-nodes-row {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem 0.65rem;
+    grid-template-columns: minmax(0, 220px);
+    justify-content: center;
+    gap: 1.15rem;
     min-width: 0;
     width: 100%;
   }
@@ -774,21 +775,31 @@
   .sim-device {
     width: 100%;
     min-width: 0;
-    padding: 0.8rem 0.35rem;
+    padding: 0.85rem 0.65rem;
   }
 
-  .sim-device.central {
-    grid-column: 1;
+  .sim-device::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1.15rem;
+    width: 2px;
+    height: 1.15rem;
+    background: var(--accent-cyan);
+    opacity: 0.45;
+    transform: translateX(-50%);
   }
 
-  .sim-device.router {
-    grid-column: 2;
+  .sim-device:last-child::after {
+    display: none;
   }
 
+  .sim-device.central,
+  .sim-device.router,
   .sim-device.server {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: min(100%, 140px);
+    grid-column: auto;
+    justify-self: stretch;
+    width: 100%;
   }
 
   .device-name,
@@ -804,9 +815,12 @@
   }
 
   .packet-traveler {
+    top: 0.75rem;
+    left: 50%;
     max-width: calc(100% - 1.5rem);
     font-size: 0.65rem;
     padding: 0.3rem 0.55rem;
+    transform: translateX(-50%);
   }
 
   .sim-terminal-header {
