@@ -81,9 +81,22 @@ html {
 body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-deep);
+  background-image:
+    linear-gradient(rgba(10, 14, 23, 0.78), rgba(10, 14, 23, 0.9)),
+    url('../../assets/tech-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+}
+
+[data-theme="light"] body {
+  background-image:
+    linear-gradient(rgba(248, 250, 252, 0.84), rgba(248, 250, 252, 0.94)),
+    url('../../assets/tech-bg.jpg');
 }
 
 /* Scrollbar técnica fina */
