@@ -248,7 +248,7 @@ const translations = {
     insp_l3_title: "Capa 3 - Paquete IP (Protocolo 1 ICMP)",
     insp_stat_title: "Métricas de Conectividad",
     lang_select_title: "Seleccionar Idioma",
-    footer_text: "Estructura de Redes"
+    footer_text: "NVISION"
   },
   en: {
     badge_hero: "Network Structure",
@@ -485,7 +485,7 @@ const translations = {
     insp_l3_title: "Layer 3 - IP Packet (Protocol 1 ICMP)",
     insp_stat_title: "Connectivity Metrics",
     lang_select_title: "Select Language",
-    footer_text: "Network Structure"
+    footer_text: "NVISION"
   }
 };
 
