@@ -727,6 +727,118 @@
 [data-theme="light"] .insp-title { color: #0284c7; }
 [data-theme="light"] .inspector-box p { color: #1e293b; }
 
+@media (max-width: 600px) {
+  .simulator-wrapper {
+    padding: 0.75rem;
+    gap: 0.9rem;
+  }
+
+  .sim-control-bar {
+    align-items: stretch;
+    gap: 0.8rem;
+    padding: 0.85rem;
+  }
+
+  .sim-control-group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .sim-select {
+    width: 100%;
+    min-height: 2.75rem;
+    font-size: 0.8rem;
+  }
+
+  .sim-btn-run,
+  .sim-btn-reset {
+    align-self: stretch;
+    justify-content: center;
+    min-height: 2.75rem;
+  }
+
+  .sim-stage {
+    min-height: 500px;
+    padding: 1.25rem 0.75rem;
+    overflow: hidden;
+  }
+
+  .sim-nodes-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 0.65rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .sim-device {
+    width: 100%;
+    min-width: 0;
+    padding: 0.8rem 0.35rem;
+  }
+
+  .sim-device.central {
+    grid-column: 1;
+  }
+
+  .sim-device.router {
+    grid-column: 2;
+  }
+
+  .sim-device.server {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 140px);
+  }
+
+  .device-name,
+  .device-ip,
+  .device-mac {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .sim-links-svg-wrap {
+    display: none;
+  }
+
+  .packet-traveler {
+    max-width: calc(100% - 1.5rem);
+    font-size: 0.65rem;
+    padding: 0.3rem 0.55rem;
+  }
+
+  .sim-terminal-header {
+    flex-wrap: wrap;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .term-title {
+    flex: 1 1 calc(100% - 5rem);
+    margin-left: 0.15rem;
+    overflow-wrap: anywhere;
+  }
+
+  .sim-status-idle,
+  .sim-status-running {
+    margin-left: auto;
+  }
+
+  .sim-console-body {
+    min-height: 150px;
+    max-height: 220px;
+    padding: 0.75rem;
+    font-size: 0.7rem;
+    overflow-wrap: anywhere;
+  }
+
+  .packet-inspector-grid {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+  }
+}
+
 /* =========================================================
    SECCIÓN: CLASIFICACIÓN DE REDES (PAN, LAN, MAN, WAN)
    ========================================================= */
