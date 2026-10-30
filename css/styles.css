@@ -2751,11 +2751,19 @@ span:has(> svg), .lucide, i.fa {
   color: #ec4899 !important;
 }
 
-/* Theme toggle emoji colors */
-#theme-toggle, .theme-toggle, [data-theme-toggle], #themeToggle, button:has(#theme-icon) {
-  filter: grayscale(100%) brightness(0) !important;
+
+/* Boton tema: icono negro en modo claro, blanco en modo oscuro */
+#theme-toggle {
+  background: transparent !important;
+  filter: none !important;
 }
-body.dark #theme-toggle, body.dark-theme #theme-toggle, [data-theme="dark"] #theme-toggle,
-body.dark .theme-toggle, body.dark-theme .theme-toggle, [data-theme="dark"] .theme-toggle {
-  filter: grayscale(100%) brightness(10) !important;
+#theme-toggle svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+body.dark #theme-toggle svg,
+[data-theme="dark"] #theme-toggle svg,
+html.dark #theme-toggle svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
