@@ -768,7 +768,6 @@ function setupNetworkSimulator() {
   function movePacketTo(devKey, callback, duration = 750) {
     const coords = getDeviceCenter(devKey);
     setActiveRoute(currentDevice, devKey);
-    highlightDevice(devKey);
     positionPacket(coords);
     currentDevice = devKey;
     setTimeout(callback, duration);
@@ -799,7 +798,7 @@ function setupNetworkSimulator() {
 
   function highlightDevice(devKey) {
     document.querySelectorAll('.sim-device').forEach(d => {
-      d.classList.remove('processing-packet', 'processing-reply');
+      d.classList.remove('processing-packet', 'processing-reply', 'active-source', 'active-target');
     });
     const el = document.getElementById(devices[devKey].id);
     if (el) {
@@ -890,7 +889,7 @@ function setupNetworkSimulator() {
           setTimeout(() => {
             movePacketTo(dst, () => {
               highlightDevice(dst);
-              log(`[DESTINO] ${dstDev.name} recibe trama, verifica IP coincidente y procesa ICMP Echo Request.`, 'rep');
+              log(`[DESTINO] ${dstDev.name} recibe los datos correctamente.`, 'rep');
               startReturnTrip(srcDev, dstDev, true);
             });
           }, 600);
@@ -908,7 +907,7 @@ function setupNetworkSimulator() {
                 log(`[ROUTER -> WAN] Transmite paquete a través de enlace punto a punto hacia ${dstDev.name}.`, 'l3');
                 movePacketTo('server', () => {
                   highlightDevice('server');
-                  log(`[WEB SERVER] Servidor recibe solicitud ICMP Echo Request exitosamente. Genera Echo Reply.`, 'rep');
+                  log(`[WEB SERVER] El servidor recibe los datos y prepara la respuesta.`, 'rep');
                   startReturnTrip(srcDev, dstDev, false);
                 });
               }, 650);

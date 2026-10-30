@@ -418,13 +418,13 @@
 }
 
 .sim-device.processing-packet {
-  border-color: #22d3ee;
+  border: 2px solid #22d3ee;
   box-shadow: 0 0 18px rgba(34, 211, 238, 0.75);
   animation: pulseDevice 0.6s infinite alternate;
 }
 
 .sim-device.processing-reply {
-  border-color: #a78bfa;
+  border: 2px solid #a78bfa;
   box-shadow: 0 0 18px rgba(167, 139, 250, 0.75);
   animation: pulseDevice 0.6s infinite alternate;
 }
