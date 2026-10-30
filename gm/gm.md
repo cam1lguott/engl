@@ -9,8 +9,17 @@
   [console]::beep(1000, 250)
   ```
 
+## Lectura de Archivos sin Consola (Regla Estricta de Lectura por Lotes)
+- **Prohibido usar comandos de consola para leer o buscar texto** (nada de `Select-String`, `grep`, `Get-Content`, `type` o scripts de PowerShell para inspeccionar código).
+- Utiliza **exclusivamente la herramienta nativa `read_file`** de forma directa.
+- Para archivos extensos de más de 800 líneas, lee el archivo por lotes consecutivos usando los parámetros de rango de líneas:
+  - Primer lote: `StartLine: 1`, `EndLine: 800`
+  - Segundo lote: `StartLine: 801`, `EndLine: 1600`
+  - Tercer lote: `StartLine: 1601`, `EndLine: 2400`
+  - Y así sucesivamente hasta cubrir la sección requerida.
+
 ## Edición de Archivos en CLI (Windows / CRLF)
-- En el entorno de la terminal de windows, si se quiere evitar errores de incompatibilidad de saltos de linea con edit_file, utiliza prioritario write_file para actualizar archivos completos de manera directa.
+- En el entorno de la terminal de windows, para evitar errores de incompatibilidad de saltos de linea con `edit_file`, utiliza prioritario `write_file` para actualizar archivos completos de manera directa y rápida.
 
 ## Autenticación de GitHub CLI (Al Iniciar Cada Chat)
 - Cada vez que comience una nueva conversación o sesión de chat, la IA debe consultar y verificar el token activo de GitHub CLI ejecutando:
