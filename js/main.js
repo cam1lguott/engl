@@ -35,6 +35,7 @@ const translations = {
     nav_glossary: "Glosario",
     nav_lab: "Laboratorio",
     nav_grp_hardware: "Hardware",
+    nav_back: "Volver",
     nav_grp_networks: "Redes",
     nav_grp_resources: "Recursos",
     
@@ -280,6 +281,7 @@ const translations = {
     nav_glossary: "Glossary",
     nav_lab: "Lab",
     nav_grp_hardware: "Hardware",
+    nav_back: "Back",
     nav_grp_networks: "Networks",
     nav_grp_resources: "Resources",
 
@@ -594,6 +596,8 @@ function setupMobileMenu() {
 
   menuBtn.addEventListener('click', () => {
     const isActive = navMenu.classList.toggle('is-active');
+    navMenu.classList.remove('submenu-active');
+    navMenu.querySelectorAll('.nav-item-dropdown').forEach((dropdown) => dropdown.classList.remove('is-open'));
     menuBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     menuBtn.innerHTML = isActive ? '<span class="menu-icon-inner mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>' : '<span class="menu-icon-inner mono-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span>';
   });
@@ -612,6 +616,7 @@ function setupMobileMenu() {
 
 function setupNavigationDropdowns() {
   const dropdowns = document.querySelectorAll('.nav-item-dropdown');
+  const navLinks = document.querySelector('.nav-links');
 
   dropdowns.forEach((dropdown) => {
     const trigger = dropdown.querySelector('.nav-dropdown-trigger');
@@ -632,7 +637,18 @@ function setupNavigationDropdowns() {
       });
       dropdown.classList.toggle('is-open', willOpen);
       trigger.setAttribute('aria-expanded', String(willOpen));
+      if (navLinks) navLinks.classList.toggle('submenu-active', willOpen);
     });
+
+    const backButton = dropdown.querySelector('.nav-mobile-back button');
+    if (backButton) {
+      backButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        if (navLinks) navLinks.classList.remove('submenu-active');
+      });
+    }
   });
 
   document.addEventListener('click', (event) => {
@@ -642,6 +658,7 @@ function setupNavigationDropdowns() {
         const dropdownTrigger = dropdown.querySelector('.nav-dropdown-trigger');
         if (dropdownTrigger) dropdownTrigger.setAttribute('aria-expanded', 'false');
       });
+      if (navLinks) navLinks.classList.remove('submenu-active');
     }
   });
 }
