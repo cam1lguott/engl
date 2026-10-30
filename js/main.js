@@ -614,6 +614,27 @@ function setupMobileMenu() {
   });
 }
 
+function setupSectionNavigation() {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const targetId = link.getAttribute('href')?.slice(1);
+      if (!targetId) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        return;
+      }
+
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    });
+  });
+}
+
 function setupNavigationDropdowns() {
   const dropdowns = document.querySelectorAll('.nav-item-dropdown');
   const navLinks = document.querySelector('.nav-links');
@@ -701,6 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLanguageDropdown();
   setupCopyButton();
   setupMobileMenu();
+  setupSectionNavigation();
   setupNavigationDropdowns();
   setupHistoryToggle();
   setupComponentToggles();
